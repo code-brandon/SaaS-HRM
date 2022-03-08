@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.xiaozheng.company.dao.co.CoCompanyDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type = "com.xiaozheng.model.co.CoCompanyEntity" id = "coCompanyMap">
+        <result property = "id" column = "id"/>
+        <result property = "name" column = "name"/>
+        <result property = "managerId" column = "manager_id"/>
+        <result property = "version" column = "version"/>
+        <result property = "renewalDate" column = "renewal_date"/>
+        <result property = "expirationDate" column = "expiration_date"/>
+        <result property = "companyArea" column = "company_area"/>
+        <result property = "companyAddress" column = "company_address"/>
+        <result property = "businessLicenseId" column = "business_license_id"/>
+        <result property = "legalRepresentative" column = "legal_representative"/>
+        <result property = "companyPhone" column = "company_phone"/>
+        <result property = "mailbox" column = "mailbox"/>
+        <result property = "companySize" column = "company_size"/>
+        <result property = "industry" column = "industry"/>
+        <result property = "remarks" column = "remarks"/>
+        <result property = "auditState" column = "audit_state"/>
+        <result property = "state" column = "state"/>
+        <result property = "balance" column = "balance"/>
+        <result property = "createTime" column = "create_time"/>
+    </resultMap>
+
+
+</mapper>

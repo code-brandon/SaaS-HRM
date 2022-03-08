@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.xiaozheng.company.dao.sa.SaArchiveDetailDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type = "com.xiaozheng.model.sa.SaArchiveDetailEntity" id = "saArchiveDetailMap">
+        <result property = "id" column = "id"/>
+        <result property = "archiveId" column = "archive_id"/>
+        <result property = "userId" column = "user_id"/>
+        <result property = "username" column = "username"/>
+        <result property = "mobile" column = "mobile"/>
+        <result property = "workNumber" column = "work_number"/>
+        <result property = "departmentName" column = "department_name"/>
+        <result property = "idNumber" column = "id_number"/>
+        <result property = "inServiceStatus" column = "in_service_status"/>
+        <result property = "formOfEmployment" column = "form_of_employment"/>
+        <result property = "bankCardNumber" column = "bank_card_number"/>
+        <result property = "openingBank" column = "opening_bank"/>
+        <result property = "providentFundIndividual" column = "provident_fund_individual"/>
+        <result property = "socialSecurityIndividual" column = "social_security_individual"/>
+        <result property = "oldAgeIndividual" column = "old_age_individual"/>
+        <result property = "medicalIndividual" column = "medical_individual"/>
+        <result property = "unemployedIndividual" column = "unemployed_individual"/>
+        <result property = "aPersonOfGreatDisease" column = "a_person_of_great_disease"/>
+        <result property = "socialSecurity" column = "social_security"/>
+        <result property = "totalProvidentFundIndividual" column = "total_provident_fund_individual"/>
+        <result property = "socialSecurityEnterprise" column = "social_security_enterprise"/>
+        <result property = "pensionEnterprise" column = "pension_enterprise"/>
+        <result property = "medicalEnterprise" column = "medical_enterprise"/>
+        <result property = "unemployedEnterprise" column = "unemployed_enterprise"/>
+        <result property = "industrialInjuryEnterprise" column = "industrial_injury_enterprise"/>
+        <result property = "childbearingEnterprise" column = "childbearing_enterprise"/>
+        <result property = "bigDiseaseEnterprise" column = "big_disease_enterprise"/>
+        <result property = "providentFundEnterprises" column = "provident_fund_enterprises"/>
+        <result property = "socialSecurityProvidentFundEnterprises" column = "social_security_provident_fund_enterprises"/>
+        <result property = "taxToProvidentFund" column = "tax_to_provident_fund"/>
+        <result property = "officialSalaryDays" column = "official_salary_days"/>
+        <result property = "attendanceDeductionMonthly" column = "attendance_deduction_monthly"/>
+        <result property = "salaryStandard" column = "salary_standard"/>
+        <result property = "currentSalaryTotalBase" column = "current_salary_total_base"/>
+        <result property = "currentBaseSalary" column = "current_base_salary"/>
+        <result property = "baseSalaryByMonth" column = "base_salary_by_month"/>
+        <result property = "taxCountingMethod" column = "tax_counting_method"/>
+        <result property = "baseSalaryToTaxByMonth" column = "base_salary_to_tax_by_month"/>
+        <result property = "salaryBeforeTax" column = "salary_before_tax"/>
+        <result property = "salary" column = "salary"/>
+        <result property = "salaryByTax" column = "salary_by_tax"/>
+        <result property = "paymentBeforeTax" column = "payment_before_tax"/>
+        <result property = "tax" column = "tax"/>
+        <result property = "salaryAfterTax" column = "salary_after_tax"/>
+        <result property = "payment" column = "payment"/>
+        <result property = "paymentRemark" column = "payment_remark"/>
+        <result property = "salaryCost" column = "salary_cost"/>
+        <result property = "enterpriseLaborCost" column = "enterprise_labor_cost"/>
+        <result property = "salaryChangeAmount" column = "salary_change_amount"/>
+        <result property = "salaryChangeScale" column = "salary_change_scale"/>
+        <result property = "effectiveTimeOfPayAdjustment" column = "effective_time_of_pay_adjustment"/>
+        <result property = "causeOfSalaryAdjustment" column = "cause_of_salary_adjustment"/>
+        <result property = "remark" column = "remark"/>
+        <result property = "paymentMonths" column = "payment_months"/>
+    </resultMap>
+
+
+</mapper>
