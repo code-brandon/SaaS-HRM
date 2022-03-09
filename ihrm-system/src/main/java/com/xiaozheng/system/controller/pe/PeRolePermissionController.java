@@ -2,9 +2,9 @@ package com.xiaozheng.system.controller.pe;
 
 import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.utils.PageUtils;
-import com.xiaozheng.system.service.pe.PeRolePermissionService;
 import com.xiaozheng.model.pe.PeRolePermissionEntity;
 import com.xiaozheng.model.vo.pe.PeUserRoleOrRolePermissionVo;
+import com.xiaozheng.system.service.pe.PeRolePermissionService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

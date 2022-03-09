@@ -5,9 +5,9 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.common.utils.Query;
+import com.xiaozheng.model.pe.PePermissionPointEntity;
 import com.xiaozheng.system.dao.pe.PePermissionPointDao;
 import com.xiaozheng.system.service.pe.PePermissionPointService;
-import com.xiaozheng.model.pe.PePermissionPointEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

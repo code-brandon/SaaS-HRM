@@ -2,8 +2,8 @@ package com.xiaozheng.system.controller.pe;
 
 import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.utils.PageUtils;
-import com.xiaozheng.system.service.pe.PePermissionMenuService;
 import com.xiaozheng.model.pe.PePermissionMenuEntity;
+import com.xiaozheng.system.service.pe.PePermissionMenuService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

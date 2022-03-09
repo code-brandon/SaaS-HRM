@@ -1,22 +1,19 @@
 package com.xiaozheng.system.controller.pe;
 
 import com.xiaozheng.common.entity.R;
-import com.xiaozheng.common.entity.ResultCode;
-import com.xiaozheng.common.exception.CommonException;
-import com.xiaozheng.common.utils.JwtUtils;
 import com.xiaozheng.common.utils.PageUtils;
-import com.xiaozheng.system.service.pe.PeUserService;
+import com.xiaozheng.common.utils.ShiroContextUtils;
 import com.xiaozheng.model.dto.PeUserDto;
 import com.xiaozheng.model.pe.PeUserEntity;
 import com.xiaozheng.model.vo.pe.PeUsetVo;
-import io.jsonwebtoken.Claims;
+import com.xiaozheng.system.service.pe.PeUserService;
 import io.swagger.annotations.*;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
@@ -34,9 +31,6 @@ public class PeUserController {
 
     @Autowired
     private PeUserService peUserService;
-
-    @Autowired
-    private JwtUtils jwtUtils;
 
     /**
      * 分页条件查询所有数据
@@ -98,8 +92,7 @@ public class PeUserController {
     @ApiOperation("保存数据")
     @PostMapping("/save")
     public R<Boolean> save(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) PeUserEntity peUser) {
-
-        return peUserService.save(peUser) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
+        return peUserService.saveAndEncrypt(peUser) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
     }
 
     /**
@@ -122,6 +115,7 @@ public class PeUserController {
      * @return 删除结果
      */
     @ApiOperation("删除数据")
+    @RequiresPermissions(value = "API-USER-DELETE")
     @DeleteMapping("/delete")
     public R<Boolean> delete(@RequestBody @ApiParam(name = "ID", value = "ID集合", required = true) String[] ids) {
 
@@ -147,22 +141,8 @@ public class PeUserController {
      */
     @ApiOperation("获取个人信息")
     @GetMapping("/profile")
-    public R<PeUserDto> profile(HttpServletRequest request) throws Exception {
-        /**
-         * 从请求头中获取token
-         */
-        String authorization = request.getHeader("Authorization");
-        if (StringUtils.isEmpty(authorization)) {
-            throw new CommonException(ResultCode.UNAUTHENTICATED);
-        }
-        String token = authorization.replace("Bearer ", "");
-
-        System.out.println("token = " + token);
-
-        Claims claims = jwtUtils.parseJwt(token);
-
-
-        PeUserDto peUserDto = peUserService.profile(claims.getId());
+    public R<PeUserDto> profile() {
+        PeUserDto peUserDto = ShiroContextUtils.getProfile();
         return Objects.nonNull(peUserDto) ? R.ok("查询成功").data(peUserDto) : R.error("查询失败");
     }
 

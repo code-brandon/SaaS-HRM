@@ -25,6 +25,13 @@ public interface PeUserService extends IService<PeUserEntity> {
     PeUserEntity infoAndRoleById(String id);
 
     /**
+     * 通过手机号查询用户详情
+     * @param mobile
+     * @return
+     */
+    PeUserDto profileByMobile(String mobile);
+
+    /**
      * 根据Mobile 查询用户
      * @param mobile
      * @return
@@ -44,5 +51,13 @@ public interface PeUserService extends IService<PeUserEntity> {
      * @return
      */
     PeUserDto profile(String userId) throws Exception;
+
+    /**
+     * 保存用户数据
+     *
+     * @param peUser 实体对象
+     * @return 新增结果
+     */
+    boolean saveAndEncrypt(PeUserEntity peUser);
 }
 

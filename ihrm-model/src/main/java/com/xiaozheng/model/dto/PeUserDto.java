@@ -1,15 +1,14 @@
 package com.xiaozheng.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.xiaozheng.model.pe.PeRoleEntity;
-import com.xiaozheng.model.pe.PeUserEntity;
 import com.xiaozheng.model.vo.pe.PeUsetVo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.Map;
 
 /**
  * What --
@@ -22,10 +21,11 @@ import java.util.*;
  * @Author: 小政同学    QQ:xiaozheng666888@qq.com
  * @CreateTime: 2022/2/13 17:56
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PeUserDto extends PeUsetVo {
+public class PeUserDto extends PeUsetVo implements Serializable {
 
     /**
      * 角色

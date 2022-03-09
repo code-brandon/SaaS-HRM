@@ -52,6 +52,9 @@
     <select id="infoAndRoleById" resultType="com.xiaozheng.model.pe.PeUserEntity" resultMap="peUserMapCopy">
         select * , (select group_concat(role_id) from pe_user_role where user_id = #{id}) as roleIds  from pe_user where id = #{id}
     </select>
+    <select id="infoAndRoleByMobile" resultType="com.xiaozheng.model.pe.PeUserEntity">
+        select * , (select group_concat(role_id) from pe_user_role where user_id = (select id from pe_user where mobile = #{mobile})) as roleIds  from pe_user where mobile = #{mobile}
+    </select>
 
 
 </mapper>

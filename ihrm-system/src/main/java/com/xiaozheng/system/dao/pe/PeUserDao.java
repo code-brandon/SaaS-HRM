@@ -17,4 +17,6 @@ import org.springframework.stereotype.Repository;
 public interface PeUserDao extends BaseMapper<PeUserEntity> {
 
     PeUserEntity infoAndRoleById(@Param("id") String id);
+
+    PeUserEntity infoAndRoleByMobile(@Param("mobile") String mobile);
 }

@@ -1,17 +1,13 @@
 package com.xiaozheng.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.xiaozheng.model.pe.PePermissionEntity;
 import com.xiaozheng.model.pe.PeRoleEntity;
-import com.xiaozheng.model.pe.PeUserEntity;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
 
 /**
  * What --
@@ -27,7 +23,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PeRoleDto extends PeRoleEntity {
+public class PeRoleDto extends PeRoleEntity implements Serializable {
 
     /**
      * 权限 ID

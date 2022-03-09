@@ -1,9 +1,6 @@
 package com.xiaozheng.model.vo.pe;
 
-import com.xiaozheng.model.co.CoCompanyEntity;
-import com.xiaozheng.model.pe.PePermissionApiEntity;
 import com.xiaozheng.model.pe.PePermissionEntity;
-import com.xiaozheng.model.pe.PePermissionMenuEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
