@@ -22,9 +22,9 @@ import springfox.documentation.annotations.ApiIgnore;
  * @email 1911298402@qq.com
  * @date 2022-03-10 12:00:08
  */
-@Api(tags = "")
+@Api(tags = "员工公司")
 @RestController
-@RequestMapping("employee/emusercompany")
+@RequestMapping("em/usercompany")
 public class EmUserCompanyController {
     @Autowired
     private EmUserCompanyService emUserCompanyService;
@@ -40,7 +40,7 @@ public class EmUserCompanyController {
     })
     @ApiOperation("分页条件查询所有数据")
     @PostMapping("/queryPage")
-    public R<Map<String, PageUtils<EmUserCompanyEntity>>> queryPage(@RequestBody @ApiParam(name="",value=" 实体对象",required=true) EmUserCompanyEntity emUserCompany, @RequestParam @ApiIgnore() Map<String, Object> params){
+    public R<Map<String, PageUtils<EmUserCompanyEntity>>> queryPage(@RequestBody @ApiParam(name="员工公司表",value=" 实体对象",required=true) EmUserCompanyEntity emUserCompany, @RequestParam @ApiIgnore() Map<String, Object> params){
         PageUtils<EmUserCompanyEntity> page = emUserCompanyService.queryPage(emUserCompany,params);
         return R.ok("查询成功").data("page",page);
     }
@@ -69,7 +69,7 @@ public class EmUserCompanyController {
      */
     @ApiOperation("保存数据")
     @PostMapping("/save")
-    public R<Boolean> save(@RequestBody @ApiParam(name="",value=" 实体对象",required=true) EmUserCompanyEntity emUserCompany){
+    public R<Boolean> save(@RequestBody @ApiParam(name="员工公司表",value=" 实体对象",required=true) EmUserCompanyEntity emUserCompany){
 
         return emUserCompanyService.save(emUserCompany) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
     }
@@ -81,7 +81,7 @@ public class EmUserCompanyController {
      */
     @ApiOperation("修改数据")
     @PutMapping("/update")
-    public R<Boolean> update(@RequestBody @ApiParam(name="",value=" 实体对象",required=true) EmUserCompanyEntity emUserCompany){
+    public R<Boolean> update(@RequestBody @ApiParam(name="员工公司表",value=" 实体对象",required=true) EmUserCompanyEntity emUserCompany){
 
         return emUserCompanyService.updateById(emUserCompany) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
     }

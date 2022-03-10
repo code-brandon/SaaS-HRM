@@ -31,6 +31,7 @@ public class MinioConfig {
  
   @Bean
   public MinioUtils creatMinioClient() {
+    log.debug("{}, {}, {}, {}",endpoint, bucketName, accessKey, secretKey);
     return new MinioUtils(endpoint, bucketName, accessKey, secretKey);
   }
  

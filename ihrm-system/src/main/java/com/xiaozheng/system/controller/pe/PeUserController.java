@@ -1,6 +1,8 @@
 package com.xiaozheng.system.controller.pe;
 
 import com.xiaozheng.common.entity.R;
+import com.xiaozheng.common.entity.ResultCode;
+import com.xiaozheng.common.exception.CommonException;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.common.utils.ShiroContextUtils;
 import com.xiaozheng.model.dto.PeUserDto;
@@ -81,6 +83,24 @@ public class PeUserController {
     public R<PeUserEntity> infoAndRole(@PathVariable("id") String id) {
         PeUserEntity peUserEntity = peUserService.infoAndRoleById(id);
         return Objects.nonNull(peUserEntity) ? R.ok("查询成功").data(peUserEntity) : R.error("查询失败");
+    }
+
+    /**
+     * 通过mobile查询单条数据
+     *
+     * @param mobile 主键
+     * @return 单条数据
+     */
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键", dataType = "String", paramType = "path", example = "1")
+    })
+    @ApiOperation("通过主键查询单条数据")
+    @GetMapping("/profileByMobile/{mobile}")
+    public Object profileByMobile(@PathVariable("mobile") String mobile,@RequestHeader(value = "x-Device", required = true) String al) throws CommonException {
+        if (!"xiaozheng".equalsIgnoreCase(al)) {
+            throw new CommonException(ResultCode.UNAUTHENTICATED);
+        }
+        return peUserService.profileByMobile(mobile);
     }
 
     /**

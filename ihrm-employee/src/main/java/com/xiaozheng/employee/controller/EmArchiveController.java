@@ -21,9 +21,9 @@ import springfox.documentation.annotations.ApiIgnore;
  * @email 1911298402@qq.com
  * @date 2022-03-10 12:00:08
  */
-@Api(tags = "")
+@Api(tags = "月度员工归档")
 @RestController
-@RequestMapping("employee/emarchive")
+@RequestMapping("em/archive")
 public class EmArchiveController {
     @Autowired
     private EmArchiveService emArchiveService;
@@ -39,7 +39,7 @@ public class EmArchiveController {
     })
     @ApiOperation("分页条件查询所有数据")
     @PostMapping("/queryPage")
-    public R<Map<String, PageUtils<EmArchiveEntity>>> queryPage(@RequestBody @ApiParam(name="",value=" 实体对象",required=true) EmArchiveEntity emArchive, @RequestParam @ApiIgnore() Map<String, Object> params){
+    public R<Map<String, PageUtils<EmArchiveEntity>>> queryPage(@RequestBody @ApiParam(name="月度员工归档表",value=" 实体对象",required=true) EmArchiveEntity emArchive, @RequestParam @ApiIgnore() Map<String, Object> params){
         PageUtils<EmArchiveEntity> page = emArchiveService.queryPage(emArchive,params);
         return R.ok("查询成功").data("page",page);
     }
@@ -68,7 +68,7 @@ public class EmArchiveController {
      */
     @ApiOperation("保存数据")
     @PostMapping("/save")
-    public R<Boolean> save(@RequestBody @ApiParam(name="",value=" 实体对象",required=true) EmArchiveEntity emArchive){
+    public R<Boolean> save(@RequestBody @ApiParam(name="月度员工归档表",value=" 实体对象",required=true) EmArchiveEntity emArchive){
 
         return emArchiveService.save(emArchive) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
     }
@@ -80,7 +80,7 @@ public class EmArchiveController {
      */
     @ApiOperation("修改数据")
     @PutMapping("/update")
-    public R<Boolean> update(@RequestBody @ApiParam(name="",value=" 实体对象",required=true) EmArchiveEntity emArchive){
+    public R<Boolean> update(@RequestBody @ApiParam(name="月度员工归档表",value=" 实体对象",required=true) EmArchiveEntity emArchive){
 
         return emArchiveService.updateById(emArchive) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
     }

@@ -22,9 +22,9 @@ import springfox.documentation.annotations.ApiIgnore;
  * @email 1911298402@qq.com
  * @date 2022-03-10 12:00:08
  */
-@Api(tags = "")
+@Api(tags = "员工岗位信息")
 @RestController
-@RequestMapping("employee/emusercompanyjobs")
+@RequestMapping("em/usercompanyjobs")
 public class EmUserCompanyJobsController {
     @Autowired
     private EmUserCompanyJobsService emUserCompanyJobsService;
@@ -40,7 +40,7 @@ public class EmUserCompanyJobsController {
     })
     @ApiOperation("分页条件查询所有数据")
     @PostMapping("/queryPage")
-    public R<Map<String, PageUtils<EmUserCompanyJobsEntity>>> queryPage(@RequestBody @ApiParam(name="",value=" 实体对象",required=true) EmUserCompanyJobsEntity emUserCompanyJobs, @RequestParam @ApiIgnore() Map<String, Object> params){
+    public R<Map<String, PageUtils<EmUserCompanyJobsEntity>>> queryPage(@RequestBody @ApiParam(name="员工岗位信息表",value=" 实体对象",required=true) EmUserCompanyJobsEntity emUserCompanyJobs, @RequestParam @ApiIgnore() Map<String, Object> params){
         PageUtils<EmUserCompanyJobsEntity> page = emUserCompanyJobsService.queryPage(emUserCompanyJobs,params);
         return R.ok("查询成功").data("page",page);
     }
@@ -69,7 +69,7 @@ public class EmUserCompanyJobsController {
      */
     @ApiOperation("保存数据")
     @PostMapping("/save")
-    public R<Boolean> save(@RequestBody @ApiParam(name="",value=" 实体对象",required=true) EmUserCompanyJobsEntity emUserCompanyJobs){
+    public R<Boolean> save(@RequestBody @ApiParam(name="员工岗位信息表",value=" 实体对象",required=true) EmUserCompanyJobsEntity emUserCompanyJobs){
 
         return emUserCompanyJobsService.save(emUserCompanyJobs) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
     }
@@ -81,7 +81,7 @@ public class EmUserCompanyJobsController {
      */
     @ApiOperation("修改数据")
     @PutMapping("/update")
-    public R<Boolean> update(@RequestBody @ApiParam(name="",value=" 实体对象",required=true) EmUserCompanyJobsEntity emUserCompanyJobs){
+    public R<Boolean> update(@RequestBody @ApiParam(name="员工岗位信息表",value=" 实体对象",required=true) EmUserCompanyJobsEntity emUserCompanyJobs){
 
         return emUserCompanyJobsService.updateById(emUserCompanyJobs) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
     }

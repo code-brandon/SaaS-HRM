@@ -22,9 +22,9 @@ import springfox.documentation.annotations.ApiIgnore;
  * @email 1911298402@qq.com
  * @date 2022-03-10 12:00:08
  */
-@Api(tags = "")
+@Api(tags = "员工详细信息")
 @RestController
-@RequestMapping("employee/emusercompanypersonal")
+@RequestMapping("em/usercompanypersonal")
 public class EmUserCompanyPersonalController {
     @Autowired
     private EmUserCompanyPersonalService emUserCompanyPersonalService;
@@ -40,7 +40,7 @@ public class EmUserCompanyPersonalController {
     })
     @ApiOperation("分页条件查询所有数据")
     @PostMapping("/queryPage")
-    public R<Map<String, PageUtils<EmUserCompanyPersonalEntity>>> queryPage(@RequestBody @ApiParam(name="",value=" 实体对象",required=true) EmUserCompanyPersonalEntity emUserCompanyPersonal, @RequestParam @ApiIgnore() Map<String, Object> params){
+    public R<Map<String, PageUtils<EmUserCompanyPersonalEntity>>> queryPage(@RequestBody @ApiParam(name="员工详细信息表",value=" 实体对象",required=true) EmUserCompanyPersonalEntity emUserCompanyPersonal, @RequestParam @ApiIgnore() Map<String, Object> params){
         PageUtils<EmUserCompanyPersonalEntity> page = emUserCompanyPersonalService.queryPage(emUserCompanyPersonal,params);
         return R.ok("查询成功").data("page",page);
     }
@@ -69,7 +69,7 @@ public class EmUserCompanyPersonalController {
      */
     @ApiOperation("保存数据")
     @PostMapping("/save")
-    public R<Boolean> save(@RequestBody @ApiParam(name="",value=" 实体对象",required=true) EmUserCompanyPersonalEntity emUserCompanyPersonal){
+    public R<Boolean> save(@RequestBody @ApiParam(name="员工详细信息表",value=" 实体对象",required=true) EmUserCompanyPersonalEntity emUserCompanyPersonal){
 
         return emUserCompanyPersonalService.save(emUserCompanyPersonal) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
     }
@@ -81,7 +81,7 @@ public class EmUserCompanyPersonalController {
      */
     @ApiOperation("修改数据")
     @PutMapping("/update")
-    public R<Boolean> update(@RequestBody @ApiParam(name="",value=" 实体对象",required=true) EmUserCompanyPersonalEntity emUserCompanyPersonal){
+    public R<Boolean> update(@RequestBody @ApiParam(name="员工详细信息表",value=" 实体对象",required=true) EmUserCompanyPersonalEntity emUserCompanyPersonal){
 
         return emUserCompanyPersonalService.updateById(emUserCompanyPersonal) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
     }
