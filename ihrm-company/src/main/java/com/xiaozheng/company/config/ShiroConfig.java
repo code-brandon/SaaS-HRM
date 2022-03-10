@@ -1,9 +1,8 @@
-package com.xiaozheng.system.shiro;
+package com.xiaozheng.company.config;
 
 import com.xiaozheng.common.shiro.StatelessAuthcFilter;
 import com.xiaozheng.common.shiro.realm.IhrmRealm;
 import com.xiaozheng.common.shiro.session.CustomSessionManager;
-import com.xiaozheng.system.shiro.realm.UserRealm;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -11,12 +10,12 @@ import org.apache.shiro.web.mgt.WebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
-import javax.servlet.Filter ;
 import org.crazycake.shiro.RedisSessionDAO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -27,8 +26,8 @@ import java.util.Map;
 public class ShiroConfig {
 
     @Bean
-    public UserRealm getUserRealm() {
-        return new UserRealm();
+    public IhrmRealm getRealm() {
+        return new IhrmRealm();
     }
 
 
@@ -73,13 +72,13 @@ public class ShiroConfig {
 
     /**
      *
-     * @param userRealm
+     * @param realm
      * @return
      */
     @Bean
-    public WebSecurityManager getSecurityManager(UserRealm userRealm) {
+    public WebSecurityManager getSecurityManager(IhrmRealm realm) {
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
-        defaultWebSecurityManager.setRealm(userRealm);
+        defaultWebSecurityManager.setRealm(realm);
         defaultWebSecurityManager.setSessionManager(sessionManager());
         defaultWebSecurityManager.setCacheManager(redisCacheManager());
         return defaultWebSecurityManager;
