@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaozheng.employee.dao.EmTransferpositionDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.xiaozheng.employee.entity.EmTransferpositionEntity" id="emTransferpositionMap">
+        <result property="userId" column="user_id"/>
+        <result property="post" column="post"/>
+        <result property="rank" column="rank"/>
+        <result property="reportingObject" column="reporting_object"/>
+        <result property="hrbp" column="hrbp"/>
+        <result property="adjustmentTime" column="adjustment_time"/>
+        <result property="causeOfAdjustingPost" column="cause_of_adjusting_post"/>
+        <result property="enclosure" column="enclosure"/>
+        <result property="formOfManagement" column="form_of_management"/>
+        <result property="workingCity" column="working_city"/>
+        <result property="taxableCity" column="taxable_city"/>
+        <result property="currentContractStartTime" column="current_contract_start_time"/>
+        <result property="closingTimeOfCurrentContract" column="closing_time_of_current_contract"/>
+        <result property="workingPlace" column="working_place"/>
+        <result property="initialContractStartTime" column="initial_contract_start_time"/>
+        <result property="firstContractTerminationTime" column="first_contract_termination_time"/>
+        <result property="contractPeriod" column="contract_period"/>
+        <result property="renewalNumber" column="renewal_number"/>
+        <result property="recommenderBusinessPeople" column="recommender_business_people"/>
+        <result property="estatus" column="estatus"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+
+</mapper>

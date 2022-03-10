@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaozheng.employee.dao.EmPositiveDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.xiaozheng.employee.entity.EmPositiveEntity" id="emPositiveMap">
+        <result property="userId" column="user_id"/>
+        <result property="dateOfCorrection" column="date_of_correction"/>
+        <result property="correctionEvaluation" column="correction_evaluation"/>
+        <result property="enclosure" column="enclosure"/>
+        <result property="estatus" column="estatus"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaozheng.employee.dao.EmUserCompanyJobsDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.xiaozheng.employee.entity.EmUserCompanyJobsEntity" id="emUserCompanyJobsMap">
+        <result property="userId" column="user_id"/>
+        <result property="companyId" column="company_id"/>
+        <result property="post" column="post"/>
+        <result property="workMailbox" column="work_mailbox"/>
+        <result property="rank" column="rank"/>
+        <result property="correctionEvaluation" column="correction_evaluation"/>
+        <result property="reportId" column="report_id"/>
+        <result property="reportName" column="report_name"/>
+        <result property="stateOfCorrection" column="state_of_correction"/>
+        <result property="hrbp" column="hrbp"/>
+        <result property="workingTimeForTheFirstTime" column="working_time_for_the_first_time"/>
+        <result property="adjustmentAgedays" column="adjustment_agedays"/>
+        <result property="adjustmentOfLengthOfService" column="adjustment_of_length_of_service"/>
+        <result property="workingCity" column="working_city"/>
+        <result property="taxableCity" column="taxable_city"/>
+        <result property="currentContractStartTime" column="current_contract_start_time"/>
+        <result property="closingTimeOfCurrentContract" column="closing_time_of_current_contract"/>
+        <result property="initialContractStartTime" column="initial_contract_start_time"/>
+        <result property="firstContractTerminationTime" column="first_contract_termination_time"/>
+        <result property="contractPeriod" column="contract_period"/>
+        <result property="contractDocuments" column="contract_documents"/>
+        <result property="renewalNumber" column="renewal_number"/>
+        <result property="otherRecruitmentChannels" column="other_recruitment_channels"/>
+        <result property="recruitmentChannels" column="recruitment_channels"/>
+        <result property="socialRecruitment" column="social_recruitment"/>
+        <result property="recommenderBusinessPeople" column="recommender_business_people"/>
+    </resultMap>
+
+
+</mapper>

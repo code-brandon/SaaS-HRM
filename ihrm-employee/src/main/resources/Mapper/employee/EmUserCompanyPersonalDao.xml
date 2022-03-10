@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaozheng.employee.dao.EmUserCompanyPersonalDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.xiaozheng.employee.entity.EmUserCompanyPersonalEntity" id="emUserCompanyPersonalMap">
+        <result property="userId" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="mobile" column="mobile"/>
+        <result property="timeOfEntry" column="time_of_entry"/>
+        <result property="departmentName" column="department_name"/>
+        <result property="companyId" column="company_id"/>
+        <result property="sex" column="sex"/>
+        <result property="dateOfBirth" column="date_of_birth"/>
+        <result property="theHighestDegreeOfEducation" column="the_highest_degree_of_education"/>
+        <result property="nationalArea" column="national_area"/>
+        <result property="passportNo" column="passport_no"/>
+        <result property="idNumber" column="id_number"/>
+        <result property="idCardPhotoPositive" column="id_card_photo_positive"/>
+        <result property="idCardPhotoBack" column="id_card_photo_back"/>
+        <result property="nativePlace" column="native_place"/>
+        <result property="nation" column="nation"/>
+        <result property="englishName" column="english_name"/>
+        <result property="maritalStatus" column="marital_status"/>
+        <result property="staffPhoto" column="staff_photo"/>
+        <result property="birthday" column="birthday"/>
+        <result property="zodiac" column="zodiac"/>
+        <result property="age" column="age"/>
+        <result property="constellation" column="constellation"/>
+        <result property="bloodType" column="blood_type"/>
+        <result property="domicile" column="domicile"/>
+        <result property="politicalOutlook" column="political_outlook"/>
+        <result property="timeToJoinTheParty" column="time_to_join_the_party"/>
+        <result property="archivingOrganization" column="archiving_organization"/>
+        <result property="stateOfChildren" column="state_of_children"/>
+        <result property="doChildrenHaveCommercialInsurance" column="do_children_have_commercial_insurance"/>
+        <result property="isThereAnyViolationOfLawOrDiscipline" column="is_there_any_violation_of_law_or_discipline"/>
+        <result property="areThereAnyMajorMedicalHistories" column="are_there_any_major_medical_histories"/>
+        <result property="qq" column="qq"/>
+        <result property="wechat" column="wechat"/>
+        <result property="residenceCardCity" column="residence_card_city"/>
+        <result property="dateOfResidencePermit" column="date_of_residence_permit"/>
+        <result property="residencePermitDeadline" column="residence_permit_deadline"/>
+        <result property="placeOfResidence" column="place_of_residence"/>
+        <result property="postalAddress" column="postal_address"/>
+        <result property="contactTheMobilePhone" column="contact_the_mobile_phone"/>
+        <result property="personalMailbox" column="personal_mailbox"/>
+        <result property="emergencyContact" column="emergency_contact"/>
+        <result property="emergencyContactNumber" column="emergency_contact_number"/>
+        <result property="socialSecurityComputerNumber" column="social_security_computer_number"/>
+        <result property="providentFundAccount" column="provident_fund_account"/>
+        <result property="bankCardNumber" column="bank_card_number"/>
+        <result property="openingBank" column="opening_bank"/>
+        <result property="educationalType" column="educational_type"/>
+        <result property="graduateSchool" column="graduate_school"/>
+        <result property="enrolmentTime" column="enrolment_time"/>
+        <result property="graduationTime" column="graduation_time"/>
+        <result property="major" column="major"/>
+        <result property="graduationCertificate" column="graduation_certificate"/>
+        <result property="certificateOfAcademicDegree" column="certificate_of_academic_degree"/>
+        <result property="homeCompany" column="home_company"/>
+        <result property="title" column="title"/>
+        <result property="resume" column="resume"/>
+        <result property="isThereAnyCompetitionRestriction" column="is_there_any_competition_restriction"/>
+        <result property="proofOfDepartureOfFormerCompany" column="proof_of_departure_of_former_company"/>
+        <result property="remarks" column="remarks"/>
+    </resultMap>
+
+
+</mapper>

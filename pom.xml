@@ -26,6 +26,7 @@
         <module>ihrm-model</module>
         <module>ihrm-company</module>
         <module>ihrm-system</module>
+        <module>ihrm-employee</module>
     </modules>
 
     <dependencyManagement>
