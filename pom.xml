@@ -19,6 +19,7 @@
         <mybatis-plus.version>3.4.2</mybatis-plus.version>
         <lombok.version>1.18.20</lombok.version>
         <mysql.version>8.0.22</mysql.version>
+        <spring.cloud-version>Hoxton.SR12</spring.cloud-version>
     </properties>
 
     <modules>
@@ -27,6 +28,8 @@
         <module>ihrm-company</module>
         <module>ihrm-system</module>
         <module>ihrm-employee</module>
+        <module>ihrm-eureka</module>
+        <module>ihrm-feign-api</module>
     </modules>
 
     <dependencyManagement>
@@ -93,10 +96,19 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud-version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

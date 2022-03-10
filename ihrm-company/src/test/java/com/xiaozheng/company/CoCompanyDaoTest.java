@@ -2,9 +2,9 @@ package com.xiaozheng.company;
 
 import com.xiaozheng.common.utils.JwtUtils;
 import com.xiaozheng.company.dao.co.CoCompanyDao;
-import com.xiaozheng.system.dao.pe.PeUserRoleDao;
 import com.xiaozheng.model.co.CoCompanyEntity;
 import com.xiaozheng.model.pe.PeUserRoleEntity;
+import com.xiaozheng.system.dao.pe.PeUserRoleDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

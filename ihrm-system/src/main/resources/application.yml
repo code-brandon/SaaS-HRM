@@ -10,5 +10,12 @@ spring:
     password: 12345678
 mybatis-plus:
   mapper-locations: classpath*:/Mapper/system/**/*.xml
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 注册服务
+eureka:
+  client:
+    # Eureka客户端与Eureka服务端进行交互的地址
+    service-url:
+      defaultZone: http://192.168.56.2:10000/eureka/

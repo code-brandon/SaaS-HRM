@@ -2,10 +2,10 @@
 <project xmlns = "http://maven.apache.org/POM/4.0.0" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>ihrm-system</artifactId>
+    <artifactId>ihrm-eureka</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ihrm-system</name>
-    <description>ihrm-system</description>
+    <name>ihrm-eureka</name>
+    <description>Demo project for Spring Boot</description>
 
     <parent>
         <artifactId>ihrm-parent</artifactId>
@@ -20,28 +20,15 @@
     </properties>
 
     <dependencies>
-
-        <dependency>
-            <groupId>com.xiaozheng</groupId>
-            <artifactId>ihrm-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-
-        <!--eureka-->
+        <!--eureka 服务端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
 
         <dependency>
@@ -74,7 +61,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
                 <configuration>
-                    <mainClass>com.xiaozheng.system.IhrmSystemApplication</mainClass>
+                    <mainClass>com.xiaozheng.eureka.IhrmEurekaApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

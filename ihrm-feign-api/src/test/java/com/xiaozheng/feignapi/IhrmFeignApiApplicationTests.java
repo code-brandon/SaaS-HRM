@@ -1,14 +1,13 @@
-package com.xiaozheng.system;
+package com.xiaozheng.feignapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class IhrmSystemApplicationTests {
+class IhrmFeignApiApplicationTests {
 
     @Test
     void contextLoads() {
-
     }
 
 }

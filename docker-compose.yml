@@ -1,0 +1,14 @@
+# build  docker-compose.yml
+version: '3'
+services:
+  ihrm-eureka:
+    build:
+      context: ./ihrm-eureka
+    restart: always
+    container_name: ihrm-eureka
+    # 镜像名
+    image: ihrm-eureka
+    ports:
+      - 10000:10000
+    volumes:
+      - "./logs:/ihrm-eureka/logs"
