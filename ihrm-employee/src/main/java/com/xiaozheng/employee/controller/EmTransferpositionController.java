@@ -10,7 +10,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.xiaozheng.employee.entity.EmTransferpositionEntity;
+import com.xiaozheng.model.em.EmTransferpositionEntity;
 import com.xiaozheng.employee.service.EmTransferpositionService;
 import springfox.documentation.annotations.ApiIgnore;
 

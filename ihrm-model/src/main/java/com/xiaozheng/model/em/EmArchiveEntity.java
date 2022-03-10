@@ -1,4 +1,4 @@
-package com.xiaozheng.employee.entity;
+package com.xiaozheng.model.em;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -29,38 +29,51 @@ import org.springframework.format.annotation.DateTimeFormat;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@TableName("em_positive")
-public class EmPositiveEntity extends Model<EmPositiveEntity> implements Serializable {
+@TableName("em_archive")
+public class EmArchiveEntity extends Model<EmArchiveEntity> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 员工ID
+	 * ID
 	 */
-    @ApiModelProperty("员工ID")
+    @ApiModelProperty("ID")
 	@TableId(type = IdType.ASSIGN_ID)
-	private String userId;
+	private String id;
 	/**
-	 * 转正日期
+	 * 操作用户
 	 */
-    @ApiModelProperty("转正日期")
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-	private Date dateOfCorrection;
+    @ApiModelProperty("操作用户")
+	private String opUser;
 	/**
-	 * 转正评价
+	 * 月份
 	 */
-    @ApiModelProperty("转正评价")
-	private String correctionEvaluation;
+    @ApiModelProperty("月份")
+	private String month;
 	/**
-	 * 附件
+	 * 企业ID
 	 */
-    @ApiModelProperty("附件")
-	private String enclosure;
+    @ApiModelProperty("企业ID")
+	private String companyId;
 	/**
-	 * 单据状态 1是未执行，2是已执行
+	 * 总人数
 	 */
-    @ApiModelProperty("单据状态 1是未执行，2是已执行")
-	private Integer estatus;
+    @ApiModelProperty("总人数")
+	private Integer totals;
+	/**
+	 * 在职人数
+	 */
+    @ApiModelProperty("在职人数")
+	private Integer payrolls;
+	/**
+	 * 离职人数
+	 */
+    @ApiModelProperty("离职人数")
+	private Integer departures;
+	/**
+	 * 数据
+	 */
+    @ApiModelProperty("数据")
+	private String data;
 	/**
 	 * 创建时间
 	 */

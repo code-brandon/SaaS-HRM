@@ -4,7 +4,7 @@
 <mapper namespace="com.xiaozheng.employee.dao.EmUserCompanyJobsDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.xiaozheng.employee.entity.EmUserCompanyJobsEntity" id="emUserCompanyJobsMap">
+    <resultMap type="com.xiaozheng.model.em.EmUserCompanyJobsEntity" id="emUserCompanyJobsMap">
         <result property="userId" column="user_id"/>
         <result property="companyId" column="company_id"/>
         <result property="post" column="post"/>

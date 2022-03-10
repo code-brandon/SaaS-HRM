@@ -4,7 +4,7 @@
 <mapper namespace="com.xiaozheng.employee.dao.EmPositiveDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.xiaozheng.employee.entity.EmPositiveEntity" id="emPositiveMap">
+    <resultMap type="com.xiaozheng.model.em.EmPositiveEntity" id="emPositiveMap">
         <result property="userId" column="user_id"/>
         <result property="dateOfCorrection" column="date_of_correction"/>
         <result property="correctionEvaluation" column="correction_evaluation"/>

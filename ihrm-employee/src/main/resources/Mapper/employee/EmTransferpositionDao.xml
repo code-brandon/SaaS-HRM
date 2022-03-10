@@ -4,7 +4,7 @@
 <mapper namespace="com.xiaozheng.employee.dao.EmTransferpositionDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.xiaozheng.employee.entity.EmTransferpositionEntity" id="emTransferpositionMap">
+    <resultMap type="com.xiaozheng.model.em.EmTransferpositionEntity" id="emTransferpositionMap">
         <result property="userId" column="user_id"/>
         <result property="post" column="post"/>
         <result property="rank" column="rank"/>

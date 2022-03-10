@@ -4,7 +4,7 @@
 <mapper namespace="com.xiaozheng.employee.dao.EmUserCompanyPersonalDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.xiaozheng.employee.entity.EmUserCompanyPersonalEntity" id="emUserCompanyPersonalMap">
+    <resultMap type="com.xiaozheng.model.em.EmUserCompanyPersonalEntity" id="emUserCompanyPersonalMap">
         <result property="userId" column="user_id"/>
         <result property="username" column="username"/>
         <result property="mobile" column="mobile"/>

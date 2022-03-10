@@ -4,7 +4,7 @@
 <mapper namespace="com.xiaozheng.employee.dao.EmResignationDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.xiaozheng.employee.entity.EmResignationEntity" id="emResignationMap">
+    <resultMap type="com.xiaozheng.model.em.EmResignationEntity" id="emResignationMap">
         <result property="userId" column="user_id"/>
         <result property="resignationTime" column="resignation_time"/>
         <result property="typeOfTurnover" column="type_of_turnover"/>

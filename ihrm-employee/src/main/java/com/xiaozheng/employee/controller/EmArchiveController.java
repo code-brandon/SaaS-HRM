@@ -9,7 +9,7 @@ import com.xiaozheng.common.utils.PageUtils;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.xiaozheng.employee.entity.EmArchiveEntity;
+import com.xiaozheng.model.em.EmArchiveEntity;
 import com.xiaozheng.employee.service.EmArchiveService;
 import springfox.documentation.annotations.ApiIgnore;
 

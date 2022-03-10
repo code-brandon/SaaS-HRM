@@ -10,7 +10,7 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.xiaozheng.employee.entity.EmUserCompanyEntity;
+import com.xiaozheng.model.em.EmUserCompanyEntity;
 import com.xiaozheng.employee.service.EmUserCompanyService;
 import springfox.documentation.annotations.ApiIgnore;
 

@@ -1,21 +1,18 @@
-package com.xiaozheng.employee.entity;
+package com.xiaozheng.model.em;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * 
@@ -29,58 +26,76 @@ import org.springframework.format.annotation.DateTimeFormat;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@TableName("em_transferposition")
-public class EmTransferpositionEntity extends Model<EmTransferpositionEntity> implements Serializable {
+@TableName("em_user_company_jobs")
+public class EmUserCompanyJobsEntity extends Model<EmUserCompanyJobsEntity> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 用户ID
+	 * 员工ID
 	 */
-    @ApiModelProperty("用户ID")
+    @ApiModelProperty("员工ID")
 	@TableId(type = IdType.ASSIGN_ID)
 	private String userId;
+	/**
+	 * 企业ID
+	 */
+    @ApiModelProperty("企业ID")
+	private String companyId;
 	/**
 	 * 岗位
 	 */
     @ApiModelProperty("岗位")
 	private String post;
 	/**
+	 * 工作邮箱
+	 */
+    @ApiModelProperty("工作邮箱")
+	private String workMailbox;
+	/**
 	 * 职级
 	 */
     @ApiModelProperty("职级")
 	private String rank;
 	/**
+	 * 转正评价
+	 */
+    @ApiModelProperty("转正评价")
+	private String correctionEvaluation;
+	/**
 	 * 汇报对象
 	 */
     @ApiModelProperty("汇报对象")
-	private String reportingObject;
+	private String reportId;
 	/**
-	 * HRBP
+	 * 
 	 */
-    @ApiModelProperty("HRBP")
+    @ApiModelProperty("")
+	private String reportName;
+	/**
+	 * 转正状态
+	 */
+    @ApiModelProperty("转正状态")
+	private String stateOfCorrection;
+	/**
+	 * hrbp
+	 */
+    @ApiModelProperty("hrbp")
 	private String hrbp;
 	/**
-	 * 调岗时间
+	 * 首次参加工作时间
 	 */
-    @ApiModelProperty("调岗时间")
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-	private Date adjustmentTime;
+    @ApiModelProperty("首次参加工作时间")
+	private String workingTimeForTheFirstTime;
 	/**
-	 * 调岗原因
+	 * 调整司龄天
 	 */
-    @ApiModelProperty("调岗原因")
-	private String causeOfAdjustingPost;
+    @ApiModelProperty("调整司龄天")
+	private Integer adjustmentAgedays;
 	/**
-	 * 附件 [1,2,3]
+	 * 调整工龄天
 	 */
-    @ApiModelProperty("附件 [1,2,3]")
-	private String enclosure;
-	/**
-	 * 管理形式
-	 */
-    @ApiModelProperty("管理形式")
-	private String formOfManagement;
+    @ApiModelProperty("调整工龄天")
+	private Integer adjustmentOfLengthOfService;
 	/**
 	 * 工作城市
 	 */
@@ -102,11 +117,6 @@ public class EmTransferpositionEntity extends Model<EmTransferpositionEntity> im
     @ApiModelProperty("现合同结束时间")
 	private String closingTimeOfCurrentContract;
 	/**
-	 * 工作地点
-	 */
-    @ApiModelProperty("工作地点")
-	private String workingPlace;
-	/**
 	 * 首次合同开始时间
 	 */
     @ApiModelProperty("首次合同开始时间")
@@ -122,26 +132,34 @@ public class EmTransferpositionEntity extends Model<EmTransferpositionEntity> im
     @ApiModelProperty("合同期限")
 	private String contractPeriod;
 	/**
+	 * 合同文件
+	 */
+    @ApiModelProperty("合同文件")
+	private String contractDocuments;
+	/**
 	 * 续签次数
 	 */
     @ApiModelProperty("续签次数")
 	private Integer renewalNumber;
 	/**
+	 * 其他招聘渠道
+	 */
+    @ApiModelProperty("其他招聘渠道")
+	private String otherRecruitmentChannels;
+	/**
+	 * 招聘渠道
+	 */
+    @ApiModelProperty("招聘渠道")
+	private String recruitmentChannels;
+	/**
+	 * 社招校招
+	 */
+    @ApiModelProperty("社招校招")
+	private String socialRecruitment;
+	/**
 	 * 推荐企业人
 	 */
     @ApiModelProperty("推荐企业人")
 	private String recommenderBusinessPeople;
-	/**
-	 * 单据状态 1是未执行，2是已执行
-	 */
-    @ApiModelProperty("单据状态 1是未执行，2是已执行")
-	private Integer estatus;
-	/**
-	 * 创建时间
-	 */
-    @ApiModelProperty("创建时间")
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-	private Date createTime;
 
 }

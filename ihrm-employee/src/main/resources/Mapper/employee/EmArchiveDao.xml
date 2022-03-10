@@ -4,7 +4,7 @@
 <mapper namespace="com.xiaozheng.employee.dao.EmArchiveDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.xiaozheng.employee.entity.EmArchiveEntity" id="emArchiveMap">
+    <resultMap type="com.xiaozheng.model.em.EmArchiveEntity" id="emArchiveMap">
         <result property="id" column="id"/>
         <result property="opUser" column="op_user"/>
         <result property="month" column="month"/>

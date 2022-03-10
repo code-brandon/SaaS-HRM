@@ -1,6 +1,6 @@
 package com.xiaozheng.employee.dao;
 
-import com.xiaozheng.employee.entity.EmTransferpositionEntity;
+import com.xiaozheng.model.em.EmTransferpositionEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;

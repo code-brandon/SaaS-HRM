@@ -9,7 +9,7 @@ import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.common.utils.Query;
 
 import com.xiaozheng.employee.dao.EmArchiveDao;
-import com.xiaozheng.employee.entity.EmArchiveEntity;
+import com.xiaozheng.model.em.EmArchiveEntity;
 import com.xiaozheng.employee.service.EmArchiveService;
 
 /**

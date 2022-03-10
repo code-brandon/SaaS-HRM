@@ -1,6 +1,6 @@
 package com.xiaozheng.employee.dao;
 
-import com.xiaozheng.employee.entity.EmResignationEntity;
+import com.xiaozheng.model.em.EmResignationEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;

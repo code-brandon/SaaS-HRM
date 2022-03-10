@@ -1,4 +1,4 @@
-package com.xiaozheng.employee.entity;
+package com.xiaozheng.model.em;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -29,51 +29,56 @@ import org.springframework.format.annotation.DateTimeFormat;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@TableName("em_archive")
-public class EmArchiveEntity extends Model<EmArchiveEntity> implements Serializable {
+@TableName("em_resignation")
+public class EmResignationEntity extends Model<EmResignationEntity> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * ID
+	 * 用户ID
 	 */
-    @ApiModelProperty("ID")
+    @ApiModelProperty("用户ID")
 	@TableId(type = IdType.ASSIGN_ID)
-	private String id;
+	private String userId;
 	/**
-	 * 操作用户
+	 * 
 	 */
-    @ApiModelProperty("操作用户")
-	private String opUser;
+    @ApiModelProperty("")
+	private String resignationTime;
 	/**
-	 * 月份
+	 * 离职类型
 	 */
-    @ApiModelProperty("月份")
-	private String month;
+    @ApiModelProperty("离职类型")
+	private String typeOfTurnover;
 	/**
-	 * 企业ID
+	 * 申请离职原因
 	 */
-    @ApiModelProperty("企业ID")
-	private String companyId;
+    @ApiModelProperty("申请离职原因")
+	private String reasonsForLeaving;
 	/**
-	 * 总人数
+	 * 补偿金
 	 */
-    @ApiModelProperty("总人数")
-	private Integer totals;
+    @ApiModelProperty("补偿金")
+	private String compensation;
 	/**
-	 * 在职人数
+	 * 代通知金
 	 */
-    @ApiModelProperty("在职人数")
-	private Integer payrolls;
+    @ApiModelProperty("代通知金")
+	private String notifications;
 	/**
-	 * 离职人数
+	 * 社保减员月
 	 */
-    @ApiModelProperty("离职人数")
-	private Integer departures;
+    @ApiModelProperty("社保减员月")
+	private String socialSecurityReductionMonth;
 	/**
-	 * 数据
+	 * 公积金减员月
 	 */
-    @ApiModelProperty("数据")
-	private String data;
+    @ApiModelProperty("公积金减员月")
+	private String providentFundReductionMonth;
+	/**
+	 * 图片
+	 */
+    @ApiModelProperty("图片")
+	private String picture;
 	/**
 	 * 创建时间
 	 */

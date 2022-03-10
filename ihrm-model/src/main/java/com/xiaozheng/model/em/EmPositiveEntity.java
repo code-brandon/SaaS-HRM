@@ -1,4 +1,4 @@
-package com.xiaozheng.employee.entity;
+package com.xiaozheng.model.em;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -29,56 +29,38 @@ import org.springframework.format.annotation.DateTimeFormat;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@TableName("em_resignation")
-public class EmResignationEntity extends Model<EmResignationEntity> implements Serializable {
+@TableName("em_positive")
+public class EmPositiveEntity extends Model<EmPositiveEntity> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 用户ID
+	 * 员工ID
 	 */
-    @ApiModelProperty("用户ID")
+    @ApiModelProperty("员工ID")
 	@TableId(type = IdType.ASSIGN_ID)
 	private String userId;
 	/**
-	 * 
+	 * 转正日期
 	 */
-    @ApiModelProperty("")
-	private String resignationTime;
+    @ApiModelProperty("转正日期")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	private Date dateOfCorrection;
 	/**
-	 * 离职类型
+	 * 转正评价
 	 */
-    @ApiModelProperty("离职类型")
-	private String typeOfTurnover;
+    @ApiModelProperty("转正评价")
+	private String correctionEvaluation;
 	/**
-	 * 申请离职原因
+	 * 附件
 	 */
-    @ApiModelProperty("申请离职原因")
-	private String reasonsForLeaving;
+    @ApiModelProperty("附件")
+	private String enclosure;
 	/**
-	 * 补偿金
+	 * 单据状态 1是未执行，2是已执行
 	 */
-    @ApiModelProperty("补偿金")
-	private String compensation;
-	/**
-	 * 代通知金
-	 */
-    @ApiModelProperty("代通知金")
-	private String notifications;
-	/**
-	 * 社保减员月
-	 */
-    @ApiModelProperty("社保减员月")
-	private String socialSecurityReductionMonth;
-	/**
-	 * 公积金减员月
-	 */
-    @ApiModelProperty("公积金减员月")
-	private String providentFundReductionMonth;
-	/**
-	 * 图片
-	 */
-    @ApiModelProperty("图片")
-	private String picture;
+    @ApiModelProperty("单据状态 1是未执行，2是已执行")
+	private Integer estatus;
 	/**
 	 * 创建时间
 	 */

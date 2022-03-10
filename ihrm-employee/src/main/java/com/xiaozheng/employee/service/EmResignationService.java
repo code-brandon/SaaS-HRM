@@ -2,7 +2,7 @@ package com.xiaozheng.employee.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiaozheng.common.utils.PageUtils;
-import com.xiaozheng.employee.entity.EmResignationEntity;
+import com.xiaozheng.model.em.EmResignationEntity;
 
 import java.util.Map;
 
