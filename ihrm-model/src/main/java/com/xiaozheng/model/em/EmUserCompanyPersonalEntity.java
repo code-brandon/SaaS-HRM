@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
  * @email 1911298402@qq.com
  * @date 2022-03-10 12:00:08
  */
-@ApiModel("")
+@ApiModel("员工详细信息表")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

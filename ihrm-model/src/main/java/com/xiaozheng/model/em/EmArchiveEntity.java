@@ -24,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @email 1911298402@qq.com
  * @date 2022-03-10 12:00:08
  */
-@ApiModel("")
+@ApiModel("月度员工归档表")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
