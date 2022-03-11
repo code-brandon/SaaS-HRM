@@ -19,4 +19,7 @@ eureka:
   client:
     # Eureka客户端与Eureka服务端进行交互的地址
     service-url:
-      defaultZone: http://192.168.56.2:10000/eureka/
+      defaultZone: http://192.168.56.2:6060/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
