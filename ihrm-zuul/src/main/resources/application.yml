@@ -1,0 +1,60 @@
+spring:
+  application:
+    # 应用名称
+    name: ihrm-zuul
+server:
+  port: 10000
+
+# 注册服务
+eureka:
+  client:
+    # Eureka客户端与Eureka服务端进行交互的地址
+    service-url:
+      defaultZone: http://192.168.56.2:6060/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+
+# 配置网关
+zuul:
+  routes:
+    # 路由ID
+    ihrm-system:
+      # 映射路径地址
+      path: /api/system/**
+      # zuul自动的会册除请求的前缀
+      # stripPrefix: false 不删除前缀
+      # url: http://127.0.0.1:9001
+      serviceId: ihrm-system
+      sentiviteHeaders:   #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+    ihrm-company:
+      path: /api/company/** #需要映射的路径地址
+      serviceId: ihrm-company
+      #处理敏感头信息
+      sentiviteHeaders:   #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+    ihrm-employee: #员工
+      path: /api/employees/** #配置请求URL的请求规则
+      serviceId: ihrm-employee #指定Eureka注册中心中的服务id
+#      stripPrefix: false
+      sentiviteHeaders:   #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+    ihrm-social-securitys: #社保
+      path: /api/social_securitys/** #配置请求URL的请求规则
+      serviceId: ihrm-social-securitys #指定Eureka注册中心中的服务id
+#      stripPrefix: false
+      sentiviteHeaders:   #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+    ihrm-atte-cfg: #社保
+      path: /api/cfg/** #配置请求URL的请求规则
+      serviceId: ihrm-attendance #指定Eureka注册中心中的服务id
+#      stripPrefix: false
+      sentiviteHeaders:   #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+    ihrm-atte-attendances: #社保
+      path: /api/attendances/** #配置请求URL的请求规则
+      serviceId: ihrm-attendance #指定Eureka注册中心中的服务id
+#      stripPrefix: false
+      sentiviteHeaders:   #将指定路由的敏感头设置为空
+      customSensitiveHeaders: true #对指定路由开启自定义敏感头
