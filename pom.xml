@@ -30,6 +30,7 @@
         <module>ihrm-employee</module>
         <module>ihrm-eureka</module>
         <module>ihrm-feign-api</module>
+        <module>ihrm-zuul</module>
     </modules>
 
     <dependencyManagement>

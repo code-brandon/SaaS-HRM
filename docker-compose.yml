@@ -9,6 +9,6 @@ services:
     # 镜像名
     image: ihrm-eureka
     ports:
-      - 10000:10000
+      - 6060:6060
     volumes:
       - "./logs:/ihrm-eureka/logs"

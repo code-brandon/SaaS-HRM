@@ -17,7 +17,7 @@ RUN mkdir -p /ihrm-eureka
 WORKDIR /ihrm-eureka
 
 # 暴露端口
-EXPOSE 10000
+EXPOSE 6060
 
 # 将本地Jar添加到Docker镜像中
 ADD ./ihrm-eureka.jar ./
