@@ -1,6 +1,7 @@
 package com.xiaozheng.system.controller.pe;
 
 import com.xiaozheng.common.entity.R;
+import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.model.pe.PeUserRoleEntity;
 import com.xiaozheng.model.vo.pe.PeUserRoleOrRolePermissionVo;
@@ -59,7 +60,7 @@ public class PeUserRoleController {
     public R<PeUserRoleEntity> info(@PathVariable("roleId") String roleId) {
         PeUserRoleEntity peUserRole = peUserRoleService.getById(roleId);
 
-        return Objects.nonNull(peUserRole) ? R.ok("查询成功").data(peUserRole) : R.error("查询失败");
+        return Objects.nonNull(peUserRole) ? R.ok("查询成功").data(peUserRole) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
     /**
@@ -72,7 +73,7 @@ public class PeUserRoleController {
     @PostMapping("/save")
     public R<Boolean> save(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) PeUserRoleEntity peUserRole) {
 
-        return peUserRoleService.save(peUserRole) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
+        return peUserRoleService.save(peUserRole) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
     }
 
     /**
@@ -85,7 +86,7 @@ public class PeUserRoleController {
     @PutMapping("/update")
     public R<Boolean> update(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) PeUserRoleEntity peUserRole) {
 
-        return peUserRoleService.updateById(peUserRole) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
+        return peUserRoleService.updateById(peUserRole) ? R.ok("修改成功").data(true) : R.error(ResultCode.FAIL.code(),"修改失败").data(false);
     }
 
     /**
@@ -98,7 +99,7 @@ public class PeUserRoleController {
     @DeleteMapping("/delete")
     public R<Boolean> delete(@RequestBody @ApiParam(name = "ID", value = "ID集合", required = true) String[] roleIds) {
 
-        return peUserRoleService.removeByIds(Arrays.asList(roleIds)) ? R.ok("删除成功").data(true) : R.error("删除失败").data(false);
+        return peUserRoleService.removeByIds(Arrays.asList(roleIds)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
     }
 
     /**
@@ -110,7 +111,7 @@ public class PeUserRoleController {
     @PutMapping("/assignRoles")
     public R<Boolean> assignRoles(@RequestBody @ApiParam(name = "peUserRoleVo", value = "实体对象", required = true) PeUserRoleOrRolePermissionVo peUserRoleVo) throws Exception {
 
-        return peUserRoleService.assignRoles(peUserRoleVo) ? R.ok("分配成功").data(true) : R.error("分配失败").data(false);
+        return peUserRoleService.assignRoles(peUserRoleVo) ? R.ok("分配成功").data(true) : R.error(ResultCode.FAIL.code(),"分配失败").data(false);
     }
 
 }

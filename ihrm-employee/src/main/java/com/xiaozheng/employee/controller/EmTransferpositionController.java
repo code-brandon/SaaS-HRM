@@ -1,18 +1,18 @@
 package com.xiaozheng.employee.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Objects;
-
 import com.xiaozheng.common.entity.R;
+import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.PageUtils;
+import com.xiaozheng.employee.service.EmTransferpositionService;
+import com.xiaozheng.model.em.EmTransferpositionEntity;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.xiaozheng.model.em.EmTransferpositionEntity;
-import com.xiaozheng.employee.service.EmTransferpositionService;
 import springfox.documentation.annotations.ApiIgnore;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Objects;
 
 
 /**
@@ -60,7 +60,7 @@ public class EmTransferpositionController {
     public R<EmTransferpositionEntity> info(@PathVariable("userId") String userId){
             EmTransferpositionEntity emTransferposition = emTransferpositionService.getById(userId);
 
-        return Objects.nonNull(emTransferposition) ? R.ok("查询成功").data(emTransferposition) : R.error("查询失败");
+        return Objects.nonNull(emTransferposition) ? R.ok("查询成功").data(emTransferposition) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
     /**
@@ -72,7 +72,7 @@ public class EmTransferpositionController {
     @PostMapping("/save")
     public R<Boolean> save(@RequestBody @ApiParam(name="员工调岗申请表",value=" 实体对象",required=true) EmTransferpositionEntity emTransferposition){
 
-        return emTransferpositionService.save(emTransferposition) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
+        return emTransferpositionService.save(emTransferposition) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
     }
 
     /**
@@ -84,7 +84,7 @@ public class EmTransferpositionController {
     @PutMapping("/update")
     public R<Boolean> update(@RequestBody @ApiParam(name="员工调岗申请表",value=" 实体对象",required=true) EmTransferpositionEntity emTransferposition){
 
-        return emTransferpositionService.updateById(emTransferposition) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
+        return emTransferpositionService.updateById(emTransferposition) ? R.ok("修改成功").data(true) : R.error(ResultCode.FAIL.code(),"修改失败").data(false);
     }
 
     /**
@@ -96,7 +96,7 @@ public class EmTransferpositionController {
     @DeleteMapping("/delete")
     public R<Boolean> delete(@RequestBody @ApiParam(name="ID",value="ID集合",required=true) String[] userIds){
 
-        return emTransferpositionService.removeByIds(Arrays.asList(userIds)) ? R.ok("删除成功").data(true) : R.error("删除失败").data(false);
+        return emTransferpositionService.removeByIds(Arrays.asList(userIds)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
     }
 
 }

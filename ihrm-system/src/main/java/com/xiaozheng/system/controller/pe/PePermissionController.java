@@ -1,6 +1,7 @@
 package com.xiaozheng.system.controller.pe;
 
 import com.xiaozheng.common.entity.R;
+import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.model.pe.PePermissionEntity;
 import com.xiaozheng.model.vo.pe.PePermissionVo;
@@ -59,7 +60,7 @@ public class PePermissionController {
     public R<PePermissionVo> info(@PathVariable("id") String id) throws Exception {
         PePermissionVo pePermission = pePermissionService.queryById(id);
 
-        return Objects.nonNull(pePermission) ? R.ok("查询成功").data(pePermission) : R.error("查询失败");
+        return Objects.nonNull(pePermission) ? R.ok("查询成功").data(pePermission) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
     /**
@@ -72,7 +73,7 @@ public class PePermissionController {
     @PostMapping("/save")
     public R<Boolean> save(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) PePermissionVo pePermissionVo) throws Exception {
 
-        return pePermissionService.saveByType(pePermissionVo) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
+        return pePermissionService.saveByType(pePermissionVo) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
     }
 
     /**
@@ -85,7 +86,7 @@ public class PePermissionController {
     @PutMapping("/update")
     public R<Boolean> update(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) PePermissionVo pePermissionVo) throws Exception {
 
-        return pePermissionService.updateByIdAndType(pePermissionVo) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
+        return pePermissionService.updateByIdAndType(pePermissionVo) ? R.ok("修改成功").data(true) : R.error(ResultCode.FAIL.code(),"修改失败").data(false);
     }
 
     /**
@@ -98,7 +99,7 @@ public class PePermissionController {
     @DeleteMapping("/delete")
     public R<Boolean> delete(@RequestBody @ApiParam(name = "ID", value = "ID集合", required = true) String[] ids) throws Exception {
 
-        return pePermissionService.removeByIdAndType(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error("删除失败").data(false);
+        return pePermissionService.removeByIdAndType(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
     }
 
 }

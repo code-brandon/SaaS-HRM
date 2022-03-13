@@ -1,16 +1,18 @@
 package com.xiaozheng.employee.controller;
 
+import com.xiaozheng.common.entity.R;
+import com.xiaozheng.common.entity.ResultCode;
+import com.xiaozheng.common.utils.PageUtils;
+import com.xiaozheng.employee.service.EmPositiveService;
+import com.xiaozheng.model.em.EmPositiveEntity;
+import io.swagger.annotations.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
+
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
-
-import com.xiaozheng.common.entity.R;
-import com.xiaozheng.common.utils.PageUtils;
-import io.swagger.annotations.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;import com.xiaozheng.model.em.EmPositiveEntity;
-import com.xiaozheng.employee.service.EmPositiveService;
-import springfox.documentation.annotations.ApiIgnore;
 
 
 /**
@@ -57,7 +59,7 @@ public class EmPositiveController {
     public R<EmPositiveEntity> info(@PathVariable("userId") String userId){
             EmPositiveEntity emPositive = emPositiveService.getById(userId);
 
-        return Objects.nonNull(emPositive) ? R.ok("查询成功").data(emPositive) : R.error("查询失败");
+        return Objects.nonNull(emPositive) ? R.ok("查询成功").data(emPositive) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
     /**
@@ -69,7 +71,7 @@ public class EmPositiveController {
     @PostMapping("/save")
     public R<Boolean> save(@RequestBody @ApiParam(name="转正申请表",value=" 实体对象",required=true) EmPositiveEntity emPositive){
 
-        return emPositiveService.save(emPositive) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
+        return emPositiveService.save(emPositive) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
     }
 
     /**
@@ -81,7 +83,7 @@ public class EmPositiveController {
     @PutMapping("/update")
     public R<Boolean> update(@RequestBody @ApiParam(name="转正申请表",value=" 实体对象",required=true) EmPositiveEntity emPositive){
 
-        return emPositiveService.updateById(emPositive) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
+        return emPositiveService.updateById(emPositive) ? R.ok("修改成功").data(true) : R.error(ResultCode.FAIL.code(),"修改失败").data(false);
     }
 
     /**
@@ -93,7 +95,7 @@ public class EmPositiveController {
     @DeleteMapping("/delete")
     public R<Boolean> delete(@RequestBody @ApiParam(name="ID",value="ID集合",required=true) String[] userIds){
 
-        return emPositiveService.removeByIds(Arrays.asList(userIds)) ? R.ok("删除成功").data(true) : R.error("删除失败").data(false);
+        return emPositiveService.removeByIds(Arrays.asList(userIds)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
     }
 
 }

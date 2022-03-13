@@ -1,6 +1,7 @@
 package com.xiaozheng.company.controller.co;
 
 import com.xiaozheng.common.entity.R;
+import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.company.service.co.CoTransactionRecordService;
 import com.xiaozheng.model.co.CoTransactionRecordEntity;
@@ -75,7 +76,7 @@ public class CoTransactionRecordController {
     public R<CoTransactionRecordEntity> info(@PathVariable("id") String id) {
         CoTransactionRecordEntity coTransactionRecord = coTransactionRecordService.getById(id);
 
-        return Objects.nonNull(coTransactionRecord) ? R.ok("查询成功").data(coTransactionRecord) : R.error("查询失败");
+        return Objects.nonNull(coTransactionRecord) ? R.ok("查询成功").data(coTransactionRecord) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
     /**
@@ -88,7 +89,7 @@ public class CoTransactionRecordController {
     @PostMapping("/save")
     public R<Boolean> save(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) CoTransactionRecordEntity coTransactionRecord) {
 
-        return coTransactionRecordService.save(coTransactionRecord) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
+        return coTransactionRecordService.save(coTransactionRecord) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
     }
 
     /**
@@ -101,7 +102,7 @@ public class CoTransactionRecordController {
     @PutMapping("/update")
     public R<Boolean> update(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) CoTransactionRecordEntity coTransactionRecord) {
 
-        return coTransactionRecordService.updateById(coTransactionRecord) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
+        return coTransactionRecordService.updateById(coTransactionRecord) ? R.ok("修改成功").data(true) : R.error(ResultCode.FAIL.code(),"修改失败").data(false);
     }
 
     /**
@@ -114,7 +115,7 @@ public class CoTransactionRecordController {
     @DeleteMapping("/delete")
     public R<Boolean> delete(@RequestBody @ApiParam(name = "ID", value = "ID集合", required = true) String[] ids) {
 
-        return coTransactionRecordService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error("删除失败").data(false);
+        return coTransactionRecordService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
     }
 
 }

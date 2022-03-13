@@ -1,7 +1,7 @@
 package com.xiaozheng.employee.dao;
 
-import com.xiaozheng.model.em.EmUserCompanyJobsEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.xiaozheng.model.em.EmUserCompanyJobsEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

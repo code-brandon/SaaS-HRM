@@ -1,5 +1,6 @@
 package com.xiaozheng.system.controller.pe;
 
+import com.google.common.collect.Maps;
 import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.exception.CommonException;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -66,7 +68,20 @@ public class PeUserController {
     public R<PeUserEntity> info(@PathVariable("id") String id) {
         PeUserEntity peUser = peUserService.getById(id);
 
-        return Objects.nonNull(peUser) ? R.ok("查询成功").data(peUser) : R.error("查询失败");
+        return Objects.nonNull(peUser) ? R.ok("查询成功").data(peUser) : R.error(ResultCode.FAIL.code(),"查询失败");
+    }
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "主键", dataType = "String", paramType = "path", example = "1")
+    })
+    @ApiOperation("获取当前登录用户的id和姓名")
+    @GetMapping("/simple")
+    public R<Map> simple() {
+        PeUserDto peUserDto = ShiroContextUtils.getProfile();
+        HashMap<Object, Object> hashMap = Maps.newHashMap();
+        hashMap.put("id", peUserDto.getId());
+        hashMap.put("username", peUserDto.getUsername());
+        return Objects.nonNull(peUserDto) ? R.ok("查询成功").data(hashMap) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
     /**
@@ -82,7 +97,7 @@ public class PeUserController {
     @GetMapping("/infoAndRole/{id}")
     public R<PeUserEntity> infoAndRole(@PathVariable("id") String id) {
         PeUserEntity peUserEntity = peUserService.infoAndRoleById(id);
-        return Objects.nonNull(peUserEntity) ? R.ok("查询成功").data(peUserEntity) : R.error("查询失败");
+        return Objects.nonNull(peUserEntity) ? R.ok("查询成功").data(peUserEntity) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
     /**
@@ -112,7 +127,7 @@ public class PeUserController {
     @ApiOperation("保存数据")
     @PostMapping("/save")
     public R<Boolean> save(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) PeUserEntity peUser) {
-        return peUserService.saveAndEncrypt(peUser) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
+        return peUserService.saveAndEncrypt(peUser) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
     }
 
     /**
@@ -125,7 +140,7 @@ public class PeUserController {
     @PutMapping("/update")
     public R<Boolean> update(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) PeUserEntity peUser) {
 
-        return peUserService.updateById(peUser) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
+        return peUserService.updateById(peUser) ? R.ok("修改成功").data(true) : R.error(ResultCode.FAIL.code(),"修改失败").data(false);
     }
 
     /**
@@ -139,7 +154,7 @@ public class PeUserController {
     @DeleteMapping("/delete")
     public R<Boolean> delete(@RequestBody @ApiParam(name = "ID", value = "ID集合", required = true) String[] ids) {
 
-        return peUserService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error("删除失败").data(false);
+        return peUserService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
     }
 
     /**
@@ -152,7 +167,7 @@ public class PeUserController {
     @PostMapping("/login")
     public R<String> login(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) PeUsetVo usetVo) {
         String token = peUserService.login(usetVo);
-        return  !StringUtils.isEmpty(token) ? R.ok("登录成功").data(token) : R.error("登录失败").data(token);
+        return  !StringUtils.isEmpty(token) ? R.ok("登录成功").data(token) : R.error(ResultCode.FAIL.code(),"登录失败").data(token);
     }
 
     /**
@@ -163,7 +178,7 @@ public class PeUserController {
     @GetMapping("/profile")
     public R<PeUserDto> profile() {
         PeUserDto peUserDto = ShiroContextUtils.getProfile();
-        return Objects.nonNull(peUserDto) ? R.ok("查询成功").data(peUserDto) : R.error("查询失败");
+        return Objects.nonNull(peUserDto) ? R.ok("查询成功").data(peUserDto) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
 }

@@ -1,18 +1,18 @@
 package com.xiaozheng.employee.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Objects;
-
 import com.xiaozheng.common.entity.R;
+import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.PageUtils;
+import com.xiaozheng.employee.service.EmUserCompanyPersonalService;
+import com.xiaozheng.model.em.EmUserCompanyPersonalEntity;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.xiaozheng.model.em.EmUserCompanyPersonalEntity;
-import com.xiaozheng.employee.service.EmUserCompanyPersonalService;
 import springfox.documentation.annotations.ApiIgnore;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Objects;
 
 
 /**
@@ -24,7 +24,7 @@ import springfox.documentation.annotations.ApiIgnore;
  */
 @Api(tags = "员工详细信息")
 @RestController
-@RequestMapping("em/usercompanypersonal")
+@RequestMapping("em/personal")
 public class EmUserCompanyPersonalController {
     @Autowired
     private EmUserCompanyPersonalService emUserCompanyPersonalService;
@@ -59,7 +59,7 @@ public class EmUserCompanyPersonalController {
     public R<EmUserCompanyPersonalEntity> info(@PathVariable("userId") String userId){
             EmUserCompanyPersonalEntity emUserCompanyPersonal = emUserCompanyPersonalService.getById(userId);
 
-        return Objects.nonNull(emUserCompanyPersonal) ? R.ok("查询成功").data(emUserCompanyPersonal) : R.error("查询失败");
+        return Objects.nonNull(emUserCompanyPersonal) ? R.ok("查询成功").data(emUserCompanyPersonal) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
     /**
@@ -71,7 +71,7 @@ public class EmUserCompanyPersonalController {
     @PostMapping("/save")
     public R<Boolean> save(@RequestBody @ApiParam(name="员工详细信息表",value=" 实体对象",required=true) EmUserCompanyPersonalEntity emUserCompanyPersonal){
 
-        return emUserCompanyPersonalService.save(emUserCompanyPersonal) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
+        return emUserCompanyPersonalService.save(emUserCompanyPersonal) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
     }
 
     /**
@@ -83,7 +83,7 @@ public class EmUserCompanyPersonalController {
     @PutMapping("/update")
     public R<Boolean> update(@RequestBody @ApiParam(name="员工详细信息表",value=" 实体对象",required=true) EmUserCompanyPersonalEntity emUserCompanyPersonal){
 
-        return emUserCompanyPersonalService.updateById(emUserCompanyPersonal) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
+        return emUserCompanyPersonalService.updateById(emUserCompanyPersonal) ? R.ok("修改成功").data(true) : R.error(ResultCode.FAIL.code(),"修改失败").data(false);
     }
 
     /**
@@ -95,7 +95,7 @@ public class EmUserCompanyPersonalController {
     @DeleteMapping("/delete")
     public R<Boolean> delete(@RequestBody @ApiParam(name="ID",value="ID集合",required=true) String[] userIds){
 
-        return emUserCompanyPersonalService.removeByIds(Arrays.asList(userIds)) ? R.ok("删除成功").data(true) : R.error("删除失败").data(false);
+        return emUserCompanyPersonalService.removeByIds(Arrays.asList(userIds)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
     }
 
 }

@@ -1,18 +1,18 @@
 package com.xiaozheng.employee.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Objects;
-
 import com.xiaozheng.common.entity.R;
+import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.PageUtils;
+import com.xiaozheng.employee.service.EmResignationService;
+import com.xiaozheng.model.em.EmResignationEntity;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.xiaozheng.model.em.EmResignationEntity;
-import com.xiaozheng.employee.service.EmResignationService;
 import springfox.documentation.annotations.ApiIgnore;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Objects;
 
 
 /**
@@ -59,7 +59,7 @@ public class EmResignationController {
     public R<EmResignationEntity> info(@PathVariable("userId") String userId){
             EmResignationEntity emResignation = emResignationService.getById(userId);
 
-        return Objects.nonNull(emResignation) ? R.ok("查询成功").data(emResignation) : R.error("查询失败");
+        return Objects.nonNull(emResignation) ? R.ok("查询成功").data(emResignation) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
     /**
@@ -71,7 +71,7 @@ public class EmResignationController {
     @PostMapping("/save")
     public R<Boolean> save(@RequestBody @ApiParam(name="离职申请表",value=" 实体对象",required=true) EmResignationEntity emResignation){
 
-        return emResignationService.save(emResignation) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
+        return emResignationService.save(emResignation) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
     }
 
     /**
@@ -83,7 +83,7 @@ public class EmResignationController {
     @PutMapping("/update")
     public R<Boolean> update(@RequestBody @ApiParam(name="离职申请表",value=" 实体对象",required=true) EmResignationEntity emResignation){
 
-        return emResignationService.updateById(emResignation) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
+        return emResignationService.updateById(emResignation) ? R.ok("修改成功").data(true) : R.error(ResultCode.FAIL.code(),"修改失败").data(false);
     }
 
     /**
@@ -95,7 +95,7 @@ public class EmResignationController {
     @DeleteMapping("/delete")
     public R<Boolean> delete(@RequestBody @ApiParam(name="ID",value="ID集合",required=true) String[] userIds){
 
-        return emResignationService.removeByIds(Arrays.asList(userIds)) ? R.ok("删除成功").data(true) : R.error("删除失败").data(false);
+        return emResignationService.removeByIds(Arrays.asList(userIds)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
     }
 
 }

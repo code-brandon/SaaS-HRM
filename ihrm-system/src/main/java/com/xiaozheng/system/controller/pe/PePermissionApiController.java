@@ -1,6 +1,7 @@
 package com.xiaozheng.system.controller.pe;
 
 import com.xiaozheng.common.entity.R;
+import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.model.pe.PePermissionApiEntity;
 import com.xiaozheng.system.service.pe.PePermissionApiService;
@@ -58,7 +59,7 @@ public class PePermissionApiController {
     public R<PePermissionApiEntity> info(@PathVariable("id") String id) {
         PePermissionApiEntity pePermissionApi = pePermissionApiService.getById(id);
 
-        return Objects.nonNull(pePermissionApi) ? R.ok("查询成功").data(pePermissionApi) : R.error("查询失败");
+        return Objects.nonNull(pePermissionApi) ? R.ok("查询成功").data(pePermissionApi) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
     /**
@@ -71,7 +72,7 @@ public class PePermissionApiController {
     @PostMapping("/save")
     public R<Boolean> save(@RequestBody @ApiParam(name = "", value =  " 实体对象", required = true) PePermissionApiEntity pePermissionApi) {
 
-        return pePermissionApiService.save(pePermissionApi) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
+        return pePermissionApiService.save(pePermissionApi) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
     }
 
     /**
@@ -84,7 +85,7 @@ public class PePermissionApiController {
     @PutMapping("/update")
     public R<Boolean> update(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) PePermissionApiEntity pePermissionApi) {
 
-        return pePermissionApiService.updateById(pePermissionApi) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
+        return pePermissionApiService.updateById(pePermissionApi) ? R.ok("修改成功").data(true) : R.error(ResultCode.FAIL.code(),"修改失败").data(false);
     }
 
     /**
@@ -97,7 +98,7 @@ public class PePermissionApiController {
     @DeleteMapping("/delete")
     public R<Boolean> delete(@RequestBody @ApiParam(name = "ID", value = "ID集合", required = true) String[] ids) {
 
-        return pePermissionApiService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error("删除失败").data(false);
+        return pePermissionApiService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
     }
 
 }

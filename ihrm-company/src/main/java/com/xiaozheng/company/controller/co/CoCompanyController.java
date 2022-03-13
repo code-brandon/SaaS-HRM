@@ -1,6 +1,7 @@
 package com.xiaozheng.company.controller.co;
 
 import com.xiaozheng.common.entity.R;
+import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.company.service.co.CoCompanyService;
 import com.xiaozheng.model.co.CoCompanyEntity;
@@ -75,7 +76,7 @@ public class CoCompanyController {
     public R<CoCompanyEntity> info(@PathVariable("id") String id) {
         CoCompanyEntity coCompany = coCompanyService.getById(id);
 
-        return Objects.nonNull(coCompany) ? R.ok("查询成功").data(coCompany) : R.error("查询失败");
+        return Objects.nonNull(coCompany) ? R.ok("查询成功").data(coCompany) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
     /**
@@ -88,7 +89,7 @@ public class CoCompanyController {
     @PostMapping("/save")
     public R save(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) CoCompanyEntity coCompany) {
 
-        return coCompanyService.save(coCompany) ? R.ok("保存成功") : R.error("保存失败");
+        return coCompanyService.save(coCompany) ? R.ok("保存成功") : R.error(ResultCode.FAIL.code(),"保存失败");
     }
 
     /**
@@ -101,7 +102,7 @@ public class CoCompanyController {
     @PutMapping("/update")
     public R update(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) CoCompanyEntity coCompany) {
 
-        return coCompanyService.updateById(coCompany) ? R.ok("修改成功") : R.error("修改失败");
+        return coCompanyService.updateById(coCompany) ? R.ok("修改成功") : R.error(ResultCode.FAIL.code(),"修改失败");
     }
 
     /**
@@ -114,7 +115,7 @@ public class CoCompanyController {
     @DeleteMapping("/delete")
     public R delete(@RequestBody @ApiParam(name = "ID", value = "ID集合", required = true) String[] ids) {
 
-        return coCompanyService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error("删除失败").data(false);
+        return coCompanyService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
     }
 
 }

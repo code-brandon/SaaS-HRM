@@ -1,17 +1,18 @@
 package com.xiaozheng.employee.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Objects;
-
 import com.xiaozheng.common.entity.R;
+import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.PageUtils;
+import com.xiaozheng.employee.service.EmArchiveService;
+import com.xiaozheng.model.em.EmArchiveEntity;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.xiaozheng.model.em.EmArchiveEntity;
-import com.xiaozheng.employee.service.EmArchiveService;
 import springfox.documentation.annotations.ApiIgnore;
+
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Objects;
 
 
 /**
@@ -58,7 +59,7 @@ public class EmArchiveController {
     public R<EmArchiveEntity> info(@PathVariable("id") String id){
             EmArchiveEntity emArchive = emArchiveService.getById(id);
 
-        return Objects.nonNull(emArchive) ? R.ok("查询成功").data(emArchive) : R.error("查询失败");
+        return Objects.nonNull(emArchive) ? R.ok("查询成功").data(emArchive) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
     /**
@@ -70,7 +71,7 @@ public class EmArchiveController {
     @PostMapping("/save")
     public R<Boolean> save(@RequestBody @ApiParam(name="月度员工归档表",value=" 实体对象",required=true) EmArchiveEntity emArchive){
 
-        return emArchiveService.save(emArchive) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
+        return emArchiveService.save(emArchive) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
     }
 
     /**
@@ -82,7 +83,7 @@ public class EmArchiveController {
     @PutMapping("/update")
     public R<Boolean> update(@RequestBody @ApiParam(name="月度员工归档表",value=" 实体对象",required=true) EmArchiveEntity emArchive){
 
-        return emArchiveService.updateById(emArchive) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
+        return emArchiveService.updateById(emArchive) ? R.ok("修改成功").data(true) : R.error(ResultCode.FAIL.code(),"修改失败").data(false);
     }
 
     /**
@@ -94,7 +95,7 @@ public class EmArchiveController {
     @DeleteMapping("/delete")
     public R<Boolean> delete(@RequestBody @ApiParam(name="ID",value="ID集合",required=true) String[] ids){
 
-        return emArchiveService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error("删除失败").data(false);
+        return emArchiveService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
     }
 
 }

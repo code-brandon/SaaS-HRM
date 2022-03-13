@@ -1,11 +1,9 @@
 package com.xiaozheng.model.em;
 
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.io.Serializable;
-
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -13,6 +11,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * 
@@ -55,6 +55,7 @@ public class EmUserCompanyJobsEntity extends Model<EmUserCompanyJobsEntity> impl
 	 * 职级
 	 */
     @ApiModelProperty("职级")
+	@TableField("`rank`")
 	private String rank;
 	/**
 	 * 转正评价

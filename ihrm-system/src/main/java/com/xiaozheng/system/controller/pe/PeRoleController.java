@@ -1,6 +1,7 @@
 package com.xiaozheng.system.controller.pe;
 
 import com.xiaozheng.common.entity.R;
+import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.model.dto.PeRoleDto;
 import com.xiaozheng.model.pe.PeRoleEntity;
@@ -71,7 +72,7 @@ public class PeRoleController {
     public R<PeRoleEntity> info(@PathVariable("id") String id) {
         PeRoleEntity peRole = peRoleService.getById(id);
 
-        return Objects.nonNull(peRole) ? R.ok("查询成功").data(peRole) : R.error("查询失败");
+        return Objects.nonNull(peRole) ? R.ok("查询成功").data(peRole) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
     /**
@@ -88,7 +89,7 @@ public class PeRoleController {
     public R<PeRoleDto> infoAndPerm(@PathVariable("id") String id) {
         PeRoleDto peRoleDto = peRoleService.infoAndPermById(id);
 
-        return Objects.nonNull(peRoleDto) ? R.ok("查询成功").data(peRoleDto) : R.error("查询失败");
+        return Objects.nonNull(peRoleDto) ? R.ok("查询成功").data(peRoleDto) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 
     /**
@@ -101,7 +102,7 @@ public class PeRoleController {
     @PostMapping("/save")
     public R<Boolean> save(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) PeRoleEntity peRole) {
 
-        return peRoleService.save(peRole) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
+        return peRoleService.save(peRole) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
     }
 
     /**
@@ -114,7 +115,7 @@ public class PeRoleController {
     @PutMapping("/update")
     public R<Boolean> update(@RequestBody @ApiParam(name = "", value = " 实体对象", required = true) PeRoleEntity peRole) {
 
-        return peRoleService.updateById(peRole) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
+        return peRoleService.updateById(peRole) ? R.ok("修改成功").data(true) : R.error(ResultCode.FAIL.code(),"修改失败").data(false);
     }
 
     /**
@@ -127,7 +128,7 @@ public class PeRoleController {
     @DeleteMapping("/delete")
     public R<Boolean> delete(@RequestBody @ApiParam(name = "ID", value = "ID集合", required = true) String[] ids) {
 
-        return peRoleService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error("删除失败").data(false);
+        return peRoleService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
     }
 
 }
