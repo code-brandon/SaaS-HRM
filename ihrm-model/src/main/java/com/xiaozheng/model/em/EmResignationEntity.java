@@ -1,8 +1,6 @@
 package com.xiaozheng.model.em;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
@@ -84,6 +82,7 @@ public class EmResignationEntity extends Model<EmResignationEntity> implements S
     @ApiModelProperty("创建时间")
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@TableField(fill = FieldFill.INSERT)
 	private Date createTime;
 
 }

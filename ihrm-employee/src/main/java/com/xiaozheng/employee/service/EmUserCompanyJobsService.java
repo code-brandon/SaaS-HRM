@@ -16,5 +16,12 @@ import java.util.Map;
 public interface EmUserCompanyJobsService extends IService<EmUserCompanyJobsEntity> {
 
     PageUtils<EmUserCompanyJobsEntity> queryPage(EmUserCompanyJobsEntity emUserCompanyJobs, Map<String, Object> params);
+
+    /**
+     * 保存或更新数据
+     * @param emUserCompanyJobs
+     * @return
+     */
+    boolean updateOrSave(EmUserCompanyJobsEntity emUserCompanyJobs);
 }
 

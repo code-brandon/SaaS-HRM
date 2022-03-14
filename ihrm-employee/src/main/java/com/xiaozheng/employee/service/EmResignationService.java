@@ -16,5 +16,13 @@ import java.util.Map;
 public interface EmResignationService extends IService<EmResignationEntity> {
 
     PageUtils<EmResignationEntity> queryPage(EmResignationEntity emResignation, Map<String, Object> params);
+
+
+    /**
+     * 保存或更新数据
+     * @param emResignation 实体对象
+     * @return 保存或更新数据结果
+     */
+    boolean updateOrSave(EmResignationEntity emResignation);
 }
 

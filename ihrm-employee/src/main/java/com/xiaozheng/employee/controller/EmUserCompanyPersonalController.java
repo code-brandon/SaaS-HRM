@@ -1,5 +1,6 @@
 package com.xiaozheng.employee.controller;
 
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.PageUtils;
@@ -72,6 +73,17 @@ public class EmUserCompanyPersonalController {
     public R<Boolean> save(@RequestBody @ApiParam(name="员工详细信息表",value=" 实体对象",required=true) EmUserCompanyPersonalEntity emUserCompanyPersonal){
 
         return emUserCompanyPersonalService.save(emUserCompanyPersonal) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
+    }
+
+    /**
+     * 保存或更新数据
+     * @param emUserCompanyPersonal 实体对象
+     * @return 保存或更新数据结果
+     */
+    @ApiOperation("保存或更新数据")
+    @PutMapping("/saveOrUpdate")
+    public R<Boolean> saveOrUpdate(@RequestBody @ApiParam(name="员工详细信息表",value=" 实体对象",required=true) EmUserCompanyPersonalEntity emUserCompanyPersonal){
+        return emUserCompanyPersonalService.updateOrSave(emUserCompanyPersonal) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
     }
 
     /**

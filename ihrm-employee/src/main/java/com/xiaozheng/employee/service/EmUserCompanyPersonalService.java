@@ -16,5 +16,13 @@ import java.util.Map;
 public interface EmUserCompanyPersonalService extends IService<EmUserCompanyPersonalEntity> {
 
     PageUtils<EmUserCompanyPersonalEntity> queryPage(EmUserCompanyPersonalEntity emUserCompanyPersonal, Map<String, Object> params);
+
+    /**
+     * 更新或保存用户详细信息
+     * @param emUserCompanyPersonal
+     * @return
+     */
+    boolean updateOrSave(EmUserCompanyPersonalEntity emUserCompanyPersonal);
+
 }
 

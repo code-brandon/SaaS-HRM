@@ -4,6 +4,7 @@ import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.employee.service.EmResignationService;
+import com.xiaozheng.model.em.EmPositiveEntity;
 import com.xiaozheng.model.em.EmResignationEntity;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,17 @@ public class EmResignationController {
     public R<Boolean> save(@RequestBody @ApiParam(name="离职申请表",value=" 实体对象",required=true) EmResignationEntity emResignation){
 
         return emResignationService.save(emResignation) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
+    }
+
+    /**
+     * 保存或更新数据
+     * @param emResignation 实体对象
+     * @return 保存或更新数据结果
+     */
+    @ApiOperation("保存或更新数据")
+    @PutMapping("/saveOrUpdate")
+    public R<Boolean> saveOrUpdate(@RequestBody @ApiParam(name="员工岗位信息表",value=" 实体对象",required=true) EmResignationEntity emResignation){
+        return emResignationService.updateOrSave(emResignation) ? R.ok("保存成功").data(true) : R.error(ResultCode.FAIL.code(),"保存失败").data(false);
     }
 
     /**

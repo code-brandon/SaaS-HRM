@@ -33,7 +33,7 @@ public class EmUserCompanyPersonalEntity extends Model<EmUserCompanyPersonalEnti
 	 * 用户ID
 	 */
     @ApiModelProperty("用户ID")
-	@TableId(type = IdType.ASSIGN_ID)
+	@TableId(type = IdType.INPUT)
 	private String userId;
 	/**
 	 * 

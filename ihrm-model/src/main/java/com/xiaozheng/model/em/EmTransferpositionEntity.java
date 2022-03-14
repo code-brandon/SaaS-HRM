@@ -1,8 +1,6 @@
 package com.xiaozheng.model.em;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
@@ -47,6 +45,7 @@ public class EmTransferpositionEntity extends Model<EmTransferpositionEntity> im
 	 * 职级
 	 */
     @ApiModelProperty("职级")
+	@TableField(value = "`rank`")
 	private String rank;
 	/**
 	 * 汇报对象
@@ -62,8 +61,8 @@ public class EmTransferpositionEntity extends Model<EmTransferpositionEntity> im
 	 * 调岗时间
 	 */
     @ApiModelProperty("调岗时间")
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date adjustmentTime;
 	/**
 	 * 调岗原因
@@ -141,6 +140,7 @@ public class EmTransferpositionEntity extends Model<EmTransferpositionEntity> im
     @ApiModelProperty("创建时间")
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@TableField(fill = FieldFill.INSERT)
 	private Date createTime;
 
 }

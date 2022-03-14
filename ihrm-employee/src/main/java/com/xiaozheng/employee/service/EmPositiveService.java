@@ -16,5 +16,12 @@ import java.util.Map;
 public interface EmPositiveService extends IService<EmPositiveEntity> {
 
     PageUtils<EmPositiveEntity> queryPage(EmPositiveEntity emPositive, Map<String, Object> params);
+
+    /**
+     * 保存或更新数据
+     * @param emPositive
+     * @return
+     */
+    boolean updateOrSave(EmPositiveEntity emPositive);
 }
 

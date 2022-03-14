@@ -1,8 +1,6 @@
 package com.xiaozheng.model.em;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
@@ -14,6 +12,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -36,14 +35,14 @@ public class EmPositiveEntity extends Model<EmPositiveEntity> implements Seriali
 	 * 员工ID
 	 */
     @ApiModelProperty("员工ID")
-	@TableId(type = IdType.ASSIGN_ID)
+	@TableId(type = IdType.INPUT)
 	private String userId;
 	/**
 	 * 转正日期
 	 */
     @ApiModelProperty("转正日期")
-	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOfCorrection;
 	/**
 	 * 转正评价
@@ -66,6 +65,7 @@ public class EmPositiveEntity extends Model<EmPositiveEntity> implements Seriali
     @ApiModelProperty("创建时间")
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@TableField(fill = FieldFill.INSERT)
 	private Date createTime;
 
 }

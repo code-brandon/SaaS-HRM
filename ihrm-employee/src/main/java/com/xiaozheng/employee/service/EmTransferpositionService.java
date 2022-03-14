@@ -16,5 +16,12 @@ import java.util.Map;
 public interface EmTransferpositionService extends IService<EmTransferpositionEntity> {
 
     PageUtils<EmTransferpositionEntity> queryPage(EmTransferpositionEntity emTransferposition, Map<String, Object> params);
+
+    /**
+     * 保存或更新数据
+     * @param emTransferposition 实体对象
+     * @return 保存或更新数据结果
+     */
+    boolean updateOrSave(EmTransferpositionEntity emTransferposition);
 }
 
