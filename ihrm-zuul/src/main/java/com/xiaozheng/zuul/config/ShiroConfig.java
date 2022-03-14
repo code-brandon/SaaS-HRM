@@ -1,4 +1,4 @@
-package com.xiaozheng.zuul.filter;
+package com.xiaozheng.zuul.config;
 
 import com.xiaozheng.common.shiro.StatelessAuthcFilter;
 import com.xiaozheng.common.shiro.realm.IhrmRealm;

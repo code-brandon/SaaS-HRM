@@ -1,5 +1,7 @@
 package com.xiaozheng.common.shiro;
 
+import com.xiaozheng.common.entity.R;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.web.filter.authc.UserFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.http.HttpStatus;
@@ -9,35 +11,57 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import java.io.IOException;
+import java.io.PrintWriter;
+@Slf4j
 public class StatelessAuthcFilter extends UserFilter {
 
+    /**
+     * 在访问过来的时候检测是否为OPTIONS请求，如果是就直接返回true
+     */
     @Override
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
-        HttpServletRequest httpRequest = WebUtils.toHttp(request);
-        HttpServletResponse httpResponse = WebUtils.toHttp(response);
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
         if (httpRequest.getMethod().equals(RequestMethod.OPTIONS.name())) {
-            httpResponse.setHeader("Access-control-Allow-Origin", httpRequest.getHeader("Origin"));
-            httpResponse.setHeader("Access-Control-Allow-Methods", httpRequest.getMethod());
-            httpResponse.setHeader("Access-Control-Allow-Headers", httpRequest.getHeader("Access-Control-Request-Headers"));
-            httpResponse.setStatus(HttpStatus.OK.value());
-            return false;
+            log.debug("OPTIONS放行");
+            setHeader(httpRequest,httpResponse);
+            return true;
         }
-        return super.preHandle(request, response);
+        /*if (httpRequest.getMethod().equals(RequestMethod.PUT.name())) {
+            log.info("PUT放行");
+            setHeader(httpRequest,httpResponse);
+            return true;
+        }*/
+        return super.preHandle(request,response);
     }
 
+    /**
+     * 该方法会在验证失败后调用，这里由于是前后端分离，后台不控制页面跳转
+     * 因此重写改成传输JSON数据
+     */
     @Override
-    protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-        HttpServletResponse httpResp = WebUtils.toHttp(response);
-        HttpServletRequest httpReq = WebUtils.toHttp(request);
+    protected void saveRequestAndRedirectToLogin(ServletRequest request, ServletResponse response) throws IOException {
+        saveRequest(request);
+        setHeader((HttpServletRequest) request,(HttpServletResponse) response);
+        PrintWriter out = response.getWriter();
+        //自己控制返回的json数据
+        out.println(new R(500,null,"Shiro验证失败"));
+        out.flush();
+        out.close();
+    }
 
-        /*系统重定向会默认把请求头清空，这里通过拦截器重新设置请求头，解决跨域问题*/
-        httpResp.addHeader("Access-Control-Allow-Origin", httpReq.getHeader("Origin"));
-        httpResp.addHeader("Access-Control-Allow-Headers", "*");
-        httpResp.addHeader("Access-Control-Allow-Methods", "*");
-        httpResp.addHeader("Access-Control-Allow-Credentials", "true");
-
-        this.saveRequestAndRedirectToLogin(request, response);
-        return false;
+    /**
+     * 为response设置header，实现跨域
+     */
+    private void setHeader(HttpServletRequest request, HttpServletResponse response){
+        //跨域的header设置
+        response.setHeader("Access-control-Allow-Origin", request.getHeader("Origin"));
+        response.setHeader("Access-Control-Allow-Methods", request.getMethod());
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers"));
+        //防止乱码，适用于传输JSON数据
+        response.setHeader("Content-Type","application/json;charset=UTF-8");
+        response.setStatus(HttpStatus.OK.value());
     }
 }

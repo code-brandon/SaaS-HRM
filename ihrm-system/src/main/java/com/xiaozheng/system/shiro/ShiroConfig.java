@@ -1,7 +1,6 @@
 package com.xiaozheng.system.shiro;
 
 import com.xiaozheng.common.shiro.StatelessAuthcFilter;
-import com.xiaozheng.common.shiro.realm.IhrmRealm;
 import com.xiaozheng.common.shiro.session.CustomSessionManager;
 import com.xiaozheng.system.shiro.realm.UserRealm;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -11,12 +10,12 @@ import org.apache.shiro.web.mgt.WebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
-import javax.servlet.Filter ;
 import org.crazycake.shiro.RedisSessionDAO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
