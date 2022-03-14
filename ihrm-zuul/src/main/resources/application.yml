@@ -26,35 +26,35 @@ zuul:
       # stripPrefix: false 不删除前缀
       # url: http://127.0.0.1:9001
       serviceId: ihrm-system
-      sentiviteHeaders:   #将指定路由的敏感头设置为空
-      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
+#      customSensitiveHeaders: true #对指定路由开启自定义敏感头
     ihrm-company:
       path: /api/company/** #需要映射的路径地址
       serviceId: ihrm-company
       #处理敏感头信息
-      sentiviteHeaders:   #将指定路由的敏感头设置为空
-      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Method,Origin
+#      customSensitiveHeaders: true #对指定路由开启自定义敏感头
     ihrm-employee: #员工
       path: /api/employees/** #配置请求URL的请求规则
       serviceId: ihrm-employee #指定Eureka注册中心中的服务id
 #      stripPrefix: false
-      sentiviteHeaders:   #将指定路由的敏感头设置为空
-      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
+#      customSensitiveHeaders: true #对指定路由开启自定义敏感头
     ihrm-social-securitys: #社保
       path: /api/social_securitys/** #配置请求URL的请求规则
       serviceId: ihrm-social-securitys #指定Eureka注册中心中的服务id
 #      stripPrefix: false
-      sentiviteHeaders:   #将指定路由的敏感头设置为空
-      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
+#      customSensitiveHeaders: true #对指定路由开启自定义敏感头
     ihrm-atte-cfg: #社保
       path: /api/cfg/** #配置请求URL的请求规则
       serviceId: ihrm-attendance #指定Eureka注册中心中的服务id
 #      stripPrefix: false
-      sentiviteHeaders:   #将指定路由的敏感头设置为空
-      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
+#      customSensitiveHeaders: true #对指定路由开启自定义敏感头
     ihrm-atte-attendances: #社保
       path: /api/attendances/** #配置请求URL的请求规则
       serviceId: ihrm-attendance #指定Eureka注册中心中的服务id
 #      stripPrefix: false
-      sentiviteHeaders:   #将指定路由的敏感头设置为空
-      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+      sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
+#      customSensitiveHeaders: true #对指定路由开启自定义敏感头
