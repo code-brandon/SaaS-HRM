@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ 项目名： gulimall-gateway
+  ~ 项目名： ihrm-parent
   ~ 文件名： logback-spring.xml
   ~ 模块说明：
   ~ 修改历史:
@@ -98,10 +98,13 @@
     </logger>
 
     <!--myibatis log configure-->
-    <logger name="com.apache.ibatis" level="TRACE"/>
-    <logger name="java.sql.Connection" level="DEBUG"/>
-    <logger name="java.sql.Statement" level="DEBUG"/>
-    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    <logger name="com.ibatis" level="DEBUG" />
+     <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG" />
+     <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG" />
+     <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" />
+     <logger name="java.sql.Connection" level="DEBUG" />
+     <logger name="java.sql.Statement" level="DEBUG" />
+     <logger name="java.sql.PreparedStatement" level="DEBUG" />
 
     <!--输出jdbc 事务相关信息-->
     <logger name="org.springframework.jdbc" level="debug">
