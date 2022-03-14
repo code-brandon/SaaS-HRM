@@ -61,7 +61,7 @@ public class PeRolePermissionServiceImpl extends ServiceImpl<PeRolePermissionDao
         // Api类型权限ID和菜单与按钮ID聚合在一起
         permIds.addAll(strings);
 
-        boolean b = baseMapper.deleteById(roleId) > 0;
+        baseMapper.deleteById(roleId);
 
         Set<PeRolePermissionEntity> entitySet = permIds.stream().map(permId -> {
             PeRolePermissionEntity peRolePermissionEntity = new PeRolePermissionEntity();
@@ -70,7 +70,7 @@ public class PeRolePermissionServiceImpl extends ServiceImpl<PeRolePermissionDao
             return peRolePermissionEntity;
         }).collect(Collectors.toSet());
 
-        b = this.saveBatch(entitySet);
+
         /*// 循环添加到数据库
         for (String permId : permIds) {
             PeRolePermissionEntity peRolePermissionEntity = new PeRolePermissionEntity();
@@ -95,7 +95,7 @@ public class PeRolePermissionServiceImpl extends ServiceImpl<PeRolePermissionDao
         }
         // 都没有出现问题 则添加成功
         return true;*/
-        return b;
+        return this.saveBatch(entitySet);
     }
 
 }
