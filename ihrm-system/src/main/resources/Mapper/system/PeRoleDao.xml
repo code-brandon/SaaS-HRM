@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.xiaozheng.system.dao.PeRoleDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type = "com.xiaozheng.model.pe.PeRoleEntity" id = "peRoleMap">
+        <result property = "id" column = "id"/>
+        <result property = "name" column = "name"/>
+        <result property = "description" column = "description"/>
+        <result property = "companyId" column = "company_id"/>
+    </resultMap>
+
+    <resultMap type = "com.xiaozheng.model.dto.PeRoleDto" id = "peRoleMapDto">
+        <result property = "id" column = "id"/>
+        <result property = "name" column = "name"/>
+        <result property = "description" column = "description"/>
+        <result property = "companyId" column = "company_id"/>
+        <result property = "permIds" column = "permIds"/>
+    </resultMap>
+    <select id="infoAndPermById" resultType="com.xiaozheng.model.dto.PeRoleDto" resultMap="peRoleMapDto">
+        select * , (select group_concat(id)from pe_permission WHERE id in (select permission_id from pe_role_permission where role_id = #{id}) and type != 3) as permIds  from pe_role where id = #{id}
+    </select>
+
+
+</mapper>

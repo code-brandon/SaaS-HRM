@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.xiaozheng.system.dao.PePermissionDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type = "com.xiaozheng.model.pe.PePermissionEntity" id = "pePermissionMap">
+        <result property = "id" column = "id"/>
+        <result property = "description" column = "description"/>
+        <result property = "name" column = "name"/>
+        <result property = "type" column = "type"/>
+        <result property = "pid" column = "pid"/>
+        <result property = "code" column = "code"/>
+        <result property = "enVisible" column = "en_visible"/>
+    </resultMap>
+    <select id="queryByTypeAndPid" resultType="com.xiaozheng.model.pe.PePermissionEntity">
+        select  * from pe_permission
+        <where>
+            <foreach item="item" index="index" collection="permIds"
+                     open="pid in (" separator="," close=")">
+                #{item}
+            </foreach>
+            and type = #{type}
+        </where>
+    </select>
+    <select id="queryByUserId" resultType="com.xiaozheng.model.pe.PePermissionEntity">
+        SELECT * from pe_permission WHERE id in (
+            SELECT permission_id FROM pe_role_permission WHERE role_id in (
+                SELECT role_id FROM pe_user_role WHERE user_id = #{userId}
+            )
+        )
+    </select>
+
+
+</mapper>
