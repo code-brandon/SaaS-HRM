@@ -9,9 +9,8 @@ import com.xiaozheng.common.utils.Query;
 import com.xiaozheng.common.utils.ShiroContextUtils;
 import com.xiaozheng.employee.dao.EmUserCompanyPersonalDao;
 import com.xiaozheng.employee.service.EmUserCompanyPersonalService;
-import com.xiaozheng.model.dto.PeUserDto;
+import com.xiaozheng.common.entity.PeUserDto;
 import com.xiaozheng.model.em.EmUserCompanyPersonalEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

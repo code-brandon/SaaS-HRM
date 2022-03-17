@@ -1,11 +1,14 @@
 package com.xiaozheng.system.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xiaozheng.common.exception.CommonException;
 import com.xiaozheng.common.utils.PageUtils;
-import com.xiaozheng.model.dto.PeUserDto;
+import com.xiaozheng.common.entity.PeUserDto;
 import com.xiaozheng.model.pe.PeUserEntity;
 import com.xiaozheng.model.vo.pe.PeUsetVo;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -59,5 +62,12 @@ public interface PeUserService extends IService<PeUserEntity> {
      * @return 新增结果
      */
     boolean saveAndEncrypt(PeUserEntity peUser);
+
+    /**
+     * Excel导入员工
+     * @param file
+     * @return
+     */
+    boolean parseExcelToSaveEmployees(MultipartFile file) throws IOException, CommonException;
 }
 

@@ -6,15 +6,11 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.common.utils.Query;
-import com.xiaozheng.common.utils.ShiroContextUtils;
 import com.xiaozheng.employee.dao.EmPositiveDao;
 import com.xiaozheng.employee.service.EmPositiveService;
-import com.xiaozheng.model.dto.PeUserDto;
 import com.xiaozheng.model.em.EmPositiveEntity;
-import com.xiaozheng.model.em.EmUserCompanyJobsEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.Map;
 
 /**

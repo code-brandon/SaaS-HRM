@@ -5,6 +5,7 @@ import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.model.co.CoDepartmentEntity;
 import com.xiaozheng.model.dto.DepartmentListDto;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,5 +26,13 @@ public interface CoDepartmentService extends IService<CoDepartmentEntity> {
      * @return 单条数据
      */
     DepartmentListDto getDepartmentList(String departmentId);
+
+    /**
+     * 根据companyId和departmentCode获取部门信息
+     * @param companyId
+     * @param departmentCode
+     * @return
+     */
+    List<CoDepartmentEntity> querByCompanyIdAndDepartmentCode(String companyId, String departmentCode);
 }
 

@@ -1,7 +1,7 @@
 package com.xiaozheng.system.shiro.realm;
 
 import com.xiaozheng.common.shiro.realm.IhrmRealm;
-import com.xiaozheng.model.dto.PeUserDto;
+import com.xiaozheng.common.entity.PeUserDto;
 import com.xiaozheng.system.service.PeUserService;
 import org.apache.shiro.authc.*;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -6,7 +6,7 @@ import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.exception.CommonException;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.common.utils.ShiroContextUtils;
-import com.xiaozheng.model.dto.PeUserDto;
+import com.xiaozheng.common.entity.PeUserDto;
 import com.xiaozheng.model.pe.PeUserEntity;
 import com.xiaozheng.model.vo.pe.PeUsetVo;
 import com.xiaozheng.system.service.PeUserService;
@@ -15,8 +15,10 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -179,6 +181,18 @@ public class PeUserController {
     public R<PeUserDto> profile() {
         PeUserDto peUserDto = ShiroContextUtils.getProfile();
         return Objects.nonNull(peUserDto) ? R.ok("查询成功").data(peUserDto) : R.error(ResultCode.FAIL.code(),"查询失败");
+    }
+
+    /**
+     * Excel导入员工
+     * @param file
+     * @return
+     */
+    @ApiOperation("Excel导入员工")
+    @PostMapping("/import")
+    public R importUser(@RequestParam("file") MultipartFile file) throws IOException, CommonException {
+
+        return peUserService.parseExcelToSaveEmployees(file) ? R.ok("导入成功").data(true) : R.error(ResultCode.FAIL.code(),"导入失败").data(false);
     }
 
 }

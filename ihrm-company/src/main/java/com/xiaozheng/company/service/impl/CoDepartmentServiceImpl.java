@@ -14,6 +14,7 @@ import com.xiaozheng.model.co.CoDepartmentEntity;
 import com.xiaozheng.model.dto.DepartmentListDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -61,6 +62,19 @@ public class CoDepartmentServiceImpl extends ServiceImpl<CoDepartmentDao, CoDepa
         departmentListDto.setDepartments(coDepartmentEntities);
 
         return departmentListDto;
+    }
+
+    /**
+     * 根据companyId和departmentCode获取部门信息
+     *
+     * @param companyId
+     * @param departmentCode
+     * @return
+     */
+    @Override
+    public List<CoDepartmentEntity> querByCompanyIdAndDepartmentCode(String companyId, String departmentCode) {
+
+        return baseMapper.selectList(new QueryWrapper<CoDepartmentEntity>().eq(!StringUtils.isEmpty(companyId), "company_id", companyId).eq(!StringUtils.isEmpty(departmentCode), "code", departmentCode));
     }
 
 }

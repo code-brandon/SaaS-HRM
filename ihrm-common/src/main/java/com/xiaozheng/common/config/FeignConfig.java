@@ -1,4 +1,4 @@
-package com.xiaozheng.feignapi.config;
+package com.xiaozheng.common.config;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;

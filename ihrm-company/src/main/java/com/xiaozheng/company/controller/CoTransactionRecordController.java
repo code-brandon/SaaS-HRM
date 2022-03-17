@@ -20,7 +20,7 @@ import java.util.Objects;
  * @email 1911298402@qq.com
  * @date 2022-02-08 13:48:37
  */
-@Api(tags = "")
+@Api(tags = "共同交易记录")
 @RestController
 @RequestMapping("co/transactionrecord")
 public class CoTransactionRecordController {

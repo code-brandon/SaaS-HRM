@@ -9,9 +9,8 @@ import com.xiaozheng.common.utils.Query;
 import com.xiaozheng.common.utils.ShiroContextUtils;
 import com.xiaozheng.employee.dao.EmUserCompanyJobsDao;
 import com.xiaozheng.employee.service.EmUserCompanyJobsService;
-import com.xiaozheng.model.dto.PeUserDto;
+import com.xiaozheng.common.entity.PeUserDto;
 import com.xiaozheng.model.em.EmUserCompanyJobsEntity;
-import com.xiaozheng.model.em.EmUserCompanyPersonalEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

@@ -6,12 +6,9 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.common.utils.Query;
-import com.xiaozheng.common.utils.ShiroContextUtils;
 import com.xiaozheng.employee.dao.EmTransferpositionDao;
 import com.xiaozheng.employee.service.EmTransferpositionService;
-import com.xiaozheng.model.dto.PeUserDto;
 import com.xiaozheng.model.em.EmTransferpositionEntity;
-import com.xiaozheng.model.em.EmUserCompanyJobsEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

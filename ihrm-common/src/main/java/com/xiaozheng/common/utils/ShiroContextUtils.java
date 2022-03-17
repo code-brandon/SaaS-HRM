@@ -1,8 +1,10 @@
 package com.xiaozheng.common.utils;
 
-import com.xiaozheng.model.dto.PeUserDto;
+import com.baomidou.mybatisplus.core.toolkit.EncryptUtils;
+import com.xiaozheng.common.entity.PeUserDto;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 
@@ -30,5 +32,13 @@ public class ShiroContextUtils {
         PeUserDto peUserDto = (PeUserDto) principals.getPrimaryPrincipal();
         log.info("从Shiro中获取用户信息 : {}" , peUserDto.getUsername());
         return peUserDto;
+    }
+
+    /**
+     * 自定义加密
+     * @return
+     */
+    public static String customEncryption(String password,String salt) {
+        return new Md5Hash(EncryptUtils.md5Base64(password), salt, 6).toString();
     }
 }

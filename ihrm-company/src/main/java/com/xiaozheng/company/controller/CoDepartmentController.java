@@ -8,12 +8,11 @@ import com.xiaozheng.model.co.CoDepartmentEntity;
 import com.xiaozheng.model.dto.DepartmentListDto;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 
 /**
@@ -134,5 +133,20 @@ public class CoDepartmentController {
     public R<Boolean> delete(@RequestBody @ApiParam(name = "ID", value = "ID集合", required = true) String[] ids) {
 
         return coDepartmentService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
+    }
+
+
+        /**
+         * 根据companyId和departmentCode获取部门信息
+         * 参数为空查询所有
+         * @param companyId
+         * @param departmentCode
+         * @return
+         */
+        @ApiOperation("根据companyId和departmentCode获取部门信息")
+        @PostMapping(value = "/CompanyIdAndDepartmentCode")
+        public R<List<CoDepartmentEntity>> querByCompanyIdAndDepartmentCode(@RequestParam("companyId") String companyId,@RequestParam(value = "departmentCode",required = false) String departmentCode) {
+        List<CoDepartmentEntity> coDepartments = coDepartmentService.querByCompanyIdAndDepartmentCode(companyId, departmentCode);
+        return !CollectionUtils.isEmpty(coDepartments) ? R.ok("查询成功").data(coDepartments) : R.error(ResultCode.FAIL.code(),"查询失败");
     }
 }
