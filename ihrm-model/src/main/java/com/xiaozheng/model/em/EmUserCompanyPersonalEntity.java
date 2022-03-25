@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.xiaozheng.model.annotation.ExcelAttribute;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -34,26 +35,30 @@ public class EmUserCompanyPersonalEntity extends Model<EmUserCompanyPersonalEnti
 	 */
     @ApiModelProperty("用户ID")
 	@TableId(type = IdType.INPUT)
+	@ExcelAttribute(sort = 0)
 	private String userId;
 	/**
 	 * 
 	 */
-    @ApiModelProperty("")
+    @ApiModelProperty("用户名")
+	@ExcelAttribute(sort = 1)
 	private String username;
 	/**
 	 * 
 	 */
-    @ApiModelProperty("")
+    @ApiModelProperty("手机号")
+	@ExcelAttribute(sort = 2)
 	private String mobile;
 	/**
 	 * 
 	 */
-    @ApiModelProperty("")
+    @ApiModelProperty("入职时间")
+	@ExcelAttribute(sort = 9)
 	private String timeOfEntry;
 	/**
 	 * 
 	 */
-    @ApiModelProperty("")
+    @ApiModelProperty("部门名称")
 	private String departmentName;
 	/**
 	 * 公司ID
@@ -74,16 +79,19 @@ public class EmUserCompanyPersonalEntity extends Model<EmUserCompanyPersonalEnti
 	 * 最高学历
 	 */
     @ApiModelProperty("最高学历")
+	@ExcelAttribute(sort = 3)
 	private String theHighestDegreeOfEducation;
 	/**
 	 * 国家地区
 	 */
     @ApiModelProperty("国家地区")
+	@ExcelAttribute(sort = 4)
 	private String nationalArea;
 	/**
 	 * 护照号
 	 */
     @ApiModelProperty("护照号")
+	@ExcelAttribute(sort = 5)
 	private String passportNo;
 	/**
 	 * 身份证号
@@ -104,6 +112,7 @@ public class EmUserCompanyPersonalEntity extends Model<EmUserCompanyPersonalEnti
 	 * 籍贯
 	 */
     @ApiModelProperty("籍贯")
+	@ExcelAttribute(sort = 6)
 	private String nativePlace;
 	/**
 	 * 民族
@@ -129,11 +138,13 @@ public class EmUserCompanyPersonalEntity extends Model<EmUserCompanyPersonalEnti
 	 * 生日
 	 */
     @ApiModelProperty("生日")
+	@ExcelAttribute(sort = 7)
 	private String birthday;
 	/**
 	 * 属相
 	 */
     @ApiModelProperty("属相")
+	@ExcelAttribute(sort = 8)
 	private String zodiac;
 	/**
 	 * 年龄
@@ -228,12 +239,12 @@ public class EmUserCompanyPersonalEntity extends Model<EmUserCompanyPersonalEnti
 	/**
 	 * 
 	 */
-    @ApiModelProperty("")
+    @ApiModelProperty("联系手机")
 	private String contactTheMobilePhone;
 	/**
 	 * 
 	 */
-    @ApiModelProperty("")
+    @ApiModelProperty("个人邮箱")
 	private String personalMailbox;
 	/**
 	 * 紧急联系人

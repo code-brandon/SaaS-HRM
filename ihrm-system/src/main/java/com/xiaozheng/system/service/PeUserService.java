@@ -69,5 +69,13 @@ public interface PeUserService extends IService<PeUserEntity> {
      * @return
      */
     boolean parseExcelToSaveEmployees(MultipartFile file) throws IOException, CommonException;
+
+    /**
+     * 用户头像上传
+     * @param file
+     * @param id
+     * @return
+     */
+    String uploadUserAvatar(MultipartFile file, String id);
 }
 

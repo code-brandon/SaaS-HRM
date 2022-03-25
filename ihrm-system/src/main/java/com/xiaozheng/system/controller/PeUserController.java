@@ -190,9 +190,22 @@ public class PeUserController {
      */
     @ApiOperation("Excel导入员工")
     @PostMapping("/import")
-    public R importUser(@RequestParam("file") MultipartFile file) throws IOException, CommonException {
+    public R<Boolean> importUser(@RequestParam("file") MultipartFile file) throws IOException, CommonException {
 
         return peUserService.parseExcelToSaveEmployees(file) ? R.ok("导入成功").data(true) : R.error(ResultCode.FAIL.code(),"导入失败").data(false);
+    }
+
+    /**
+     * 用户头像上传
+     * @param file
+     * @param id
+     * @return
+     */
+    @ApiOperation("用户头像上传")
+    @PostMapping("/upload/{id}")
+    public R<String> uploadUserAvatar(@RequestParam("file") MultipartFile file, @PathVariable String id) {
+        String userAvatar = peUserService.uploadUserAvatar(file, id);
+        return !StringUtils.isEmpty(userAvatar) ? R.ok("上传成功").data(userAvatar) : R.error(ResultCode.FAIL.code(),"导入失败").data(userAvatar);
     }
 
 }

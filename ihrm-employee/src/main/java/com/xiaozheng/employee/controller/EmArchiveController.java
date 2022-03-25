@@ -3,14 +3,20 @@ package com.xiaozheng.employee.controller;
 import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.PageUtils;
+import com.xiaozheng.common.utils.excel.ExcelExportUtil;
 import com.xiaozheng.employee.service.EmArchiveService;
+import com.xiaozheng.model.dto.UserDetailAndResignationDto;
 import com.xiaozheng.model.em.EmArchiveEntity;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.FileInputStream;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -96,6 +102,53 @@ public class EmArchiveController {
     public R<Boolean> delete(@RequestBody @ApiParam(name="ID",value="ID集合",required=true) String[] ids){
 
         return emArchiveService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
+    }
+
+    /**
+     * 历史归档详情列表
+     * @param month 日期
+     * @param type 类型
+     * @return
+     */
+    @GetMapping("/archives/{month}")
+    public R<EmArchiveEntity> archives(@PathVariable(name = "month") String month, @RequestParam(name = "type") Integer type) {
+        List<EmArchiveEntity> emArchives = emArchiveService.archives(month, type);
+        return R.ok(ResultCode.SUCCESS.message());
+    }
+
+    /**
+     * 归档更新
+     */
+    @PutMapping("/archives/{month}")
+    public R saveArchives(@PathVariable(name = "month") String month) throws Exception {
+        return R.ok(ResultCode.SUCCESS.message());
+    }
+
+    /**
+     * 历史归档列表
+     */
+    @RequestMapping("/archives")
+    public R findArchives(@RequestParam(name = "pagesize") Integer pagesize, @RequestParam(name = "page") Integer page, @RequestParam(name = "year") String year) {
+        /*Map map = new HashMap();
+        map.put("year",year);
+        map.put("companyId",companyId);
+        Page<EmployeeArchive> searchPage = archiveService.findSearch(map, page, pagesize);
+        PageResult<EmployeeArchive> pr = new PageResult(searchPage.getTotalElements(),searchPage.getContent());*/
+        return R.ok();
+    }
+
+    /**
+     * 导出当月人事报表
+     * @param month
+     */
+    @ApiOperation("导出当月人事报表")
+    @GetMapping("/export/{month}")
+    public void export(@PathVariable String month, HttpServletResponse response) throws Exception {
+
+        List<UserDetailAndResignationDto> userDetailAndResignationDtos = emArchiveService.export(month);
+        ClassPathResource classPathResource = new ClassPathResource("excel-template/hr-demo.xlsx");
+        FileInputStream fileInputStream = new FileInputStream(classPathResource.getFile());
+        new ExcelExportUtil<UserDetailAndResignationDto>(UserDetailAndResignationDto.class, 2, 2).export(response,fileInputStream , userDetailAndResignationDtos, month+"人事报表.xlsx");
     }
 
 }

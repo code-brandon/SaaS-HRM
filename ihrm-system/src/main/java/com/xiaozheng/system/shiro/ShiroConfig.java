@@ -118,10 +118,11 @@ public class ShiroConfig {
         linkedHashMap.put("/swagger-resources/**", "anon");
         linkedHashMap.put("/webjars/**", "anon");
         linkedHashMap.put("/v2/api-docs", "anon");
+        linkedHashMap.put("/druid/**", "anon");
         // 认证之后 可以访问
         // linkedHashMap.put("/**", "authc");
         // 所有请求需要认证
-        linkedHashMap.put("/**", "user");
+        linkedHashMap.put("/**", "anon");
         filterFactoryBean.setFilterChainDefinitionMap(linkedHashMap);
         return filterFactoryBean;
     }

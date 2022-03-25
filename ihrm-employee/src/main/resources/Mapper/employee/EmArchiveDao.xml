@@ -16,5 +16,17 @@
         <result property="createTime" column="create_time"/>
     </resultMap>
 
+    <select id="exportBycompanyIdAndMonth" resultType="com.xiaozheng.model.dto.UserDetailAndResignationDto">
+        select
+        eucp.*,
+        er.resignation_time,
+        er.type_of_turnover,
+        er.reasons_for_leaving
+        from em_user_company_personal eucp
+        left join em_resignation er on eucp.user_id = er.user_id
+        where eucp.company_id = #{companyId}
+
+    </select>
+
 
 </mapper>

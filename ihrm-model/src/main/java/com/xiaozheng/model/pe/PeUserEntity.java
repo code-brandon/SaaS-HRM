@@ -139,4 +139,10 @@ public class PeUserEntity extends Model<PeUserEntity> implements Serializable {
     @ApiModelProperty("用户类型")
     private String level;
 
+    /**
+     * 用户头像
+     */
+    @ApiModelProperty("用户头像")
+    private String staffPhoto;
+
 }

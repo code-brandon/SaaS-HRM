@@ -25,6 +25,7 @@
         <result property = "departmentName" column = "department_name"/>
         <result property = "roleIds" column = "role_ids"/>
         <result property = "level" column = "level"/>
+        <result property = "staffPhoto" column = "staff_photo"/>
     </resultMap>
 
     <resultMap type = "com.xiaozheng.model.pe.PeUserEntity" id = "peUserMapCopy">
@@ -48,6 +49,7 @@
         <result property = "departmentName" column = "department_name"/>
         <result property = "roleIds" column = "roleIds"/>
         <result property = "level" column = "level"/>
+        <result property = "staffPhoto" column = "staff_photo"/>
     </resultMap>
     <select id="infoAndRoleById" resultType="com.xiaozheng.model.pe.PeUserEntity" resultMap="peUserMapCopy">
         select * , (select group_concat(role_id) from pe_user_role where user_id = #{id}) as roleIds  from pe_user where id = #{id}

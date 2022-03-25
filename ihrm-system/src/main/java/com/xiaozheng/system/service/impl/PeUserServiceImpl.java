@@ -6,13 +6,11 @@ import com.baomidou.mybatisplus.core.toolkit.EncryptUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Lists;
+import com.xiaozheng.common.config.MinioConfig;
 import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.exception.CommonException;
-import com.xiaozheng.common.utils.JwtUtils;
-import com.xiaozheng.common.utils.PageUtils;
-import com.xiaozheng.common.utils.Query;
-import com.xiaozheng.common.utils.ShiroContextUtils;
+import com.xiaozheng.common.utils.*;
 import com.xiaozheng.model.co.CoDepartmentEntity;
 import com.xiaozheng.common.entity.PeUserDto;
 import com.xiaozheng.model.pe.PeUserEntity;
@@ -21,6 +19,9 @@ import com.xiaozheng.system.dao.PeUserDao;
 import com.xiaozheng.system.feign.IhrmCompanyApi;
 import com.xiaozheng.system.service.PePermissionService;
 import com.xiaozheng.system.service.PeUserService;
+import io.minio.ObjectWriteResponse;
+import io.minio.errors.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.shiro.SecurityUtils;
@@ -37,6 +38,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +54,7 @@ import java.util.stream.Collectors;
  * @date 2022-02-10 22:47:03
  */
 @Service("peUserService")
+@Slf4j
 public class PeUserServiceImpl extends ServiceImpl<PeUserDao, PeUserEntity> implements PeUserService {
 
     @Autowired
@@ -237,6 +241,29 @@ public class PeUserServiceImpl extends ServiceImpl<PeUserDao, PeUserEntity> impl
             peUsers.add(peUserEntity);
         }
         return this.saveBatch(peUsers);
+    }
+
+    /**
+     * 用户头像上传
+     *
+     * @param file
+     * @param id
+     * @return
+     */
+    @Override
+    public String uploadUserAvatar(MultipartFile file, String id) {
+        try {
+            ObjectWriteResponse objectWriteResponse = MinioUtils.putObject(null, file, file.getOriginalFilename(), file.getContentType());
+            String imageAddr = MinioUtils.getBasisUrl() + objectWriteResponse.object();
+            PeUserEntity peUserEntity = new PeUserEntity();
+            peUserEntity.setId(id);
+            peUserEntity.setStaffPhoto(imageAddr);
+            baseMapper.updateById(peUserEntity);
+            return imageAddr;
+        } catch (Exception e) {
+            log.error("用户头像上传出错：{}", e.getMessage());
+        }
+        return null;
     }
 
     /**
