@@ -20,6 +20,7 @@
         <lombok.version>1.18.20</lombok.version>
         <mysql.version>8.0.22</mysql.version>
         <druid.version>1.2.3</druid.version>
+        <poi.version>4.1.2</poi.version>
         <spring.cloud-version>Hoxton.SR12</spring.cloud-version>
     </properties>
 
@@ -31,6 +32,7 @@
         <module>ihrm-employee</module>
         <module>ihrm-eureka</module>
         <module>ihrm-zuul</module>
+        <module>ihrm-jasper-demo</module>
     </modules>
 
     <dependencyManagement>
@@ -65,6 +67,24 @@
                 <artifactId>mysql-connector-java</artifactId>
                 <scope>runtime</scope>
                 <version>${mysql.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml-schemas</artifactId>
+                <version>${poi.version}</version>
             </dependency>
 
             <dependency>
@@ -153,7 +173,8 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>true</filtering>
+                <!--不进行文件过滤-->
+                <filtering>false</filtering>
             </resource>
         </resources>
     </build>
