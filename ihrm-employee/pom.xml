@@ -27,6 +27,34 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <!--jasperReport 的依赖只和 itext的 2.1.7 版本兼容.不兼容其他版本-->
+        <!--https://community.jaspersoft.com/jasperreports-library/issues/14011-->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.19.0</version>
+            <exclusions>
+                <!--与下面的依赖冲突 排除-->
+                <exclusion>
+                    <groupId>com.lowagie</groupId>
+                    <artifactId>itext</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.olap4j/olap4j -->
+        <dependency>
+            <groupId>org.olap4j</groupId>
+            <artifactId>olap4j</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+
         <!--eureka-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -60,6 +88,7 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <configuration>
                     <encoding>UTF-8</encoding>
+                    <!--不进行过滤的扩展名-->
                     <nonFilteredFileExtensions>
                         <nonFilteredFileExtension>xlsx</nonFilteredFileExtension>
                         <nonFilteredFileExtension>docx</nonFilteredFileExtension>

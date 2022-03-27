@@ -1,16 +1,26 @@
 package com.xiaozheng.employee.controller;
 
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.employee.service.EmUserCompanyPersonalService;
 import com.xiaozheng.model.em.EmUserCompanyPersonalEntity;
 import io.swagger.annotations.*;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.FileInputStream;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
@@ -108,6 +118,32 @@ public class EmUserCompanyPersonalController {
     public R<Boolean> delete(@RequestBody @ApiParam(name="ID",value="ID集合",required=true) String[] userIds){
 
         return emUserCompanyPersonalService.removeByIds(Arrays.asList(userIds)) ? R.ok("删除成功").data(true) : R.error(ResultCode.FAIL.code(),"删除失败").data(false);
+    }
+
+    /**
+     * 员工PDF导出
+     * @param request
+     * @param response
+     * @throws Exception
+     */
+    @GetMapping("/pdf/{id}")
+    public void createPdfV2(HttpServletRequest request, HttpServletResponse response, @PathVariable String id) throws Exception {
+        response.setContentType("application/pdf");
+        //引入jasper文件。由JRXML模板编译生成的二进制文件，用于代码填充数据
+        Resource resource = new ClassPathResource("jasper/profile.jasper");
+        //加载jasper文件创建inputStream
+        FileInputStream isRef = new FileInputStream(resource.getFile());
+        ServletOutputStream sosRef = response.getOutputStream();
+        try {
+            Map<String, Object> userCompanyPersonalMap = emUserCompanyPersonalService.getMap(new QueryWrapper<EmUserCompanyPersonalEntity>().eq("user_id", id));
+            //创建JasperPrint对象
+            JasperPrint jasperPrint = JasperFillManager.fillReport(isRef, userCompanyPersonalMap,new JREmptyDataSource());
+            //写入pdf数据
+            JasperExportManager.exportReportToPdfStream(jasperPrint, sosRef);
+        } finally {
+            sosRef.flush();
+            sosRef.close();
+        }
     }
 
 }
