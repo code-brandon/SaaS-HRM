@@ -1,5 +1,8 @@
 package com.xiaozheng.common.config;
 
+import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
+import com.baomidou.mybatisplus.core.MybatisConfiguration;
+import com.baomidou.mybatisplus.extension.MybatisMapWrapperFactory;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
 import org.springframework.context.annotation.Bean;
@@ -34,6 +37,25 @@ public class MybatisPlusConfig {
         // 开启 count 的 join 优化,只针对部分 left join
         paginationInterceptor.setCountSqlParser(new JsqlParserCountOptimize(true));
         return paginationInterceptor;
+    }
+
+    /**
+     * 解决Map映射非驼峰
+     * @return
+     */
+    // @Bean
+    public ConfigurationCustomizer mybatisConfigurationCustomizer(){
+        return new ConfigurationCustomizer() {
+            /**
+             * Customize the given a {@link MybatisConfiguration} object.
+             *
+             * @param configuration the configuration object to customize
+             */
+            @Override
+            public void customize(MybatisConfiguration configuration) {
+                configuration.setObjectWrapperFactory(new MybatisMapWrapperFactory());
+            }
+        };
     }
     
     // 最新版
