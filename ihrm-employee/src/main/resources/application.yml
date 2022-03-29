@@ -11,6 +11,12 @@ spring:
     password: 12345678
 mybatis-plus:
   mapper-locations: classpath*:/Mapper/employee/**/*.xml
+  configuration:
+    # 映射下划线到驼峰式大小写
+    map-underscore-to-camel-case: true
+    # 空值调用设置器
+    call-setters-on-nulls: false
+    object-wrapper-factory: com.baomidou.mybatisplus.extension.MybatisMapWrapperFactory
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
