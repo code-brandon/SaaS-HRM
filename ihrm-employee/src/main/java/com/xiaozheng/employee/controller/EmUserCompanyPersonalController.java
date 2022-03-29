@@ -7,6 +7,7 @@ import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.employee.service.EmUserCompanyPersonalService;
 import com.xiaozheng.model.em.EmUserCompanyPersonalEntity;
 import io.swagger.annotations.*;
+import lombok.extern.slf4j.Slf4j;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -36,6 +37,7 @@ import java.util.Objects;
 @Api(tags = "员工详细信息")
 @RestController
 @RequestMapping("em/personal")
+@Slf4j
 public class EmUserCompanyPersonalController {
     @Autowired
     private EmUserCompanyPersonalService emUserCompanyPersonalService;
@@ -128,7 +130,10 @@ public class EmUserCompanyPersonalController {
      */
     @GetMapping("/pdf/{id}")
     public void createPdfV2(HttpServletRequest request, HttpServletResponse response, @PathVariable String id) throws Exception {
+        String filename =   id + ".pdf";
         response.setContentType("application/pdf");
+        response.setHeader("content-disposition", "attachment;filename=\"" + new String(filename.getBytes(), "ISO-8859-1") + "\"");
+        response.setHeader("filename", filename);
         //引入jasper文件。由JRXML模板编译生成的二进制文件，用于代码填充数据
         Resource resource = new ClassPathResource("jasper/profile.jasper");
         //加载jasper文件创建inputStream
@@ -136,6 +141,7 @@ public class EmUserCompanyPersonalController {
         ServletOutputStream sosRef = response.getOutputStream();
         try {
             Map<String, Object> userCompanyPersonalMap = emUserCompanyPersonalService.getMap(new QueryWrapper<EmUserCompanyPersonalEntity>().eq("user_id", id));
+            log.info("userCompanyPersonalMap = " + userCompanyPersonalMap);
             //创建JasperPrint对象
             JasperPrint jasperPrint = JasperFillManager.fillReport(isRef, userCompanyPersonalMap,new JREmptyDataSource());
             //写入pdf数据
