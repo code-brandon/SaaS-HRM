@@ -118,6 +118,8 @@ public class ShiroConfig {
         linkedHashMap.put("/**/swagger-resources/**", "anon");
         linkedHashMap.put("/**/webjars/**", "anon");
         linkedHashMap.put("/**/v2/api-docs", "anon");
+        // 人脸登录接口 开放
+        linkedHashMap.put("/api/system/sys/faceLogin/**", "anon");
         // 认证之后 可以访问
         // linkedHashMap.put("/**", "authc");
         // 所有请求需要认证

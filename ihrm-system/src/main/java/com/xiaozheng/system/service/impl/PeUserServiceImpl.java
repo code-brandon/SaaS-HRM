@@ -6,21 +6,22 @@ import com.baomidou.mybatisplus.core.toolkit.EncryptUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Lists;
-import com.xiaozheng.common.config.MinioConfig;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
+import com.xiaozheng.common.config.QiniuUploadUtil;
+import com.xiaozheng.common.entity.PeUserDto;
 import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.exception.CommonException;
 import com.xiaozheng.common.utils.*;
 import com.xiaozheng.model.co.CoDepartmentEntity;
-import com.xiaozheng.common.entity.PeUserDto;
 import com.xiaozheng.model.pe.PeUserEntity;
 import com.xiaozheng.model.vo.pe.PeUsetVo;
 import com.xiaozheng.system.dao.PeUserDao;
 import com.xiaozheng.system.feign.IhrmCompanyApi;
 import com.xiaozheng.system.service.PePermissionService;
 import com.xiaozheng.system.service.PeUserService;
+import com.xiaozheng.system.utils.BaiduAiUtil;
 import io.minio.ObjectWriteResponse;
-import io.minio.errors.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -38,8 +39,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +55,9 @@ import java.util.stream.Collectors;
 @Service("peUserService")
 @Slf4j
 public class PeUserServiceImpl extends ServiceImpl<PeUserDao, PeUserEntity> implements PeUserService {
+
+    @Autowired
+    private BaiduAiUtil baiduAiUtil;
 
     @Autowired
     private IhrmCompanyApi ihrmCompanyApi;
@@ -259,6 +261,18 @@ public class PeUserServiceImpl extends ServiceImpl<PeUserDao, PeUserEntity> impl
             peUserEntity.setId(id);
             peUserEntity.setStaffPhoto(imageAddr);
             baseMapper.updateById(peUserEntity);
+            //判断是否已经注册面部信息
+
+            Boolean aBoolean = baiduAiUtil.faceExist(id);
+            String imgBase64 = Base64.encode(file.getBytes());
+            if (aBoolean) {
+                //更新
+                baiduAiUtil.faceUpdate(id,imgBase64);
+            }else{
+                //注册
+                baiduAiUtil.faceRegister(id,imgBase64);
+            }
+            //4.返回
             return imageAddr;
         } catch (Exception e) {
             log.error("用户头像上传出错：{}", e.getMessage());
@@ -296,6 +310,55 @@ public class PeUserServiceImpl extends ServiceImpl<PeUserDao, PeUserEntity> impl
                 break;
         }
         return value;
+    }
+
+    /**
+     * 上传到七牛云存储
+     * TODO 注册到百度云AI人脸库
+     *      1.调用百度云接口，判断当前用户是否已经注册
+     *      2.已注册，更新
+     *      3.未注册，注册
+     */
+    public String uploadImage(String id, MultipartFile file) throws IOException {
+        //1.根据id查询用户
+        PeUserEntity peUserEntity = baseMapper.selectById(id);
+        //2.将图片上传到七牛云存储，获取请求路径
+        String imgUrl = new QiniuUploadUtil().upload(peUserEntity.getId(), file.getBytes());//上传图片名，图片的byte数组
+        //3.更新用户头像地址
+        peUserEntity.setStaffPhoto(imgUrl);
+        baseMapper.insert(peUserEntity);
+
+        //判断是否已经注册面部信息
+        Boolean aBoolean = baiduAiUtil.faceExist(id);
+        String imgBase64 = Base64.encode(file.getBytes());
+        if (aBoolean) {
+            //更新
+            baiduAiUtil.faceUpdate(id,imgBase64);
+        }else{
+            //注册
+            baiduAiUtil.faceRegister(id,imgBase64);
+        }
+        //4.返回
+        return imgUrl;
+    }
+
+    /**
+     * base64编码完成图片存储
+     * @param id        ：用户id
+     * @param file      ：用户上传的头像文件
+     * @return          ：请求路径
+     */
+    public String uploadImage( MultipartFile file,String id) throws IOException {
+        //1.根据id查询用户
+        PeUserEntity peUserEntity = baseMapper.selectById(id);
+        //2.使用DataURL的形式存储图片（对图片byte数组进行base64编码）
+        String encode = "data:image/png;base64," + Base64.encode(file.getBytes());
+        System.out.println(encode);
+        //3.更新用户头像地址
+        peUserEntity.setStaffPhoto(encode);
+        baseMapper.insert(peUserEntity);
+        //4.返回
+        return encode;
     }
 
 }
