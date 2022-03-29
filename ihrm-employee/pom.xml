@@ -4,7 +4,6 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>ihrm-employee</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ihrm-employee</name>
     <description>员工管理</description>
 
     <parent>
@@ -92,6 +91,7 @@
                     <nonFilteredFileExtensions>
                         <nonFilteredFileExtension>xlsx</nonFilteredFileExtension>
                         <nonFilteredFileExtension>docx</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>jasper</nonFilteredFileExtension>
                     </nonFilteredFileExtensions>
                 </configuration>
             </plugin>
