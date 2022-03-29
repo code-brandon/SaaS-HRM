@@ -1,10 +1,13 @@
 package com.xiaozheng.zuul;
 
+import com.xiaozheng.common.config.MybatisPlusConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 
 /**
  * @author 小政同学 QQ:xiaozheng666888@qq.com
@@ -13,6 +16,8 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  */
 @SpringBootApplication(scanBasePackages = "com.xiaozheng")
 @EnableZuulProxy
+//排除 MybatisPlusConfig.java配置类
+@ComponentScan(excludeFilters= {@ComponentScan.Filter(type= FilterType.ASSIGNABLE_TYPE, value= {MybatisPlusConfig.class})})
 @EnableEurekaClient
 @EnableDiscoveryClient
 public class IhrmZuulApplication {
