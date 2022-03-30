@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaozheng.socialsecurity.dao.SsUserSocialSecurityDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.xiaozheng.model.ss.SsUserSocialSecurityEntity" id="ssUserSocialSecurityMap">
+        <result property="userId" column="user_id"/>
+        <result property="enterprisesPaySocialSecurityThisMonth" column="enterprises_pay_social_security_this_month"/>
+        <result property="enterprisesPayTheProvidentFundThisMonth" column="enterprises_pay_the_provident_fund_this_month"/>
+        <result property="participatingInTheCityId" column="participating_in_the_city_id"/>
+        <result property="socialSecurityType" column="social_security_type"/>
+        <result property="householdRegistrationType" column="household_registration_type"/>
+        <result property="socialSecurityBase" column="social_security_base"/>
+        <result property="industrialInjuryRatio" column="industrial_injury_ratio"/>
+        <result property="socialSecurityNotes" column="social_security_notes"/>
+        <result property="providentFundCityId" column="provident_fund_city_id"/>
+        <result property="providentFundBase" column="provident_fund_base"/>
+        <result property="enterpriseProportion" column="enterprise_proportion"/>
+        <result property="personalProportion" column="personal_proportion"/>
+        <result property="enterpriseProvidentFundPayment" column="enterprise_provident_fund_payment"/>
+        <result property="personalProvidentFundPayment" column="personal_provident_fund_payment"/>
+        <result property="providentFundNotes" column="provident_fund_notes"/>
+        <result property="lastModifyTime" column="last_modify_time"/>
+        <result property="socialSecuritySwitchUpdateTime" column="social_security_switch_update_time"/>
+        <result property="providentFundSwitchUpdateTime" column="provident_fund_switch_update_time"/>
+        <result property="cityName" column="city_name"/>
+        <result property="householdRegistration" column="household_registration"/>
+        <result property="participatingInTheCity" column="participating_in_the_city"/>
+        <result property="providentFundCity" column="provident_fund_city"/>
+    </resultMap>
+
+
+</mapper>

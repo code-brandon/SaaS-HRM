@@ -34,6 +34,7 @@
         <module>ihrm-employee</module>
         <module>ihrm-eureka</module>
         <module>ihrm-zuul</module>
+        <module>ihrm-social-security</module>
         <module>ihrm-jasper-demo</module>
         <module>x-codeutils</module>
     </modules>
