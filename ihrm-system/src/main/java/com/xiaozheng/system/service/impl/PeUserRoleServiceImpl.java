@@ -1,8 +1,12 @@
 package com.xiaozheng.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xiaozheng.common.entity.ResultCode;
+import com.xiaozheng.common.exception.CommonException;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.common.utils.Query;
 import com.xiaozheng.model.pe.PeUserRoleEntity;
@@ -52,8 +56,15 @@ public class PeUserRoleServiceImpl extends ServiceImpl<PeUserRoleDao, PeUserRole
             peUserRoleEntity.setRoleId(roleId);
             return peUserRoleEntity;
         }).collect(Collectors.toList());
-
-        return this.saveBatch(userRoles);
+        // 更新角色前 删除所有该用户的角色
+        if (baseMapper.delete(new QueryWrapper<PeUserRoleEntity>().eq("user_id", userId)) >= 0) {
+            if (CollectionUtils.isEmpty(userRoles)) {
+                return true;
+            }
+            return this.saveBatch(userRoles);
+        } else {
+            throw new CommonException(ResultCode.FAIL);
+        }
     }
 
 }
