@@ -35,6 +35,7 @@
         <module>ihrm-eureka</module>
         <module>ihrm-zuul</module>
         <module>ihrm-jasper-demo</module>
+        <module>x-codeutils</module>
     </modules>
 
     <dependencyManagement>
