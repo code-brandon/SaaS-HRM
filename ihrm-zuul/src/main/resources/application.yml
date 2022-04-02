@@ -44,8 +44,8 @@ zuul:
       sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
 #      customSensitiveHeaders: true #对指定路由开启自定义敏感头
     ihrm-social-securitys: #社保
-      path: /api/social_securitys/** #配置请求URL的请求规则
-      serviceId: ihrm-social-securitys #指定Eureka注册中心中的服务id
+      path: /api/social_security/** #配置请求URL的请求规则
+      serviceId: ihrm-social-security #指定Eureka注册中心中的服务id
 #      stripPrefix: false
       sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
 #      customSensitiveHeaders: true #对指定路由开启自定义敏感头
