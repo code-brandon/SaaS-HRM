@@ -25,12 +25,6 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    @Bean
-    public IhrmRealm getRealm() {
-        return new IhrmRealm();
-    }
-
-
     @Value("${spring.redis.host}")
     private String host;
     @Value("${spring.redis.port}")
@@ -38,6 +32,10 @@ public class ShiroConfig {
     @Value("${spring.redis.password}")
     private String password;
 
+    @Bean
+    public IhrmRealm getRealm() {
+        return new IhrmRealm();
+    }
 
     @Bean
     RedisManager redisManager() {
@@ -57,6 +55,7 @@ public class ShiroConfig {
 
     /**
      * 会话管理
+     *
      * @return
      */
     @Bean
@@ -71,7 +70,6 @@ public class ShiroConfig {
     }
 
     /**
-     *
      * @param realm
      * @return
      */
@@ -86,6 +84,7 @@ public class ShiroConfig {
 
     /**
      * 缓存
+     *
      * @return
      */
     @Bean("shiroRedis")
