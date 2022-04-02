@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaozheng.socialsecurity.dao.ss.SsUserSocialSecurityDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.xiaozheng.model.ss.SsUserSocialSecurityEntity" id="ssUserSocialSecurityMap">
+        <result property="userId" column="user_id"/>
+        <result property="enterprisesPaySocialSecurityThisMonth" column="enterprises_pay_social_security_this_month"/>
+        <result property="enterprisesPayTheProvidentFundThisMonth" column="enterprises_pay_the_provident_fund_this_month"/>
+        <result property="participatingInTheCityId" column="participating_in_the_city_id"/>
+        <result property="socialSecurityType" column="social_security_type"/>
+        <result property="householdRegistrationType" column="household_registration_type"/>
+        <result property="socialSecurityBase" column="social_security_base"/>
+        <result property="industrialInjuryRatio" column="industrial_injury_ratio"/>
+        <result property="socialSecurityNotes" column="social_security_notes"/>
+        <result property="providentFundCityId" column="provident_fund_city_id"/>
+        <result property="providentFundBase" column="provident_fund_base"/>
+        <result property="enterpriseProportion" column="enterprise_proportion"/>
+        <result property="personalProportion" column="personal_proportion"/>
+        <result property="enterpriseProvidentFundPayment" column="enterprise_provident_fund_payment"/>
+        <result property="personalProvidentFundPayment" column="personal_provident_fund_payment"/>
+        <result property="providentFundNotes" column="provident_fund_notes"/>
+        <result property="lastModifyTime" column="last_modify_time"/>
+        <result property="socialSecuritySwitchUpdateTime" column="social_security_switch_update_time"/>
+        <result property="providentFundSwitchUpdateTime" column="provident_fund_switch_update_time"/>
+        <result property="cityName" column="city_name"/>
+        <result property="householdRegistration" column="household_registration"/>
+        <result property="participatingInTheCity" column="participating_in_the_city"/>
+        <result property="providentFundCity" column="provident_fund_city"/>
+    </resultMap>
+
+    <resultMap type="com.xiaozheng.model.dto.SsUserSocialSecurityDto" id="ssUserSocialSecurityDto">
+        <result property="userId" column="user_id"/>
+        <result property="enterprisesPaySocialSecurityThisMonth" column="enterprises_pay_social_security_this_month"/>
+        <result property="enterprisesPayTheProvidentFundThisMonth" column="enterprises_pay_the_provident_fund_this_month"/>
+        <result property="participatingInTheCityId" column="participating_in_the_city_id"/>
+        <result property="socialSecurityType" column="social_security_type"/>
+        <result property="householdRegistrationType" column="household_registration_type"/>
+        <result property="socialSecurityBase" column="social_security_base"/>
+        <result property="industrialInjuryRatio" column="industrial_injury_ratio"/>
+        <result property="socialSecurityNotes" column="social_security_notes"/>
+        <result property="providentFundCityId" column="provident_fund_city_id"/>
+        <result property="providentFundBase" column="provident_fund_base"/>
+        <result property="enterpriseProportion" column="enterprise_proportion"/>
+        <result property="personalProportion" column="personal_proportion"/>
+        <result property="enterpriseProvidentFundPayment" column="enterprise_provident_fund_payment"/>
+        <result property="personalProvidentFundPayment" column="personal_provident_fund_payment"/>
+        <result property="providentFundNotes" column="provident_fund_notes"/>
+        <result property="lastModifyTime" column="last_modify_time"/>
+        <result property="socialSecuritySwitchUpdateTime" column="social_security_switch_update_time"/>
+        <result property="providentFundSwitchUpdateTime" column="provident_fund_switch_update_time"/>
+        <result property="cityName" column="city_name"/>
+        <result property="householdRegistration" column="household_registration"/>
+        <result property="participatingInTheCity" column="participating_in_the_city"/>
+        <result property="providentFundCity" column="provident_fund_city"/>
+        <result property = "username" column = "username"/>
+        <result property = "workNumber" column = "work_number"/>
+        <result property = "departmentName" column = "department_name"/>
+        <result property = "mobile" column = "mobile"/>
+        <result property = "timeOfEntry" column = "time_of_entry"/>
+    </resultMap>
+
+    <select id="pageAndTran" resultType="java.util.List" resultMap="ssUserSocialSecurityDto">
+        SELECT
+        suss.enterprises_pay_social_security_this_month,
+        suss.enterprises_pay_the_provident_fund_this_month,
+        suss.participating_in_the_city_id,
+        suss.social_security_type,
+        suss.household_registration_type,
+        suss.social_security_base,
+        suss.industrial_injury_ratio,
+        suss.social_security_notes,
+        suss.provident_fund_city_id,
+        suss.provident_fund_base,
+        suss.enterprise_proportion,
+        suss.personal_proportion,
+        suss.enterprise_provident_fund_payment,
+        suss.personal_provident_fund_payment,
+        suss.provident_fund_notes,
+        suss.last_modify_time,
+        suss.social_security_switch_update_time,
+        suss.provident_fund_switch_update_time,
+        suss.city_name,
+        suss.household_registration,
+        suss.participating_in_the_city,
+        suss.provident_fund_city,
+        eucp.user_id,
+        eucp.username,
+        eucp.mobile,
+        eucp.work_number,
+        eucp.department_name,
+        eucp.time_of_entry
+        FROM em_user_company_personal eucp
+        left join ss_user_social_security suss on suss.user_id = eucp.user_id
+        where eucp.company_id = #{companyId}
+    </select>
+
+    <select id="getByIdAndTran" resultType="com.xiaozheng.model.dto.SsUserSocialSecurityDto">
+        SELECT
+        suss.enterprises_pay_social_security_this_month,
+        suss.enterprises_pay_the_provident_fund_this_month,
+        suss.participating_in_the_city_id,
+        suss.social_security_type,
+        suss.household_registration_type,
+        suss.social_security_base,
+        suss.industrial_injury_ratio,
+        suss.social_security_notes,
+        suss.provident_fund_city_id,
+        suss.provident_fund_base,
+        suss.enterprise_proportion,
+        suss.personal_proportion,
+        suss.enterprise_provident_fund_payment,
+        suss.personal_provident_fund_payment,
+        suss.provident_fund_notes,
+        suss.last_modify_time,
+        suss.social_security_switch_update_time,
+        suss.provident_fund_switch_update_time,
+        suss.city_name,
+        suss.household_registration,
+        suss.participating_in_the_city,
+        suss.provident_fund_city,
+        eucp.user_id,
+        eucp.username,
+        eucp.mobile,
+        eucp.work_number,
+        eucp.department_name,
+        eucp.time_of_entry
+        FROM em_user_company_personal eucp
+        left join ss_user_social_security suss on suss.user_id = eucp.user_id
+        where eucp.user_id = #{userId}
+    </select>
+
+
+</mapper>

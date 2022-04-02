@@ -139,22 +139,22 @@ public class SsUserSocialSecurityEntity extends Model<SsUserSocialSecurityEntity
 	/**
 	 * 
 	 */
-    @ApiModelProperty("")
+    @ApiModelProperty("城市名")
 	private String cityName;
 	/**
 	 * 
 	 */
-    @ApiModelProperty("")
+    @ApiModelProperty("户籍")
 	private String householdRegistration;
 	/**
 	 * 
 	 */
-    @ApiModelProperty("")
+    @ApiModelProperty("参保城市")
 	private String participatingInTheCity;
 	/**
 	 * 
 	 */
-    @ApiModelProperty("")
+    @ApiModelProperty("公积金城市")
 	private String providentFundCity;
 
 }

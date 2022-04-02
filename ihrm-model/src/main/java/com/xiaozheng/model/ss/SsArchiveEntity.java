@@ -1,8 +1,6 @@
 package com.xiaozheng.model.ss;
 
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.math.BigDecimal;
 import java.io.Serializable;
@@ -56,6 +54,7 @@ public class SsArchiveEntity extends Model<SsArchiveEntity> implements Serializa
     @ApiModelProperty("创建时间")
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@TableField(fill = FieldFill.INSERT_UPDATE)
 	private Date creationTime;
 	/**
 	 * 企业缴纳

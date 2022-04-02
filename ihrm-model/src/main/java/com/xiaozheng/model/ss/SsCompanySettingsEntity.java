@@ -34,7 +34,7 @@ public class SsCompanySettingsEntity extends Model<SsCompanySettingsEntity> impl
 	 * 企业id
 	 */
     @ApiModelProperty("企业id")
-	@TableId(type = IdType.ASSIGN_ID)
+	@TableId(type = IdType.INPUT)
 	private String companyId;
 	/**
 	 * 0是未设置，1是已设置

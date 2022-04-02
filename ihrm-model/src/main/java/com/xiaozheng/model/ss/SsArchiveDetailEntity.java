@@ -360,7 +360,7 @@ public class SsArchiveDetailEntity extends Model<SsArchiveDetailEntity> implemen
 	/**
 	 * 
 	 */
-    @ApiModelProperty("")
+    @ApiModelProperty(value = "年月",example="202204")
 	private String yearsMonth;
 
 }
