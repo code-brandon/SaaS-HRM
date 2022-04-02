@@ -50,13 +50,18 @@ public class EmUserCompanyPersonalEntity extends Model<EmUserCompanyPersonalEnti
 	@ExcelAttribute(sort = 2)
 	private String mobile;
 	/**
-	 * 
+	 * 工号
+	 */
+	@ApiModelProperty("工号")
+	private String workNumber;
+	/**
+	 * 入职时间
 	 */
     @ApiModelProperty("入职时间")
 	@ExcelAttribute(sort = 9)
 	private String timeOfEntry;
 	/**
-	 * 
+	 * 部门名称
 	 */
     @ApiModelProperty("部门名称")
 	private String departmentName;
