@@ -14,8 +14,6 @@ import java.util.Map;
  */
 public interface CoCompanyService extends IService<CoCompanyEntity> {
 
-    PageUtils<CoCompanyEntity> page(Map<String, Object> params);
-
     PageUtils<CoCompanyEntity> queryPage(CoCompanyEntity coCompany, Map<String, Object> params);
 
     void add(CoCompanyEntity company);

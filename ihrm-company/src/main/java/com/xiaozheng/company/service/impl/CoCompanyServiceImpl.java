@@ -28,15 +28,6 @@ public class CoCompanyServiceImpl extends ServiceImpl<CoCompanyDao, CoCompanyEnt
     private IdWorker idWorker;
 
     @Override
-    public PageUtils<CoCompanyEntity> page(Map<String, Object> params) {
-        IPage<CoCompanyEntity> page = this.page(
-                new Query<CoCompanyEntity>().getPage(params),
-                new QueryWrapper<CoCompanyEntity>()
-        );
-        return new PageUtils(page);
-    }
-
-    @Override
     public PageUtils<CoCompanyEntity> queryPage(CoCompanyEntity coCompany, Map<String, Object> params) {
         IPage<CoCompanyEntity> page = this.page(
                 new Query<CoCompanyEntity>().getPage(params),

@@ -28,23 +28,6 @@ public class CoCompanyController {
     private CoCompanyService coCompanyService;
 
     /**
-     * 分页查询所有数据
-     *
-     * @param params 请求集合
-     * @return 所有数据
-     */
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "page", value = "当前页码", dataType = "String", paramType = "query", example = "1"),
-            @ApiImplicitParam(name = "limit", value = "每页显示记录数", dataType = "String", paramType = "query", example = "10")
-    })
-    @ApiOperation("分页查询所有数据")
-    @GetMapping("/page")
-    public R<Map<String, PageUtils<CoCompanyEntity>>> page(@RequestParam @ApiIgnore() Map<String, Object> params) {
-        PageUtils<CoCompanyEntity> page = coCompanyService.page(params);
-        return R.ok("查询成功").data("page", page);
-    }
-
-    /**
      * 分页条件查询所有数据
      *
      * @param params 请求集合
