@@ -25,7 +25,7 @@ import java.util.Objects;
  */
 @Api(tags = "考勤-企业设置信息")
 @RestController
-@RequestMapping("attendance/attecompanysettings")
+@RequestMapping("atte/companysettings")
 public class AtteCompanySettingsController {
     @Autowired
     private AtteCompanySettingsService atteCompanySettingsService;

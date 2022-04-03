@@ -25,7 +25,7 @@ import java.util.Objects;
  */
 @Api(tags = "扣款类型表")
 @RestController
-@RequestMapping("attendance/attedeductiontype")
+@RequestMapping("atte/deductiontype")
 public class AtteDeductionTypeController {
     @Autowired
     private AtteDeductionTypeService atteDeductionTypeService;

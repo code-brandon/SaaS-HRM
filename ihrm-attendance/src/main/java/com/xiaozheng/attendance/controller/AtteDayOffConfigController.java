@@ -25,7 +25,7 @@ import java.util.Objects;
  */
 @Api(tags = "调休配置表")
 @RestController
-@RequestMapping("attendance/attedayoffconfig")
+@RequestMapping("atte/dayoffconfig")
 public class AtteDayOffConfigController {
     @Autowired
     private AtteDayOffConfigService atteDayOffConfigService;

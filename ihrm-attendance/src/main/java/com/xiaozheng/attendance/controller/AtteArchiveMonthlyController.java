@@ -25,7 +25,7 @@ import java.util.Objects;
  */
 @Api(tags = "考勤归档信息表")
 @RestController
-@RequestMapping("attendance/attearchivemonthly")
+@RequestMapping("atte/archivemonthly")
 public class AtteArchiveMonthlyController {
     @Autowired
     private AtteArchiveMonthlyService atteArchiveMonthlyService;

@@ -25,7 +25,7 @@ import java.util.Objects;
  */
 @Api(tags = "请假配置表")
 @RestController
-@RequestMapping("attendance/atteleaveconfig")
+@RequestMapping("atte/leaveconfig")
 public class AtteLeaveConfigController {
     @Autowired
     private AtteLeaveConfigService atteLeaveConfigService;

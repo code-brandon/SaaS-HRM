@@ -25,7 +25,7 @@ import java.util.Objects;
  */
 @Api(tags = "加班配置表")
 @RestController
-@RequestMapping("attendance/atteextradutyconfig")
+@RequestMapping("atte/extradutyconfig")
 public class AtteExtraDutyConfigController {
     @Autowired
     private AtteExtraDutyConfigService atteExtraDutyConfigService;

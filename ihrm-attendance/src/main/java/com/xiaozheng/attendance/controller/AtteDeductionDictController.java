@@ -25,7 +25,7 @@ import java.util.Objects;
  */
 @Api(tags = "扣款字典表")
 @RestController
-@RequestMapping("attendance/attedeductiondict")
+@RequestMapping("atte/deductiondict")
 public class AtteDeductionDictController {
     @Autowired
     private AtteDeductionDictService atteDeductionDictService;

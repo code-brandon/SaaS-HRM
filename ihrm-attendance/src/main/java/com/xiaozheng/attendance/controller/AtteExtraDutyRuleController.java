@@ -25,7 +25,7 @@ import java.util.Objects;
  */
 @Api(tags = "加班规则")
 @RestController
-@RequestMapping("attendance/atteextradutyrule")
+@RequestMapping("atte/extradutyrule")
 public class AtteExtraDutyRuleController {
     @Autowired
     private AtteExtraDutyRuleService atteExtraDutyRuleService;
