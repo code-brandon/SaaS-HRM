@@ -30,34 +30,36 @@ zuul:
       # url: http://127.0.0.1:9001
       serviceId: ihrm-system
       sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
-#      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+      # customSensitiveHeaders: true #对指定路由开启自定义敏感头
     ihrm-company:
       path: /api/company/** #需要映射的路径地址
       serviceId: ihrm-company
       #处理敏感头信息
       sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Method,Origin
-#      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+      # customSensitiveHeaders: true #对指定路由开启自定义敏感头
     ihrm-employee: #员工
       path: /api/employees/** #配置请求URL的请求规则
       serviceId: ihrm-employee #指定Eureka注册中心中的服务id
-#      stripPrefix: false
+      # stripPrefix: false
       sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
-#      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+      # customSensitiveHeaders: true #对指定路由开启自定义敏感头
     ihrm-social-securitys: #社保
       path: /api/social_security/** #配置请求URL的请求规则
       serviceId: ihrm-social-security #指定Eureka注册中心中的服务id
-#      stripPrefix: false
+      # stripPrefix: false
       sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
-#      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+      # customSensitiveHeaders: true #对指定路由开启自定义敏感头
     ihrm-atte-cfg: #社保
       path: /api/cfg/** #配置请求URL的请求规则
       serviceId: ihrm-attendance #指定Eureka注册中心中的服务id
-#      stripPrefix: false
+      # stripPrefix: false
       sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
-#      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+      # customSensitiveHeaders: true #对指定路由开启自定义敏感头
     ihrm-atte-attendances: #社保
       path: /api/attendances/** #配置请求URL的请求规则
       serviceId: ihrm-attendance #指定Eureka注册中心中的服务id
-#      stripPrefix: false
+      # stripPrefix: false
       sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
-#      customSensitiveHeaders: true #对指定路由开启自定义敏感头
+      # customSensitiveHeaders: true #对指定路由开启自定义敏感头
+  # 开启网关重试
+  retryable: true
