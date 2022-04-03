@@ -50,5 +50,38 @@ public class SsUserSocialSecurityDto extends SsUserSocialSecurityEntity implemen
      * 入职时间
      */
     @ApiModelProperty("入职时间")
-    private String timeOfEntry;;
+    private String timeOfEntry;
+
+
+
+    /**
+     * 学历
+     */
+    @ApiModelProperty("学历")
+    private String theHighestDegreeOfEducation;
+    /**
+     * 开户行
+     */
+    @ApiModelProperty("开户行")
+    private String openingBank;
+    /**
+     * 银行卡号
+     */
+    @ApiModelProperty("银行卡号")
+    private String bankCardNumber;
+    /**
+     * 身份证号
+     */
+    @ApiModelProperty("身份证号")
+    private String idNumber;
+    /**
+	 * 社保电脑号
+	 */
+    @ApiModelProperty("社保电脑号")
+    private String socialSecurityComputerNumber;
+    /**
+     * 公积金账号
+     */
+    @ApiModelProperty("公积金账号")
+    private String providentFundAccount;
 }

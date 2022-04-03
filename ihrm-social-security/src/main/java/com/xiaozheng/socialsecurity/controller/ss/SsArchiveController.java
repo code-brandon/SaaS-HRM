@@ -1,5 +1,6 @@
 package com.xiaozheng.socialsecurity.controller.ss;
 
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.exception.CommonException;
 import com.xiaozheng.common.utils.PageUtils;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -44,6 +46,23 @@ public class SsArchiveController {
     public R<Map<String, PageUtils<SsArchiveEntity>>> queryPage(@RequestBody @ApiParam(name = "社保-归档表", value = "社保-归档表 实体对象", required = true) SsArchiveEntity ssArchive, @RequestParam @ApiIgnore() Map<String, Object> params) {
         PageUtils<SsArchiveEntity> page = ssArchiveService.queryPage(ssArchive, params);
         return R.ok("查询成功").data("page", page);
+    }
+
+    /**
+     * 根据年份模糊查询历史归档
+     *
+     * @param params
+     * @return
+     */
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "years", value = "年份", dataType = "String", paramType = "query", example = "2019")
+    })
+    @ApiOperation("根据年份模糊查询历史归档")
+    @PostMapping("/archiveHistory")
+    public R<List<Map<String, Object>>> archiveHistoryByYears(@RequestBody @ApiParam(required = true) Map<String, Object> params) {
+        List<Map<String, Object>> ssArchive = ssArchiveService.archiveHistoryByYears(String.valueOf(params.get("years")));
+
+        return CollectionUtils.isNotEmpty(ssArchive) ? R.ok("查询成功").data(ssArchive) : R.error("查询失败");
     }
 
 
