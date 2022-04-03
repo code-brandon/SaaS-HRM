@@ -17,6 +17,7 @@ import com.xiaozheng.socialsecurity.dao.ss.SsUserSocialSecurityDao;
 import com.xiaozheng.socialsecurity.service.ss.SsArchiveDetailService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.beans.BeanMap;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -83,7 +84,9 @@ public class SsArchiveDetailServiceImpl extends ServiceImpl<SsArchiveDetailDao, 
 
             // 组装计算的结果集
             List<SsArchiveDetailEntity> collect =
-                    ssUserSocialSecurityDtoIPage.getRecords().stream().map(item -> PublicMethodSetUtils.userSocialSecurityDtoToArchiveDetail(com.baomidou.mybatisplus.core.toolkit.BeanUtils.beanToMap(ssArchiveDetail), groupCityPayment,
+                    ssUserSocialSecurityDtoIPage.getRecords().stream().map(item -> PublicMethodSetUtils.userSocialSecurityDtoToArchiveDetail(
+                            BeanMapUtils.beanToMap(ssArchiveDetail),
+                            groupCityPayment,
                             item)).collect(Collectors.toList());
             archiveDetailEntityIPage.setRecords(collect);
             return new PageUtils<>(archiveDetailEntityIPage);

@@ -1,15 +1,11 @@
 package com.xiaozheng.socialsecurity.service.ss.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.BeanUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.exception.CommonException;
-import com.xiaozheng.common.utils.PageUtils;
-import com.xiaozheng.common.utils.PublicMethodSetUtils;
-import com.xiaozheng.common.utils.Query;
-import com.xiaozheng.common.utils.ShiroContextUtils;
+import com.xiaozheng.common.utils.*;
 import com.xiaozheng.model.dto.SsUserSocialSecurityDto;
 import com.xiaozheng.model.ss.SsArchiveDetailEntity;
 import com.xiaozheng.model.ss.SsArchiveEntity;
@@ -22,6 +18,7 @@ import com.xiaozheng.socialsecurity.dao.ss.SsUserSocialSecurityDao;
 import com.xiaozheng.socialsecurity.service.ss.SsArchiveDetailService;
 import com.xiaozheng.socialsecurity.service.ss.SsArchiveService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.beans.BeanMap;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -79,7 +76,11 @@ public class SsArchiveServiceImpl extends ServiceImpl<SsArchiveDao, SsArchiveEnt
         // 用户社保信息
         List<SsUserSocialSecurityDto> securityDtos = ssUserSocialSecurityDao.pageAndTran(new SsUserSocialSecurityEntity(), companyId);
         // 构建社保详情的数据
-        List<SsArchiveDetailEntity> collect = securityDtos.stream().map(item -> PublicMethodSetUtils.userSocialSecurityDtoToArchiveDetail(BeanUtils.beanToMap(ssArchive), groupCityPayment, item)).collect(Collectors.toList());
+        List<SsArchiveDetailEntity> collect = securityDtos.stream().map(item -> PublicMethodSetUtils.userSocialSecurityDtoToArchiveDetail(
+                BeanMapUtils.beanToMap(ssArchive),
+                groupCityPayment,
+                item)
+        ).collect(Collectors.toList());
 
         // 保存归档
         boolean b = SsArchiveDetailService.saveBatch(collect);
