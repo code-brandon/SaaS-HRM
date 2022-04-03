@@ -72,6 +72,10 @@
         <result property="socialSecurityNotes" column="social_security_notes"/>
         <result property="yearsMonth" column="years_month"/>
     </resultMap>
+
+    <!--
+        用户详情表和社保详情表关联
+    -->
     <select id="pageAndTran" resultMap="ssArchiveDetailMap">
         select
             sad.*
@@ -84,6 +88,10 @@
             </if>
         </where>
     </select>
+
+    <!--
+        社保详情表社保金额统计
+    -->
     <select id="getCountArchiveDetail" resultType="java.util.Map">
         SELECT
             sum(provident_fund_enterprises) as fundEnterprises,

@@ -47,8 +47,9 @@ public class SsArchiveDetailController {
     }
 
     /**
-     * 分页条件查询用户所在企业所有翻译数据
+     * 分页条件查询用户所在企业所有翻译数据，当月报表社保列表
      *
+     * 产看归档表日期存在查询当前日期，不存在根据企业id查询所有用户的信息
      * @param params 请求集合
      * @return 所有数据
      */

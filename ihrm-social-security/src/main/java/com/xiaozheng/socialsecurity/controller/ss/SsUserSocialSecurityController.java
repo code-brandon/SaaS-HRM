@@ -49,7 +49,7 @@ public class SsUserSocialSecurityController {
     }
 
     /**
-     * 分页条件查询所有翻译数据
+     * 分页条件查询所有翻译数据,社保主界面列表
      *
      * @param params 请求集合
      * @return 所有数据
@@ -102,12 +102,12 @@ public class SsUserSocialSecurityController {
     }
 
     /**
-     * 保存数据
+     * 保存社保数据
      *
      * @param ssUserSocialSecurity 实体对象
      * @return 新增结果
      */
-    @ApiOperation("保存或更新数据")
+    @ApiOperation("保存或更新社保数据")
     @PutMapping("/saveOrUpdate")
     @Transactional(rollbackFor = Exception.class)
     public R<Boolean> saveOrUpdate(@RequestBody @ApiParam(name = "社保-用户社保信息表", value = "社保-用户社保信息表 实体对象", required = true) SsUserSocialSecurityEntity ssUserSocialSecurity) {
