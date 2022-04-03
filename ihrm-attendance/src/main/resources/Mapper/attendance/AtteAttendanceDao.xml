@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaozheng.attendance.dao.AtteAttendanceDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.xiaozheng.model.atte.AtteAttendanceEntity" id="atteAttendanceMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="companyId" column="company_id"/>
+        <result property="departmentId" column="department_id"/>
+        <result property="adtStatu" column="adt_statu"/>
+        <result property="jobStatu" column="job_statu"/>
+        <result property="adtInTime" column="adt_in_time"/>
+        <result property="adtInPlace" column="adt_in_place"/>
+        <result property="adtInHourse" column="adt_in_hourse"/>
+        <result property="adtInCoordinate" column="adt_in_coordinate"/>
+        <result property="adtOutTime" column="adt_out_time"/>
+        <result property="adtOutPlace" column="adt_out_place"/>
+        <result property="adtOutHourse" column="adt_out_hourse"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="remarks" column="remarks"/>
+        <result property="username" column="username"/>
+        <result property="mobile" column="mobile"/>
+        <result property="departmentName" column="department_name"/>
+        <result property="day" column="day"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaozheng.attendance.dao.AtteArchiveMonthlyInfoDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.xiaozheng.model.atte.AtteArchiveMonthlyInfoEntity" id="atteArchiveMonthlyInfoMap">
+        <result property="id" column="id"/>
+        <result property="atteArchiveMonthlyId" column="atte_archive_monthly_id"/>
+        <result property="name" column="name"/>
+        <result property="workNumber" column="work_number"/>
+        <result property="mobile" column="mobile"/>
+        <result property="atteSolution" column="atte_solution"/>
+        <result property="department" column="department"/>
+        <result property="workCity" column="work_city"/>
+        <result property="yearLeaveDays" column="year_leave_days"/>
+        <result property="leaveDays" column="leave_days"/>
+        <result property="sickLeaveDays" column="sick_leave_days"/>
+        <result property="longSickLeaveDays" column="long_sick_leave_days"/>
+        <result property="marraiageLeaveDays" column="marraiage_leave_days"/>
+        <result property="funeralLeaveDays" column="funeral_leave_days"/>
+        <result property="maternityLeaveDays" column="maternity_leave_days"/>
+        <result property="rewardMaternityLeaveDays" column="reward_maternity_leave_days"/>
+        <result property="paternityLeaveDays" column="paternity_leave_days"/>
+        <result property="homeLeavaDays" column="home_leava_days"/>
+        <result property="accidentialLeaveDays" column="accidential_leave_days"/>
+        <result property="dayOffLeaveDays" column="day_Off_leave_days"/>
+        <result property="doctorOffLeaveDays" column="doctor_Off_leave_days"/>
+        <result property="abortionLeaveDays" column="abortion_leave_days"/>
+        <result property="normalDays" column="normal_days"/>
+        <result property="outgoingDays" column="outgoing_days"/>
+        <result property="onBusinessDays" column="on_business_days"/>
+        <result property="laterTimes" column="later_times"/>
+        <result property="earlyTimes" column="early_times"/>
+        <result property="signedTimes" column="signed_times"/>
+        <result property="hoursPerDays" column="hours_per_days"/>
+        <result property="hoursPerWorkDay" column="hours_per_work_day"/>
+        <result property="hoursPerRestDay" column="hours_per_rest_day"/>
+        <result property="clockRate" column="clock_rate"/>
+        <result property="absenceDays" column="absence_days"/>
+        <result property="isFullAttendanceint" column="is_full_attendanceint"/>
+        <result property="actualAtteUnofficialDays" column="actual_atte_unofficial_days"/>
+        <result property="actualAtteOfficialDays" column="actual_atte_official_days"/>
+        <result property="workingDays" column="working_days"/>
+        <result property="salaryStandards" column="salary_standards"/>
+        <result property="salaryAdjustmentDays" column="salary_adjustment_days"/>
+        <result property="workHour" column="work_hour"/>
+        <result property="salaryUnofficialDays" column="salary_unofficial_days"/>
+        <result property="salaryOfficialDays" column="salary_official_days"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="remarks" column="remarks"/>
+        <result property="userId" column="user_id"/>
+        <result property="archiveDate" column="archive_date"/>
+    </resultMap>
+
+
+</mapper>

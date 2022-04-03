@@ -36,6 +36,7 @@
         <module>ihrm-zuul</module>
         <module>ihrm-social-security</module>
         <module>ihrm-jasper-demo</module>
+        <module>ihrm-attendance</module>
         <module>x-codeutils</module>
     </modules>
 

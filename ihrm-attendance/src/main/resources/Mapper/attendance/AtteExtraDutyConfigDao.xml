@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaozheng.attendance.dao.AtteExtraDutyConfigDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.xiaozheng.model.atte.AtteExtraDutyConfigEntity" id="atteExtraDutyConfigMap">
+        <result property="id" column="id"/>
+        <result property="companyId" column="company_id"/>
+        <result property="departmentId" column="department_id"/>
+        <result property="workHoursDay" column="work_hours_day"/>
+        <result property="isClock" column="is_clock"/>
+        <result property="isCompensationint" column="is_compensationint"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="remarks" column="remarks"/>
+    </resultMap>
+
+
+</mapper>

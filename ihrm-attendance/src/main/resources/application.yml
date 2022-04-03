@@ -1,0 +1,31 @@
+server:
+  port: 9005
+spring:
+  application:
+    ## 应用名称
+    name: ihrm-attendance
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.56.2:3306/ihrm?characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 12345678
+mybatis-plus:
+  mapper-locations: classpath*:/Mapper/attendance/**/*.xml
+  configuration:
+    # 映射下划线到驼峰式大小写
+    map-underscore-to-camel-case: true
+    # 空值调用设置器
+    call-setters-on-nulls: false
+    object-wrapper-factory: com.baomidou.mybatisplus.extension.MybatisMapWrapperFactory
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 注册服务
+eureka:
+  client:
+    # Eureka客户端与Eureka服务端进行交互的地址
+    service-url:
+      defaultZone: http://192.168.56.2:6060/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
