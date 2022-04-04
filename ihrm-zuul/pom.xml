@@ -35,8 +35,8 @@
                     <artifactId>spring-boot-starter-jdbc</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>org.mybatis</groupId>
-                    <artifactId>mybatis</artifactId>
+                    <artifactId>mybatis-plus-boot-starter</artifactId>
+                    <groupId>com.baomidou</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
