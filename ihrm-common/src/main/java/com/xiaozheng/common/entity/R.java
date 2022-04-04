@@ -70,6 +70,26 @@ public class R<T> {
         return r;
     }
 
+    public static R fail() {
+        R r = new R();
+        r.setCode(ResultCode.FAIL.code);
+        r.setMessage(ResultCode.FAIL.message);
+        return r;
+    }
+
+    public static R fail(String message) {
+        R r = error();
+        r.setMessage(message);
+        return r;
+    }
+
+    public static R fail(int code, String message) {
+        R r = error();
+        r.setCode(code);
+        r.setMessage(message);
+        return r;
+    }
+
     public static R ok(String message) {
         R r = ok();
         r.setMessage(message);
