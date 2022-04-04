@@ -49,14 +49,14 @@ zuul:
       # stripPrefix: false
       sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
       # customSensitiveHeaders: true #对指定路由开启自定义敏感头
-    ihrm-atte-cfg: #社保
-      path: /api/cfg/** #配置请求URL的请求规则
+    ihrm-atte-cfg: #考勤
+      path: /api/attendance/cfg/** #配置请求URL的请求规则
       serviceId: ihrm-attendance #指定Eureka注册中心中的服务id
       # stripPrefix: false
       sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
       # customSensitiveHeaders: true #对指定路由开启自定义敏感头
-    ihrm-atte-attendances: #社保
-      path: /api/attendances/** #配置请求URL的请求规则
+    ihrm-atte-attendances: #考勤
+      path: /api/attendance/** #配置请求URL的请求规则
       serviceId: ihrm-attendance #指定Eureka注册中心中的服务id
       # stripPrefix: false
       sensitiveHeaders: Access-Control-Allow-Origin,Access-Control-Allow-Methods,Origin
