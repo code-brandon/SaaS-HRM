@@ -1,13 +1,6 @@
 package com.xiaozheng.model.atte;
 
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableName;
-
-import java.io.Serializable;
-import java.sql.Time;
-import java.util.Date;
-
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
@@ -17,6 +10,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 考勤配置表
@@ -53,23 +49,31 @@ public class AtteAttendanceConfigEntity extends Model<AtteAttendanceConfigEntity
 	/**
 	 * 上午打卡时间
 	 */
-    @ApiModelProperty(value = "上午打卡时间",example="")
-	private Time morningStartTime;
+	@ApiModelProperty(value = "上午打卡时间", example = "")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="HH:mm")
+	@DateTimeFormat(pattern = "HH:mm")
+	private String morningStartTime;
 	/**
 	 * 上午打卡时间
 	 */
-    @ApiModelProperty(value = "上午打卡时间",example="")
-	private Time morningEndTime;
+	@ApiModelProperty(value = "上午打卡时间", example = "")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="HH:mm")
+	@DateTimeFormat(pattern = "HH:mm")
+	private String morningEndTime;
 	/**
 	 * 下午打卡时间
 	 */
-    @ApiModelProperty(value = "下午打卡时间",example="")
-	private Time afternoonStartTime;
+	@ApiModelProperty(value = "下午打卡时间", example = "")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="HH:mm")
+	@DateTimeFormat(pattern = "HH:mm")
+	private String afternoonStartTime;
 	/**
 	 * 下午打卡时间
 	 */
-    @ApiModelProperty(value = "下午打卡时间",example="")
-	private Time afternoonEndTime;
+	@ApiModelProperty(value = "下午打卡时间", example = "")
+	@JsonFormat(locale="zh", timezone="GMT+8", pattern="HH:mm")
+	@DateTimeFormat(pattern = "HH:mm")
+	private String afternoonEndTime;
 	/**
 	 * 
 	 */
@@ -81,6 +85,7 @@ public class AtteAttendanceConfigEntity extends Model<AtteAttendanceConfigEntity
     @ApiModelProperty(value = "",example="")
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@TableField(fill = FieldFill.INSERT)
 	private Date createDate;
 	/**
 	 * 
@@ -93,6 +98,7 @@ public class AtteAttendanceConfigEntity extends Model<AtteAttendanceConfigEntity
     @ApiModelProperty(value = "",example="")
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@TableField(fill = FieldFill.INSERT_UPDATE)
 	private Date updateDate;
 	/**
 	 * 
