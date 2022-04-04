@@ -75,7 +75,7 @@ public class AtteAttendanceConfigController {
 
         AtteAttendanceConfigEntity atteAttendanceConfig = atteAttendanceConfigService.getByDeptIdAndcompanyId(departmentId);
 
-        return Objects.nonNull(atteAttendanceConfig) ? R.ok("考勤配置查询成功").data(atteAttendanceConfig) : R.FAIL("没有考勤配置！").data(atteAttendanceConfig);
+        return Objects.nonNull(atteAttendanceConfig) ? R.ok("考勤配置查询成功").data(atteAttendanceConfig) : R.fail("没有考勤配置！").data(atteAttendanceConfig);
     }
 
     /**
@@ -88,7 +88,7 @@ public class AtteAttendanceConfigController {
     @PostMapping("/save")
     public R<Boolean> save(@RequestBody @ApiParam(name = "考勤配置表", value = "考勤配置表 实体对象", required = true) AtteAttendanceConfigEntity atteAttendanceConfig) {
 
-        return atteAttendanceConfigService.save(atteAttendanceConfig) ? R.ok("保存成功").data(true) : R.FAIL("保存失败").data(false);
+        return atteAttendanceConfigService.save(atteAttendanceConfig) ? R.ok("保存成功").data(true) : R.fail("保存失败").data(false);
     }
 
     /**
@@ -101,7 +101,7 @@ public class AtteAttendanceConfigController {
     @PutMapping("/updateOrSave")
     public R<Boolean> update(@RequestBody @ApiParam(name = "考勤配置表", value = "考勤配置表 实体对象", required = true) AtteAttendanceConfigEntity atteAttendanceConfig) {
 
-        return atteAttendanceConfigService.updateOrSave(atteAttendanceConfig) ? R.ok("修改成功").data(true) : R.FAIL("修改失败").data(false);
+        return atteAttendanceConfigService.updateOrSave(atteAttendanceConfig) ? R.ok("修改成功").data(true) : R.fail("修改失败").data(false);
     }
 
     /**
@@ -114,7 +114,7 @@ public class AtteAttendanceConfigController {
     @DeleteMapping("/delete")
     public R<Boolean> delete(@RequestBody @ApiParam(name = "ID", value = "ID集合", required = true) String[] ids) {
 
-        return atteAttendanceConfigService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.FAIL("删除失败").data(false);
+        return atteAttendanceConfigService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.fail("删除失败").data(false);
     }
 
 }
