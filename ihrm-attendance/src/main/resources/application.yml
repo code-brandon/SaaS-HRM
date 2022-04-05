@@ -29,3 +29,7 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+
+atte:
+  holidays: 20191001,20191002,20191003,20190101
+  wordingDays: 20190927

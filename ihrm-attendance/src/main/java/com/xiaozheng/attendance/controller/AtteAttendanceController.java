@@ -8,6 +8,7 @@ import com.xiaozheng.model.bs.BsCityEntity;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Arrays;
@@ -108,6 +109,17 @@ public class AtteAttendanceController {
     public R<Boolean> delete(@RequestBody @ApiParam(name="ID",value="ID集合",required=true) String[] ids){
 
         return atteAttendanceService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error("删除失败").data(false);
+    }
+
+    /**
+     * 考勤数据Excel上传
+     * @param file
+     * @return 是否成功
+     */
+    @PostMapping("/import")
+    public R importExcel(@RequestParam(name = "file") MultipartFile file) throws Exception {
+        boolean b = atteAttendanceService.importExcel(file);
+        return R.ok();
     }
 
 }

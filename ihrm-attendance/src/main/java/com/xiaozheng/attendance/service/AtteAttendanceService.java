@@ -3,6 +3,7 @@ package com.xiaozheng.attendance.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.model.atte.AtteAttendanceEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -16,5 +17,12 @@ import java.util.Map;
 public interface AtteAttendanceService extends IService<AtteAttendanceEntity> {
 
     PageUtils<AtteAttendanceEntity> queryPage(AtteAttendanceEntity atteAttendance, Map<String, Object> params);
+
+    /**
+     * 考勤数据Excel上传
+     * @param file
+     * @return 是否成功
+     */
+    boolean importExcel(MultipartFile file) throws Exception;
 }
 
