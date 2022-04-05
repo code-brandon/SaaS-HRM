@@ -1,6 +1,8 @@
 package com.xiaozheng.employee.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.entity.ResultCode;
 import com.xiaozheng.common.utils.DownloadUtils;
@@ -23,9 +25,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 
 /**
@@ -153,5 +153,18 @@ public class EmUserCompanyPersonalController {
             sosRef.close();
         }
     }
+
+    /**
+     * 根据手机好集合查询用户信息
+     * @param mobiles
+     * @return
+     */
+    @ApiOperation("根据手机ID集合查询用户信息")
+    @PostMapping("/infosBymobile")
+    public R<List<EmUserCompanyPersonalEntity>> getByMobile(@RequestBody Set<String> mobiles)  {
+        List<EmUserCompanyPersonalEntity> userCompanyPersonals = emUserCompanyPersonalService.list(Wrappers.<EmUserCompanyPersonalEntity>lambdaQuery().in(EmUserCompanyPersonalEntity::getMobile, mobiles));
+        return CollectionUtils.isNotEmpty(userCompanyPersonals) ? R.ok("查询成功").data(userCompanyPersonals) : R.fail("查询失败").data(userCompanyPersonals);
+    }
+
 
 }
