@@ -3,6 +3,7 @@ package com.xiaozheng.employee.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.entity.ResultCode;
+import com.xiaozheng.common.utils.DownloadUtils;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.employee.service.EmUserCompanyPersonalService;
 import com.xiaozheng.model.em.EmUserCompanyPersonalEntity;
@@ -131,9 +132,10 @@ public class EmUserCompanyPersonalController {
     @GetMapping("/pdf/{id}")
     public void createPdfV2(HttpServletRequest request, HttpServletResponse response, @PathVariable String id) throws Exception {
         String filename =   id + ".pdf";
-        response.setContentType("application/pdf");
+        DownloadUtils.addHeader(request, response, null, filename);
+        /*response.setContentType("application/pdf");
         response.setHeader("content-disposition", "attachment;filename=\"" + new String(filename.getBytes(), "ISO-8859-1") + "\"");
-        response.setHeader("filename", filename);
+        response.setHeader("filename", filename);*/
         //引入jasper文件。由JRXML模板编译生成的二进制文件，用于代码填充数据
         Resource resource = new ClassPathResource("jasper/profile.jasper");
         //加载jasper文件创建inputStream
