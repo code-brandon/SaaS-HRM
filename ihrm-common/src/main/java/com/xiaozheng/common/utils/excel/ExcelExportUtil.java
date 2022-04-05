@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -69,11 +70,17 @@ public class ExcelExportUtil<T> {
                 }
             }
         }
-        fileName = URLEncoder.encode(fileName, "UTF-8");
+        fileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8.toString());
         response.setCharacterEncoding("UTF-8");
+        // response.setContentType("application/vnd.ms-excel");
         response.setContentType("application/octet-stream;charset=UTF-8");
-        response.setHeader("content-disposition", "attachment;filename=\"" + new String(fileName.getBytes(), "ISO-8859-1") + "\"");
+        response.addHeader("charset", "utf-8");
+        response.addHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.addHeader("Pragma", "no-cache");
+        // response.setHeader("content-disposition", "attachment;filename=\"" + new String(fileName.getBytes(), "ISO-8859-1") + "\"");
         response.setHeader("filename", fileName);
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"; filename*=utf-8''" + fileName);
+
         workbook.write(response.getOutputStream());
     }
 
