@@ -19,6 +19,7 @@ import com.xiaozheng.common.utils.ShiroContextUtils;
 import com.xiaozheng.common.utils.excel.ExcelImportUtil;
 import com.xiaozheng.model.atte.AtteAttendanceConfigEntity;
 import com.xiaozheng.model.atte.AtteAttendanceEntity;
+import com.xiaozheng.model.bo.AtteAttendanceBo;
 import com.xiaozheng.model.em.EmUserCompanyPersonalEntity;
 import com.xiaozheng.model.vo.atte.AtteUploadVo;
 import org.springframework.beans.BeanUtils;
@@ -145,5 +146,22 @@ public class AtteAttendanceServiceImpl extends ServiceImpl<AtteAttendanceDao, At
                 .in(CollectionUtils.isNotEmpty(days), AtteAttendanceEntity::getUserId, userIds));
         //2.5 删除已经有考勤记录后,保存数据库
         return this.saveBatch(attendances);
+    }
+
+    /**
+     * 分页条件查询用户考勤
+     * @param atteAttendance
+     * @param params
+     * @return
+     */
+    @Override
+    public PageUtils<AtteAttendanceBo> queryAtte(AtteAttendanceEntity atteAttendance, Map<String, Object> params) {
+        String companyId = ShiroContextUtils.getProfile().getCompanyId();
+        IPage<AtteAttendanceBo> page = baseMapper.queryAtte(
+                new Query<AtteAttendanceBo>().getPage(params),
+                atteAttendance,
+                companyId
+        );
+        return new PageUtils(page);
     }
 }

@@ -4,6 +4,7 @@ import com.xiaozheng.attendance.service.AtteAttendanceService;
 import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.model.atte.AtteAttendanceEntity;
+import com.xiaozheng.model.bo.AtteAttendanceBo;
 import com.xiaozheng.model.bs.BsCityEntity;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,22 @@ public class AtteAttendanceController {
     @PostMapping("/queryPage")
     public R<Map<String, PageUtils<AtteAttendanceEntity>>> queryPage(@RequestBody @ApiParam(name="考勤表",value="考勤表 实体对象",required=true) AtteAttendanceEntity atteAttendance, @RequestParam @ApiIgnore() Map<String, Object> params){
         PageUtils<AtteAttendanceEntity> page = atteAttendanceService.queryPage(atteAttendance,params);
+        return R.ok("查询成功").data("page",page);
+    }
+
+    /**
+     * 分页条件查询用户考勤
+     * @param params  请求集合
+     * @return 所有数据
+     */
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="page",value="当前页码",dataType = "String", paramType = "query",example="1"),
+            @ApiImplicitParam(name="limit",value="每页显示记录数",dataType = "String", paramType = "query",example="10")
+    })
+    @ApiOperation("分页条件查询用户考勤")
+    @PostMapping("/queryAtte")
+    public R<Map<String, PageUtils<AtteAttendanceBo>>> queryAtte(@RequestBody @ApiParam(name="考勤表",value="考勤表 实体对象",required=true) AtteAttendanceEntity atteAttendance, @RequestParam @ApiIgnore() Map<String, Object> params){
+        PageUtils<AtteAttendanceBo> page = atteAttendanceService.queryAtte(atteAttendance,params);
         return R.ok("查询成功").data("page",page);
     }
 

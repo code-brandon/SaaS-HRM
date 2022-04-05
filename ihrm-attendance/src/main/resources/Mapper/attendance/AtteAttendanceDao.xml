@@ -5,7 +5,7 @@
 
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.xiaozheng.model.atte.AtteAttendanceEntity" id="atteAttendanceMap">
-        <result property="id" column="id"/>
+        <id property="id" column="id"/>
         <result property="userId" column="user_id"/>
         <result property="companyId" column="company_id"/>
         <result property="departmentId" column="department_id"/>
@@ -28,6 +28,117 @@
         <result property="departmentName" column="department_name"/>
         <result property="day" column="day"/>
     </resultMap>
+
+    <resultMap type="com.xiaozheng.model.bo.AtteAttendanceBo" id="atteAttendanceBo">
+        <result property = "userId" column = "user_id"/>
+        <result property = "username" column = "username"/>
+        <result property = "workNumber" column = "work_number"/>
+        <result property = "mobile" column = "mobile"/>
+        <result property = "departmentName" column = "department_name"/>
+        <collection property = "attendances"  ofType="com.xiaozheng.model.atte.AtteAttendanceEntity" javaType="ArrayList" column="{userId=user_id,day=day}" select="queryAttrsByUserId" >
+
+        </collection>
+    </resultMap>
+    <!--<select id="queryAtte" resultType="com.xiaozheng.model.bo.AtteAttendanceBo" resultMap="atteAttendanceBo">
+        SELECT
+            eucp.username,
+            eucp.work_number,
+            eucp.department_name,
+            eucp.mobile,
+            aa.id,
+            eucp.user_id,
+            aa.company_id,
+            aa.department_id,
+            aa.job_statu,
+            aa.adt_in_time,
+            aa.adt_in_place,
+            aa.adt_in_hourse,
+            aa.adt_in_coordinate,
+            aa.adt_out_time,
+            aa.adt_out_place,
+            aa.adt_out_hourse,
+            aa.create_by,
+            aa.create_date,
+            aa.update_by,
+            aa.update_date,
+            aa.remarks,
+            aa.mobile,
+            aa.department_name,
+            the_date.rq as day,
+            if(aa.adt_statu is null, '2',aa.adt_statu ) as adt_statu
+        FROM
+            ( SELECT * FROM em_user_company_personal eucp WHERE eucp.company_id = #{companyId} ) eucp
+        JOIN (
+            SELECT
+                DATE_FORMAT( date_add( #{atteAttendance.day}, INTERVAL ( cast( help_topic_id AS signed INTEGER ) - DATE_FORMAT( DATE_SUB( #{atteAttendance.day}, INTERVAL 1 DAY ), '%d' )) DAY ), '%Y%m%d' ) AS rq
+            FROM
+                mysql.help_topic
+            WHERE
+                help_topic_id <![CDATA[<]]> DAY ( last_day( #{atteAttendance.day} ))
+            ORDER BY help_topic_id
+        ) the_date
+        LEFT JOIN atte_attendance aa ON aa.user_id = eucp.user_id and aa.day = the_date.rq
+        ORDER BY
+		eucp.username,the_date.rq
+    </select>-->
+
+    <select id="queryAtte" resultType="com.xiaozheng.model.bo.AtteAttendanceBo" resultMap="atteAttendanceBo">
+        SELECT
+            eucp.username,
+            eucp.work_number,
+            eucp.department_name,
+            eucp.mobile,
+            eucp.user_id,
+            #{atteAttendance.day} as day
+        FROM
+            em_user_company_personal eucp
+        WHERE
+            eucp.company_id = #{companyId}
+
+    </select>
+
+    <select id = "queryAttrsByUserId" resultMap="atteAttendanceMap" resultType="arraylist">
+        SELECT
+            eucp.username,
+            eucp.work_number,
+            eucp.department_name,
+            eucp.mobile,
+            eucp.user_id,
+            aa.id,
+            aa.company_id,
+            aa.department_id,
+            aa.job_statu,
+            aa.adt_in_time,
+            aa.adt_in_place,
+            aa.adt_in_hourse,
+            aa.adt_in_coordinate,
+            aa.adt_out_time,
+            aa.adt_out_place,
+            aa.adt_out_hourse,
+            aa.create_by,
+            aa.create_date,
+            aa.update_by,
+            aa.update_date,
+            aa.remarks,
+            aa.mobile,
+            aa.department_name,
+            the_date.rq as day,
+            if(aa.adt_statu is null, '2',aa.adt_statu ) as adt_statu
+        FROM
+            ( SELECT * FROM em_user_company_personal eucp WHERE eucp.user_id = #{userId} ) eucp
+        JOIN (
+            SELECT
+                DATE_FORMAT( date_add( #{day}, INTERVAL ( cast( help_topic_id AS signed INTEGER ) - DATE_FORMAT( DATE_SUB( #{day}, INTERVAL 1 DAY ), '%d' )) DAY ), '%Y%m%d' ) AS rq
+            FROM
+                mysql.help_topic
+            WHERE
+                help_topic_id <![CDATA[<]]> DAY ( last_day( #{day} ))
+            ORDER BY help_topic_id
+        ) the_date
+        LEFT JOIN atte_attendance aa ON aa.user_id = eucp.user_id and aa.day = the_date.rq
+        ORDER BY
+		the_date.rq
+    </select>
 
 
 </mapper>
