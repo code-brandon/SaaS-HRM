@@ -147,6 +147,8 @@ public class EmArchiveController {
 
         List<UserDetailAndResignationDto> userDetailAndResignationDtos = emArchiveService.export(month);
         ClassPathResource classPathResource = new ClassPathResource("excel-template/hr-demo.xlsx");
+        // File file = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel-template/hr-demo.xlsx");
+        // System.out.println("file = " + file.getPath());
         FileInputStream fileInputStream = new FileInputStream(classPathResource.getFile());
         new ExcelExportUtil<UserDetailAndResignationDto>(UserDetailAndResignationDto.class, 2, 2).export(response,fileInputStream , userDetailAndResignationDtos, month+"人事报表.xlsx");
     }
