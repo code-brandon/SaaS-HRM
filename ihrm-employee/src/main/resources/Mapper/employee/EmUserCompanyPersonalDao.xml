@@ -10,6 +10,7 @@
         <result property="mobile" column="mobile"/>
         <result property="workNumber" column="work_number"/>
         <result property="timeOfEntry" column="time_of_entry"/>
+        <result property="departmentId" column="department_id"/>
         <result property="departmentName" column="department_name"/>
         <result property="companyId" column="company_id"/>
         <result property="sex" column="sex"/>

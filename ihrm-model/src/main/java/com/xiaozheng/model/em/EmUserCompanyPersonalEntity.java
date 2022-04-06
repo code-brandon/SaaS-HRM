@@ -61,6 +61,11 @@ public class EmUserCompanyPersonalEntity extends Model<EmUserCompanyPersonalEnti
 	@ExcelAttribute(sort = 9)
 	private String timeOfEntry;
 	/**
+	 * 部门ID
+	 */
+	@ApiModelProperty("部门ID")
+	private String departmentId;
+	/**
 	 * 部门名称
 	 */
     @ApiModelProperty("部门名称")
