@@ -1,6 +1,7 @@
 package com.xiaozheng.attendance.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xiaozheng.common.exception.CommonException;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.model.atte.AtteAttendanceEntity;
 import com.xiaozheng.model.bo.AtteAttendanceBo;
@@ -33,5 +34,12 @@ public interface AtteAttendanceService extends IService<AtteAttendanceEntity> {
      * @return
      */
     PageUtils<AtteAttendanceBo> queryAtte(AtteAttendanceEntity atteAttendance, Map<String, Object> params);
+
+    /**
+     * 修改考勤数据
+     * @param atteAttendance
+     * @return
+     */
+    boolean updateOrSave(AtteAttendanceEntity atteAttendance) throws CommonException;
 }
 

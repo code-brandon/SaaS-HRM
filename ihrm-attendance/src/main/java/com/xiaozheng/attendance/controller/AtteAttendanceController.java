@@ -2,6 +2,7 @@ package com.xiaozheng.attendance.controller;
 
 import com.xiaozheng.attendance.service.AtteAttendanceService;
 import com.xiaozheng.common.entity.R;
+import com.xiaozheng.common.exception.CommonException;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.model.atte.AtteAttendanceEntity;
 import com.xiaozheng.model.bo.AtteAttendanceBo;
@@ -105,15 +106,15 @@ public class AtteAttendanceController {
     }
 
     /**
-     * 修改数据
+     * 修改考勤数据
      * @param atteAttendance 实体对象
      * @return 修改结果
      */
-    @ApiOperation("修改数据")
-    @PutMapping("/update")
-    public R<Boolean> update(@RequestBody @ApiParam(name="考勤表",value="考勤表 实体对象",required=true) AtteAttendanceEntity atteAttendance){
+    @ApiOperation("修改考勤数据")
+    @PutMapping("/updateOrSave")
+    public R<Boolean> update(@RequestBody @ApiParam(name="考勤表",value="考勤表 实体对象",required=true) AtteAttendanceEntity atteAttendance) throws CommonException {
 
-        return atteAttendanceService.updateById(atteAttendance) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
+        return atteAttendanceService.updateOrSave(atteAttendance) ? R.ok("修改成功").data(true) : R.error("修改失败").data(false);
     }
 
     /**

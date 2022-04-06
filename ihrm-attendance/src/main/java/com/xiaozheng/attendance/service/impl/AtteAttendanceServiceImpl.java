@@ -2,6 +2,7 @@ package com.xiaozheng.attendance.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Lists;
@@ -31,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -163,5 +165,28 @@ public class AtteAttendanceServiceImpl extends ServiceImpl<AtteAttendanceDao, At
                 companyId
         );
         return new PageUtils(page);
+    }
+
+    /**
+     * 修改考勤数据
+     *
+     * @param atteAttendance
+     * @return
+     */
+    @Override
+    public boolean updateOrSave(AtteAttendanceEntity atteAttendance) throws CommonException {
+        if (StringUtils.isNotBlank(atteAttendance.getId())) {
+            // id 不为空表面有数据，直接更新
+            return baseMapper.updateById(atteAttendance) > 0;
+        } else {
+            // 根据用户ID查询用户信息
+            R<EmUserCompanyPersonalEntity> entityR = employeeApi.info(atteAttendance.getUserId());
+            if (entityR.getCode() != ResultCode.SUCCESS.code() || Objects.isNull(entityR.getData())) {
+                throw new CommonException(ResultCode.FAIL);
+            }
+            BeanUtils.copyProperties(entityR.getData(),atteAttendance);
+            // 保存考勤记录
+            return baseMapper.insert(atteAttendance) > 0;
+        }
     }
 }
