@@ -47,6 +47,11 @@ public class AtteAttendanceBo implements Serializable {
     @ApiModelProperty("工号")
     private String workNumber;
     /**
+     * 部门ID
+     */
+    @ApiModelProperty("部门ID")
+    private String departmentId;
+    /**
      * 部门
      */
     @ApiModelProperty("部门")

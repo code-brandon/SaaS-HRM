@@ -35,6 +35,7 @@
         <result property = "workNumber" column = "work_number"/>
         <result property = "mobile" column = "mobile"/>
         <result property = "departmentName" column = "department_name"/>
+        <result property = "departmentId" column = "department_id"/>
         <collection property = "attendances"  ofType="com.xiaozheng.model.atte.AtteAttendanceEntity" javaType="ArrayList" column="{userId=user_id,day=day}" select="queryAttrsByUserId" >
 
         </collection>
@@ -86,6 +87,7 @@
         SELECT
             eucp.username,
             eucp.work_number,
+            eucp.department_id,
             eucp.department_name,
             eucp.mobile,
             eucp.user_id,
