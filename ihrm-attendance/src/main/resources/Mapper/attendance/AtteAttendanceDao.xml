@@ -129,13 +129,28 @@
         FROM
             ( SELECT * FROM em_user_company_personal eucp WHERE eucp.user_id = #{userId} ) eucp
         JOIN (
-            SELECT
-                DATE_FORMAT( date_add( #{day}, INTERVAL ( cast( help_topic_id AS signed INTEGER ) - DATE_FORMAT( DATE_SUB( #{day}, INTERVAL 1 DAY ), '%d' )) DAY ), '%Y%m%d' ) AS rq
-            FROM
-                mysql.help_topic
-            WHERE
-                help_topic_id <![CDATA[<]]> DAY ( last_day( #{day} ))
-            ORDER BY help_topic_id
+            <choose>
+                <when test="day != null and day != ''">
+                    SELECT
+                        DATE_FORMAT( date_add( #{day}, INTERVAL ( cast( help_topic_id AS signed INTEGER ) - DATE_FORMAT( DATE_SUB( #{day}, INTERVAL 1 DAY ), '%d' )) DAY ), '%Y%m%d' ) AS rq
+                    FROM
+                        mysql.help_topic
+                    WHERE
+                        help_topic_id <![CDATA[<]]> DAY ( last_day( #{day} ))
+                    ORDER BY help_topic_id
+                </when>
+                <otherwise>
+                    SELECT
+                        DATE_FORMAT( date_add( now(), INTERVAL ( cast( help_topic_id AS signed INTEGER ) - DATE_FORMAT( DATE_SUB( now(), INTERVAL 1 DAY ), '%d' )) DAY ), '%Y%m%d' ) AS rq
+                    FROM
+                        mysql.help_topic
+                    WHERE
+                        help_topic_id <![CDATA[<]]> DAY ( last_day( now() ))
+                    ORDER BY help_topic_id
+                </otherwise>
+            </choose>
+
+
         ) the_date
         LEFT JOIN atte_attendance aa ON aa.user_id = eucp.user_id and aa.day = the_date.rq
         ORDER BY
