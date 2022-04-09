@@ -16,5 +16,8 @@ import java.util.Map;
 public interface AtteArchiveMonthlyInfoService extends IService<AtteArchiveMonthlyInfoEntity> {
 
     PageUtils<AtteArchiveMonthlyInfoEntity> queryPage(AtteArchiveMonthlyInfoEntity atteArchiveMonthlyInfo, Map<String, Object> params);
+
+    PageUtils<AtteArchiveMonthlyInfoEntity> queryPageAndDate(AtteArchiveMonthlyInfoEntity atteArchiveMonthlyInfo, Map<String, Object> params);
+
 }
 

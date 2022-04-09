@@ -55,6 +55,49 @@
         <result property="userId" column="user_id"/>
         <result property="archiveDate" column="archive_date"/>
     </resultMap>
+    <!--考情状态
+    1正常
+    2旷工
+    3迟到
+    4早退
+    5外出
+    6出差
+    7年假
+    8事假
+    9病假
+    10婚假
+    11丧假
+    12产假
+    13奖励产假
+    14陪产假
+    15探亲假
+    16工伤假
+    17调休
+    18产检假
+    19流产假
+    20长期病假
+    21测试架
+    22补签
+    23休息-->
+    <select id="pageAndDate" resultType="com.xiaozheng.model.atte.AtteArchiveMonthlyInfoEntity">
+        select
+			eucp.user_id,
+			eucp.username as name,
+			eucp.mobile,
+			eucp.work_number,
+			eucp.department_name as department,
+			count(aa.user_id) at0,
+			COUNT(CASE WHEN aa.adt_statu=1 THEN 1 END) as normal_days,
+			COUNT(CASE WHEN aa.adt_statu=2 THEN 1 END) as absence_days,
+			COUNT(CASE WHEN aa.adt_statu=3 THEN 1 END) as later_times,
+			COUNT(CASE WHEN aa.adt_statu=4 THEN 1 END) as early_times,
+			COUNT(CASE WHEN aa.adt_statu=8 THEN 1 END) as leave_days,
+			COUNT(CASE WHEN aa.adt_statu=17 THEN 1 END)as day_off_leave_days
+        from em_user_company_personal eucp
+        left join  atte_attendance aa on  aa.user_id=eucp.user_id and  eucp.company_id = #{companyId}
+        where aa.day LIKE(CONCAT( #{atteArchiveMonthlyInfo.archiveDate} ,'%') )
+        group by  eucp.user_id
+    </select>
 
 
 </mapper>

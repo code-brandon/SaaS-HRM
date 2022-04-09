@@ -7,7 +7,9 @@ import com.xiaozheng.attendance.dao.AtteArchiveMonthlyInfoDao;
 import com.xiaozheng.attendance.service.AtteArchiveMonthlyInfoService;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.common.utils.Query;
+import com.xiaozheng.common.utils.ShiroContextUtils;
 import com.xiaozheng.model.atte.AtteArchiveMonthlyInfoEntity;
+import com.xiaozheng.model.ss.SsArchiveDetailEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -29,6 +31,22 @@ public class AtteArchiveMonthlyInfoServiceImpl extends ServiceImpl<AtteArchiveMo
                 Wrappers.query(atteArchiveMonthlyInfo)
         );
         return new PageUtils(page);
+    }
+
+    /**
+     * 考勤月报
+     * @param atteArchiveMonthlyInfo
+     * @param params
+     * @return
+     */
+    @Override
+    public PageUtils<AtteArchiveMonthlyInfoEntity> queryPageAndDate(AtteArchiveMonthlyInfoEntity atteArchiveMonthlyInfo, Map<String, Object> params) {
+        String companyId = ShiroContextUtils.getProfile().getCompanyId();
+        return new PageUtils<>(baseMapper.pageAndDate(
+                new Query<SsArchiveDetailEntity>().getPage(params),
+                atteArchiveMonthlyInfo,
+                companyId
+        ));
     }
 
 }

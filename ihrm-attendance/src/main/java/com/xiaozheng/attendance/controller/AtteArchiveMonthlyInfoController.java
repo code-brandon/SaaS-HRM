@@ -110,4 +110,20 @@ public class AtteArchiveMonthlyInfoController {
         return atteArchiveMonthlyInfoService.removeByIds(Arrays.asList(ids)) ? R.ok("删除成功").data(true) : R.error("删除失败").data(false);
     }
 
+    /**
+     * 获取月报数据
+     * /attendances/archive/item?archiveDate=201907
+     */
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "page", value = "当前页码", dataType = "String", paramType = "query", example = "1"),
+            @ApiImplicitParam(name = "limit", value = "每页显示记录数", dataType = "String", paramType = "query", example = "10")
+    })
+    @ApiOperation("获取月报数据")
+    @PostMapping("/queryPageAndDate")
+    public R<Map<String, PageUtils<AtteArchiveMonthlyInfoEntity>>> queryPageAndDate(@RequestBody @ApiParam(name = "考勤-归档详情", value = "考勤-归档详情 实体对象", required = true)  AtteArchiveMonthlyInfoEntity atteArchiveMonthlyInfo, @RequestParam @ApiIgnore() Map<String,
+            Object> params) {
+        PageUtils<AtteArchiveMonthlyInfoEntity> page = atteArchiveMonthlyInfoService.queryPageAndDate(atteArchiveMonthlyInfo, params);
+        return R.ok("查询成功").data("page", page);
+    }
+
 }

@@ -1,8 +1,11 @@
 package com.xiaozheng.attendance.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xiaozheng.model.atte.AtteArchiveMonthlyInfoEntity;
+import com.xiaozheng.model.ss.SsArchiveDetailEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,5 +18,13 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface AtteArchiveMonthlyInfoDao extends BaseMapper<AtteArchiveMonthlyInfoEntity> {
-	
+
+    /**
+     * 考勤月报
+     * @param page
+     * @param atteArchiveMonthlyInfo
+     * @param companyId
+     * @return
+     */
+    IPage<AtteArchiveMonthlyInfoEntity> pageAndDate(@Param("page") IPage<SsArchiveDetailEntity> page, @Param("atteArchiveMonthlyInfo") AtteArchiveMonthlyInfoEntity atteArchiveMonthlyInfo, @Param("companyId") String companyId);
 }
