@@ -1,8 +1,11 @@
 package com.xiaozheng.attendance.controller;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.xiaozheng.attendance.service.AtteArchiveMonthlyService;
 import com.xiaozheng.common.entity.R;
+import com.xiaozheng.common.exception.CommonException;
 import com.xiaozheng.common.utils.PageUtils;
+import com.xiaozheng.common.utils.ShiroContextUtils;
 import com.xiaozheng.model.atte.AtteArchiveMonthlyEntity;
 import com.xiaozheng.model.bs.BsCityEntity;
 import io.swagger.annotations.*;
@@ -59,31 +62,34 @@ public class AtteArchiveMonthlyController {
 
 
     /**
-     * 通过主键查询单条数据
-     * @param id 主键
+     * 通过年月查询归档数据
      * @return 单条数据
      */
     @ApiImplicitParams({
             @ApiImplicitParam(name="id",value="主键",dataType = "String", paramType = "path",example="1")
     })
     @ApiOperation("通过主键查询单条数据")
-    @GetMapping("/info/{id}")
-    public R<AtteArchiveMonthlyEntity> info(@PathVariable("id") Long id){
-            AtteArchiveMonthlyEntity atteArchiveMonthly = atteArchiveMonthlyService.getById(id);
-
-        return Objects.nonNull(atteArchiveMonthly) ? R.ok("查询成功").data(atteArchiveMonthly) : R.error("查询失败");
+    @PostMapping("/info")
+    public R<AtteArchiveMonthlyEntity> info(@RequestBody @ApiParam(name="考勤归档信息表",value="考勤归档信息表 实体对象",required=true) AtteArchiveMonthlyEntity atteArchiveMonthly){
+        String companyId = ShiroContextUtils.getProfile().getCompanyId();
+        AtteArchiveMonthlyEntity archiveMonthlyEntity = atteArchiveMonthlyService.getOne(
+                Wrappers.<AtteArchiveMonthlyEntity>lambdaQuery()
+                        .eq(AtteArchiveMonthlyEntity::getArchiveYear, atteArchiveMonthly.getArchiveYear())
+                        .eq(AtteArchiveMonthlyEntity::getArchiveMonth, atteArchiveMonthly.getArchiveMonth())
+                        .eq(AtteArchiveMonthlyEntity::getCompanyId, companyId));
+        return Objects.nonNull(archiveMonthlyEntity) ? R.ok("查询成功").data(atteArchiveMonthly) : R.fail("查询失败");
     }
 
     /**
-     * 保存数据
+     * 保存考勤归档数据
      * @param atteArchiveMonthly 实体对象
      * @return 新增结果
      */
     @ApiOperation("保存数据")
-    @PostMapping("/save")
-    public R<Boolean> save(@RequestBody @ApiParam(name="考勤归档信息表",value="考勤归档信息表 实体对象",required=true) AtteArchiveMonthlyEntity atteArchiveMonthly){
+    @PostMapping("/saveArchive")
+    public R<Boolean> save(@RequestBody @ApiParam(name="考勤归档信息表",value="考勤归档信息表 实体对象",required=true) AtteArchiveMonthlyEntity atteArchiveMonthly) throws CommonException {
 
-        return atteArchiveMonthlyService.save(atteArchiveMonthly) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
+        return atteArchiveMonthlyService.saveArchive(atteArchiveMonthly) ? R.ok("保存成功").data(true) : R.fail("保存失败").data(false);
     }
 
     /**

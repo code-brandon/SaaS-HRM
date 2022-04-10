@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * 考勤归档信息详情表
  * 
@@ -27,4 +29,5 @@ public interface AtteArchiveMonthlyInfoDao extends BaseMapper<AtteArchiveMonthly
      * @return
      */
     IPage<AtteArchiveMonthlyInfoEntity> pageAndDate(@Param("page") IPage<SsArchiveDetailEntity> page, @Param("atteArchiveMonthlyInfo") AtteArchiveMonthlyInfoEntity atteArchiveMonthlyInfo, @Param("companyId") String companyId);
+    List<AtteArchiveMonthlyInfoEntity> pageAndDate( @Param("atteArchiveMonthlyInfo") AtteArchiveMonthlyInfoEntity atteArchiveMonthlyInfo, @Param("companyId") String companyId);
 }

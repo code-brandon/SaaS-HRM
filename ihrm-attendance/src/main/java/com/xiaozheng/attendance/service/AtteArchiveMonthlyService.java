@@ -1,6 +1,7 @@
 package com.xiaozheng.attendance.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xiaozheng.common.exception.CommonException;
 import com.xiaozheng.common.utils.PageUtils;
 import com.xiaozheng.model.atte.AtteArchiveMonthlyEntity;
 
@@ -16,5 +17,13 @@ import java.util.Map;
 public interface AtteArchiveMonthlyService extends IService<AtteArchiveMonthlyEntity> {
 
     PageUtils<AtteArchiveMonthlyEntity> queryPage(AtteArchiveMonthlyEntity atteArchiveMonthly, Map<String, Object> params);
+
+    /**
+     * 保存考勤归档数据
+     * @param atteArchiveMonthly
+     * @return
+     * @throws CommonException
+     */
+    boolean saveArchive(AtteArchiveMonthlyEntity atteArchiveMonthly) throws CommonException;
 }
 
