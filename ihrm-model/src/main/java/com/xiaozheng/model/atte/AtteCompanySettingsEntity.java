@@ -34,7 +34,7 @@ public class AtteCompanySettingsEntity extends Model<AtteCompanySettingsEntity> 
 	 * 企业id
 	 */
     @ApiModelProperty(value = "企业id",example="")
-	@TableId(type = IdType.ASSIGN_ID)
+	@TableId(type = IdType.INPUT)
 	private String companyId;
 	/**
 	 * 0是未设置，1是已设置
