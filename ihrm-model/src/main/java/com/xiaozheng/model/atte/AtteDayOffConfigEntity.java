@@ -1,8 +1,6 @@
 package com.xiaozheng.model.atte;
 
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -72,6 +70,7 @@ public class AtteDayOffConfigEntity extends Model<AtteDayOffConfigEntity> implem
     @ApiModelProperty(value = "",example="")
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@TableField(fill = FieldFill.INSERT)
 	private Date createDate;
 	/**
 	 * 
@@ -84,6 +83,7 @@ public class AtteDayOffConfigEntity extends Model<AtteDayOffConfigEntity> implem
     @ApiModelProperty(value = "",example="")
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@TableField(fill = FieldFill.INSERT_UPDATE)
 	private Date updateDate;
 	/**
 	 * 

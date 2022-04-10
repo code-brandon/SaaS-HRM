@@ -1,8 +1,6 @@
 package com.xiaozheng.model.atte;
 
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.math.BigDecimal;
 import java.io.Serializable;
@@ -121,6 +119,7 @@ public class AtteDeductionDictEntity extends Model<AtteDeductionDictEntity> impl
     @ApiModelProperty(value = "",example="")
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@TableField(fill = FieldFill.INSERT)
 	private Date createDate;
 	/**
 	 * 
@@ -133,6 +132,7 @@ public class AtteDeductionDictEntity extends Model<AtteDeductionDictEntity> impl
     @ApiModelProperty(value = "",example="")
 	@JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@TableField(fill = FieldFill.INSERT_UPDATE)
 	private Date updateDate;
 	/**
 	 * 
