@@ -3,6 +3,7 @@ package com.xiaozheng.attendance.controller;
 import com.xiaozheng.attendance.service.AtteCompanySettingsService;
 import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.utils.PageUtils;
+import com.xiaozheng.common.utils.ShiroContextUtils;
 import com.xiaozheng.model.atte.AtteCompanySettingsEntity;
 import com.xiaozheng.model.bs.BsCityEntity;
 import io.swagger.annotations.*;
@@ -82,7 +83,9 @@ public class AtteCompanySettingsController {
     @ApiOperation("保存数据")
     @PostMapping("/save")
     public R<Boolean> save(@RequestBody @ApiParam(name="考勤-企业设置信息",value="考勤-企业设置信息 实体对象",required=true) AtteCompanySettingsEntity atteCompanySettings){
-
+        String companyId = ShiroContextUtils.getProfile().getCompanyId();
+        atteCompanySettings.setCompanyId(companyId);
+        atteCompanySettings.setIsSettings(0);
         return atteCompanySettingsService.save(atteCompanySettings) ? R.ok("保存成功").data(true) : R.error("保存失败").data(false);
     }
 
