@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaozheng.salary.dao.SaUserSalaryChangeDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.xiaozheng.model.sa.SaUserSalaryChangeEntity" id="saUserSalaryChangeMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="currentBasicSalary" column="current_basic_salary"/>
+        <result property="currentPostWage" column="current_post_wage"/>
+        <result property="adjustmentOfBasicWages" column="adjustment_of_basic_wages"/>
+        <result property="adjustPostWages" column="adjust_post_wages"/>
+        <result property="effectiveTimeOfPayAdjustment" column="effective_time_of_pay_adjustment"/>
+        <result property="causeOfSalaryAdjustment" column="cause_of_salary_adjustment"/>
+        <result property="enclosure" column="enclosure"/>
+    </resultMap>
+
+
+</mapper>
