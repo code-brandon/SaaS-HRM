@@ -1,5 +1,7 @@
 package com.xiaozheng.attendance.controller;
 
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.xiaozheng.attendance.service.AtteArchiveMonthlyInfoService;
 import com.xiaozheng.common.entity.R;
 import com.xiaozheng.common.utils.PageUtils;
@@ -51,10 +53,10 @@ public class AtteArchiveMonthlyInfoController {
      * @return 所有数据
      */
     @ApiOperation("查询所有数据")
-    @GetMapping("/list")
-    public R<List<BsCityEntity>> queryList(){
-        List<AtteArchiveMonthlyInfoEntity> atteArchiveMonthlyInfos = atteArchiveMonthlyInfoService.list();
-        return R.ok("查询成功").data("list",atteArchiveMonthlyInfos);
+    @GetMapping("/list/{atteArchiveMonthlyId}")
+    public R<List<AtteArchiveMonthlyInfoEntity>> queryList(@PathVariable String atteArchiveMonthlyId){
+        List<AtteArchiveMonthlyInfoEntity> atteArchiveMonthlyInfos = atteArchiveMonthlyInfoService.list(Wrappers.<AtteArchiveMonthlyInfoEntity>lambdaQuery().eq(AtteArchiveMonthlyInfoEntity::getAtteArchiveMonthlyId, atteArchiveMonthlyId));
+        return CollectionUtils.isNotEmpty(atteArchiveMonthlyInfos) ? R.ok("查询成功").data("list", atteArchiveMonthlyInfos) : R.fail("查询失败，没有数据").data("list" , atteArchiveMonthlyInfos);
     }
 
 

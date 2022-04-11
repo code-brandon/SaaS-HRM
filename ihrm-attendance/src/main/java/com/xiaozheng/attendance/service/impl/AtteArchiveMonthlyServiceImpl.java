@@ -95,10 +95,11 @@ public class AtteArchiveMonthlyServiceImpl extends ServiceImpl<AtteArchiveMonthl
         atteArchiveEntity.setCompanyId(companyId);
         // 保存归档表
         baseMapper.insert(atteArchiveEntity);
-        Long atteArchiveMonthlyId = atteArchiveEntity.getId();
+        String atteArchiveMonthlyId = atteArchiveEntity.getId();
 
         List<AtteArchiveMonthlyInfoEntity> monthlyInfoEntities = atteArchiveMonthlyInfoDao.pageAndDate(atteArchiveMonthlyInfo, companyId).stream().map(item -> {
             item.setAtteArchiveMonthlyId(atteArchiveMonthlyId);
+            item.setArchiveDate(atteArchiveMonthlyInfo.getArchiveDate());
             return item;
         }).collect(Collectors.toList());
 
