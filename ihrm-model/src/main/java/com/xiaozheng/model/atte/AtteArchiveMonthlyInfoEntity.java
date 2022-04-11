@@ -41,7 +41,7 @@ public class AtteArchiveMonthlyInfoEntity extends Model<AtteArchiveMonthlyInfoEn
 	 * 归档id
 	 */
     @ApiModelProperty(value = "归档id",example="")
-	private Long atteArchiveMonthlyId;
+	private String atteArchiveMonthlyId;
 	/**
 	 * 姓名
 	 */

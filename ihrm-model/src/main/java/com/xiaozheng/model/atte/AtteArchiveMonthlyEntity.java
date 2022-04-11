@@ -36,7 +36,7 @@ public class AtteArchiveMonthlyEntity extends Model<AtteArchiveMonthlyEntity> im
 	 */
     @ApiModelProperty(value = "主键ID",example="")
 	@TableId(type = IdType.ASSIGN_ID)
-	private Long id;
+	private String id;
 	/**
 	 * 公司ID
 	 */
