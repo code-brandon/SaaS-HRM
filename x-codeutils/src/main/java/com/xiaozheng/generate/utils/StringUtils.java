@@ -7,7 +7,9 @@ import java.util.regex.Pattern;
 public class StringUtils {
 
     public static String removeCrlf(String str) {
-        if (str == null) return null;
+        if (str == null) {
+            return null;
+        }
         return StringUtils.join(StringUtils.tokenizeToStringArray(str, "\t\n\r\f"), " ");
     }
 
@@ -321,11 +323,11 @@ public class StringUtils {
             for (int i = 1; i < filteredName.length(); i++) {
                 String preChart = filteredName.substring(i - 1, i);
                 String c = filteredName.substring(i, i + 1);
-                if (c.equals("_")) {
+                if ("_".equals(c)) {
                     result.append("_");
                     continue;
                 }
-                if (preChart.equals("_")) {
+                if ("_".equals(preChart)) {
                     result.append(c.toLowerCase());
                     continue;
                 }
@@ -400,7 +402,9 @@ public class StringUtils {
     }
 
     public static String join(Object[] array, String seperator) {
-        if (array == null) return null;
+        if (array == null) {
+            return null;
+        }
         StringBuffer result = new StringBuffer();
         for (int i = 0; i < array.length; i++) {
             result.append(array[i]);

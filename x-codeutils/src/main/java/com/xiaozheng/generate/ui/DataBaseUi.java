@@ -55,14 +55,17 @@ public class DataBaseUi extends JFrame {
 		setTitle("代码生成器v1.0");
 		setBackground(new java.awt.Color(204, 255, 204));
 		addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
 			public void windowClosed(java.awt.event.WindowEvent evt) {
 				formWindowClosed(evt);
 			}
 
+			@Override
 			public void windowOpened(java.awt.event.WindowEvent evt) {
 				formWindowOpened(evt);
 			}
 
+			@Override
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				formWindowClosing(evt);
 			}
@@ -84,6 +87,7 @@ public class DataBaseUi extends JFrame {
 
 		jButton1.setText("\u6d4b\u8bd5\u8fde\u63a5");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton1ActionPerformed(evt);
 			}
@@ -91,6 +95,7 @@ public class DataBaseUi extends JFrame {
 
 		jButton2.setLabel("\u8df3\u8fc7");
 		jButton2.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton2ActionPerformed(evt);
 			}
@@ -260,10 +265,11 @@ public class DataBaseUi extends JFrame {
 	}
 	
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-		if (this.jButton2.getText().equals("下一步")) {
+		if ("下一步".equals(this.jButton2.getText())) {
 			this.jButton2.setText("运行中...");
 			this.jButton2.setEnabled(false);
 			final Thread t=new Thread(new Runnable(){
+				  @Override
 				  public void run(){
 					  String dbName = jComboBox2.getSelectedItem().toString();
 					  String ip = jTextField3.getText();

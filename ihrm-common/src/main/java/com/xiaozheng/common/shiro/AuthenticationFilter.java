@@ -43,7 +43,7 @@ public class AuthenticationFilter extends FormAuthenticationFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
         if (request instanceof HttpServletRequest) {
-            if (((HttpServletRequest) request).getMethod().toUpperCase().equals("OPTIONS")) {
+            if ("OPTIONS".equals(((HttpServletRequest) request).getMethod().toUpperCase())) {
                 return true;
             }
         }

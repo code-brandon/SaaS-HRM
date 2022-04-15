@@ -36,7 +36,7 @@ public class ExcelExportUtil<T> {
         this.clazz = clazz;
         this.rowIndex = rowIndex;
         this.styleIndex = styleIndex;
-        while (clazz != null && !clazz.getName().toLowerCase().equals("com.baomidou.mybatisplus.extension.activerecord.Model")) {//当父类为null的时候说明到达了最上层的父类(Object类).
+        while (clazz != null && !"com.baomidou.mybatisplus.extension.activerecord.Model".equals(clazz.getName().toLowerCase())) {//当父类为null的时候说明到达了最上层的父类(Object类).
             fieldList.addAll(Arrays.asList(clazz.getDeclaredFields()));
             clazz = clazz.getSuperclass(); //得到父类,然后赋给自己
         }

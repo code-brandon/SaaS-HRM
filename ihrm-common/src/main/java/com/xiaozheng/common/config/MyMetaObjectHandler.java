@@ -25,6 +25,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         List<StrictFill<?, ?>> strictFills = new ArrayList<>();
         strictFills.add(StrictFill.of("createDate", Date.class, new Date()));
         strictFills.add(StrictFill.of("createTime", Date.class, new Date()));
+        strictFills.add(StrictFill.of("creationTime", Date.class, new Date()));
         this.strictInsertFill(findTableInfo(metaObject), metaObject,strictFills);
     }
 

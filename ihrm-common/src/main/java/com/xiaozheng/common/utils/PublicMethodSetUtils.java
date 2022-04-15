@@ -43,7 +43,7 @@ public class PublicMethodSetUtils {
             // 企业是否缴纳开关，0为禁用，1为启用
             if (cityPaymentItem.getSwitchCompany() == 1) {
                 BigDecimal augend;
-                if (cityPaymentItem.getPaymentItemId().equals("4") && item.getIndustrialInjuryRatio() != null) {
+                if ("4".equals(cityPaymentItem.getPaymentItemId()) && item.getIndustrialInjuryRatio() != null) {
                     augend = item.getIndustrialInjuryRatio().multiply(BigDecimal.valueOf(item.getSocialSecurityBase() != null ? item.getSocialSecurityBase() : 0));
                 } else {
                     augend = cityPaymentItem.getScaleCompany().multiply(BigDecimal.valueOf(item.getSocialSecurityBase() != null ? item.getSocialSecurityBase() : 0));

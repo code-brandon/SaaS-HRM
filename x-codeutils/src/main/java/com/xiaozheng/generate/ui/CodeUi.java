@@ -79,14 +79,17 @@ public class CodeUi extends JFrame {
 		//setTitle("\u4f20\u667a\u5218\u5907\u4ee3\u7801\u751f\u6210\u5668 V2.3");
 		setTitle("代码生成器v1.0");
 		addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
 			public void windowActivated(java.awt.event.WindowEvent evt) {
 				formWindowActivated(evt);
 			}
 
+			@Override
 			public void windowOpened(java.awt.event.WindowEvent evt) {
 				formWindowOpened(evt);
 			}
 
+			@Override
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				formWindowClosing(evt);
 			}
@@ -108,6 +111,7 @@ public class CodeUi extends JFrame {
 
 		jButton1.setText("\u751f\u6210\u4ee3\u7801");
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton1ActionPerformed(evt);
 			}
@@ -115,6 +119,7 @@ public class CodeUi extends JFrame {
 
 		jButton2.setText("\u5173\u95ed");
 		jButton2.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton2ActionPerformed(evt);
 			}
@@ -129,6 +134,7 @@ public class CodeUi extends JFrame {
 
 		jButton7.setText("\u9009\u62e9");
 		jButton7.addActionListener(new java.awt.event.ActionListener() {
+			@Override
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton7ActionPerformed(evt);
 			}
