@@ -1,0 +1,40 @@
+server:
+  port: 9007
+spring:
+  application:
+    name: ihrm-audit
+  datasource:
+    dynamic:
+      primary: act #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      datasource:
+        act:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://192.168.56.2:3306/act?characterEncoding=utf8&serverTimezone=Asia/Shanghai
+          jdbc-url: jdbc:mysql://192.168.56.2:3306/act?characterEncoding=utf8&serverTimezone=Asia/Shanghai
+          username: root
+          password: 12345678
+        ihrm:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://192.168.56.2:3306/ihrm?characterEncoding=utf8&serverTimezone=Asia/Shanghai
+          jdbc-url: jdbc:mysql://192.168.56.2:3306/ihrm?characterEncoding=utf8&serverTimezone=Asia/Shanghai
+          username: root
+          password: 12345678
+  activiti:
+    history-level: full
+    db-history-used: true
+    check-process-definitions: false # 自动部署验证设置:true-开启（默认）、false-关闭
+mybatis-plus:
+  mapper-locations: classpath*:/Mapper/audit/**/*.xml
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 注册服务
+eureka:
+  client:
+    # Eureka客户端与Eureka服务端进行交互的地址
+    service-url:
+      defaultZone: http://192.168.56.2:6060/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}

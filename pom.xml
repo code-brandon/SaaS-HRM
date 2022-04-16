@@ -38,6 +38,7 @@
         <module>ihrm-jasper-demo</module>
         <module>ihrm-attendance</module>
         <module>ihrm-salary</module>
+        <module>ihrm-audit</module>
         <module>x-codeutils</module>
     </modules>
 
