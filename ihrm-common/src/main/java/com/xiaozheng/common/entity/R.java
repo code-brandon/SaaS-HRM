@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ import java.util.Map;
 @ApiModel("api通用返回数据")
 @Data
 @AllArgsConstructor
-public class R<T> {
+public class R<T> implements Serializable {
 
     //uuid,用作唯一标识符，供序列化和反序列化时检测是否一致
 
