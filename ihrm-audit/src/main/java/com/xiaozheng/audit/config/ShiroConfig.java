@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * @author Xiao
  */
-// @Configuration
+@Configuration
 public class ShiroConfig {
 
     @Bean
