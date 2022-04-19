@@ -1,5 +1,6 @@
 package com.xiaozheng.zuul;
 
+import com.xiaozheng.common.config.DruidConfig;
 import com.xiaozheng.common.config.MybatisPlusConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +18,7 @@ import org.springframework.context.annotation.FilterType;
 @SpringBootApplication(scanBasePackages = "com.xiaozheng")
 @EnableZuulProxy
 //排除 MybatisPlusConfig.java配置类
-@ComponentScan(excludeFilters= {@ComponentScan.Filter(type= FilterType.ASSIGNABLE_TYPE, value= {MybatisPlusConfig.class})})
+@ComponentScan(excludeFilters= {@ComponentScan.Filter(type= FilterType.ASSIGNABLE_TYPE, value= {MybatisPlusConfig.class, DruidConfig.class})})
 @EnableEurekaClient
 @EnableDiscoveryClient
 public class IhrmZuulApplication {
