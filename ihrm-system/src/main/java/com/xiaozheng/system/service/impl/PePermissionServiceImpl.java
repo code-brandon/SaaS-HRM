@@ -57,6 +57,7 @@ public class PePermissionServiceImpl extends ServiceImpl<PePermissionDao, PePerm
             queryWrapper.eq("en_visible", pePermission.getEnVisible());
         }
 
+        params.put("limit", "1000");
         IPage<PePermissionEntity> page = this.page(
                 new Query<PePermissionEntity>().getPage(params),
                 pePermission.getType() != 0 ? queryWrapper.setEntity(pePermission) : queryWrapper
