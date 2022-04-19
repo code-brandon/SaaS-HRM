@@ -38,6 +38,10 @@
                     <artifactId>mybatis-plus-boot-starter</artifactId>
                     <groupId>com.baomidou</groupId>
                 </exclusion>
+                <exclusion>
+                    <groupId>com.alibaba</groupId>
+                    <artifactId>druid</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
 
