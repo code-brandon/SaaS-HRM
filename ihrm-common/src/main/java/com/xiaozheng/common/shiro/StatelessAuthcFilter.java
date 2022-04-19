@@ -1,9 +1,9 @@
 package com.xiaozheng.common.shiro;
 
+import com.alibaba.fastjson.JSON;
 import com.xiaozheng.common.entity.R;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.web.filter.authc.UserFilter;
-import org.apache.shiro.web.util.WebUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -46,7 +46,7 @@ public class StatelessAuthcFilter extends UserFilter {
         setHeader((HttpServletRequest) request,(HttpServletResponse) response);
         PrintWriter out = response.getWriter();
         //自己控制返回的json数据
-        out.println(new R(500,null,"Shiro验证失败"));
+        out.println(JSON.toJSONString(new R(500,null,"Shiro验证失败")));
         out.flush();
         out.close();
     }
