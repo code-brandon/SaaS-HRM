@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaozheng.audit.dao.ProcInstanceDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.xiaozheng.model.proc.ProcInstanceEntity" id="procInstanceMap">
+        <result property="processId" column="process_id"/>
+        <result property="processKey" column="process_key"/>
+        <result property="processName" column="process_name"/>
+        <result property="processDefinitionId" column="process_definition_id"/>
+        <result property="processState" column="process_state"/>
+        <result property="userId" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="procApplyTime" column="proc_apply_time"/>
+        <result property="procCurrNodeUserId" column="proc_curr_node_user_id"/>
+        <result property="procCurrNodeUserName" column="proc_curr_node_user_name"/>
+        <result property="procEndTime" column="proc_end_time"/>
+        <result property="procData" column="proc_data"/>
+        <result property="departmentId" column="department_id"/>
+        <result property="departmentName" column="department_name"/>
+        <result property="timeOfEntry" column="time_of_entry"/>
+    </resultMap>
+
+    <select id = "selectBsUsers" resultType="java.util.HashMap">
+        <foreach item="sql" index="index" collection="sqlStrs"
+                 open="( " separator=" UNION ALL " close=" )">
+            ${sql}
+        </foreach>
+    </select>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaozheng.audit.dao.ProcTaskInstanceDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.xiaozheng.model.proc.ProcTaskInstanceEntity" id="procTaskInstanceMap">
+        <id property="taskId" column="task_id"/>
+        <result property="processId" column="process_id"/>
+        <result property="taskKey" column="task_key"/>
+        <result property="taskName" column="task_name"/>
+        <result property="shouldUserId" column="should_user_id"/>
+        <result property="shouldUserName" column="should_user_name"/>
+        <result property="handleUserId" column="handle_user_id"/>
+        <result property="handleUserName" column="handle_user_name"/>
+        <result property="handleTime" column="handle_time"/>
+        <result property="handleOpinion" column="handle_opinion"/>
+        <result property="handleType" column="handle_type"/>
+    </resultMap>
+
+
+</mapper>
