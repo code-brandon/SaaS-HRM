@@ -62,7 +62,10 @@ public class MybatisPlusConfig {
     /*@Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.H2));
+        PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor();
+        paginationInnerInterceptor.setMaxLimit(1000L);
+        paginationInnerInterceptor.setOverflow(true);
+        interceptor.addInnerInterceptor(paginationInnerInterceptor);
         return interceptor;
     }*/
     
