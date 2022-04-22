@@ -13,13 +13,10 @@ import org.springframework.context.annotation.FilterType;
 /**
  * 排除 SecurityAutoConfiguration，因为activiti 7.x 以上 默认使用Security，而本项目使用的是Shiro
  */
-@SpringBootApplication(scanBasePackages = "com.xiaozheng",exclude = {
-        org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
-        org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration.class
-})
+@SpringBootApplication()
 @MapperScan("com.xiaozheng.audit.dao")
 // 排除自定义的DruidConfig
-@ComponentScan(excludeFilters= {@ComponentScan.Filter(type= FilterType.ASSIGNABLE_TYPE, value= { DruidConfig.class})})
+@ComponentScan(basePackages = {"com.xiaozheng"},excludeFilters= {@ComponentScan.Filter(type= FilterType.ASSIGNABLE_TYPE, value= { DruidConfig.class})})
 @EnableEurekaClient
 @EnableDiscoveryClient()
 @EnableFeignClients()

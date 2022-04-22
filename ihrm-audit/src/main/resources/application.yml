@@ -25,9 +25,10 @@ spring:
     db-history-used: true
     check-process-definitions: false # 自动部署验证设置:true-开启（默认）、false-关闭
 mybatis-plus:
-  mapper-locations: classpath*:/Mapper/audit/**/*.xml
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  mapper-locations:
+#    - classpath*:/Mapper/audit/**/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 # 注册服务
 eureka:
