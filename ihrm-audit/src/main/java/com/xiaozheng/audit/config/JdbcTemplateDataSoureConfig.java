@@ -8,11 +8,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
-@Configuration
+// @Configuration
 public class JdbcTemplateDataSoureConfig {
 
-    @Bean(name = "ihrmJdbcTemplate")
-    public JdbcTemplate ihrmJdbcTemplate(@Qualifier("ihrmDataSource")DataSource dataSource){
-        return new JdbcTemplate(dataSource);
-    }
+    // @Bean(name = "ihrmJdbcTemplate")
+    // public JdbcTemplate ihrmJdbcTemplate(@Qualifier("ihrmDataSource")DataSource dataSource){
+    //     return new JdbcTemplate(dataSource);
+    // }
 }
